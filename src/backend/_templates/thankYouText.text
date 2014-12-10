@@ -1,0 +1,14 @@
+Save the Date
+
+Hi, {{ name }}
+
+Thank you again for providing your information. We'll keep you in the loop with all the information you need for joining us in our special celebration.
+
+Contact Info
+Name: {{ name }}
+Email: {{ email }}
+Address: {{ address }}
+
+Edit contact info: {{ editUrl }}
+
+Made with &hearts; by Nick & Bora

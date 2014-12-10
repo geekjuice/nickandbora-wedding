@@ -1,0 +1,20 @@
+{
+  "name": "NickAndBora",
+  "version": "0.0.1",
+  "author": "Nicholas Hwang",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "0.11.x",
+    "npm": "2.1.x"
+  },
+
+  "dependencies": {
+    "debug": "^2.1.0",
+    "express": "^4.10.4",
+    "morgan": "^1.5.0",
+    "forever": "^0.13.0",
+    "newrelic": "^1.12.1"
+  }
+}
+

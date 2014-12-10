@@ -1,0 +1,10 @@
+extends _main
+
+block head
+  +googleMaps(GOOGLE_MAPS)
+  +stylesheet("saveTheDate")
+  script(data-main="/js/saveTheDate", src="/js/vendor/require.js")
+
+block content
+  #NickAndBora
+    #login

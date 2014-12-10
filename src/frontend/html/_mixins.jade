@@ -1,0 +1,16 @@
+//- Mixins
+
+mixin latoFont
+  link(href='//fonts.googleapis.com/css?family=Lato:100,300,400,700',rel='stylesheet',type='text/css')
+
+mixin cardoFont
+  link(href='//fonts.googleapis.com/css?family=Cardo:400,700',rel='stylesheet',type='text/css')
+
+mixin stylesheet(file)
+  link(rel='stylesheet', href='/css/#{file}.css')
+
+mixin javascript(file)
+  script(src='/js/#{file}.js')
+
+mixin googleMaps(key)
+  script(src="https://maps.googleapis.com/maps/api/js?key=#{key}")

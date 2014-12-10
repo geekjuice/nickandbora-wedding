@@ -1,0 +1,26 @@
+{
+  "name": "NickAndBora",
+  "version": "0.0.1",
+  "authors": [
+    "Nicholas Hwang"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "^2.1.14",
+    "zepto": "^1.1.4",
+    "lodash": "^2.4.1",
+    "react": "^0.12.0",
+    "q": "q#^1.0.1",
+    "flux": "~2.0.2",
+    "page": "~1.5.0",
+    "eventEmitter": "~4.2.9"
+  }
+}

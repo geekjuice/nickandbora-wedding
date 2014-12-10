@@ -1,0 +1,7 @@
+key.json
+node_modules
+
+_backend
+_static
+
+src/frontend/vendor
