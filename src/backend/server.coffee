@@ -9,7 +9,7 @@ Backend
 NAME = 'NickAndBora'
 
 ## New Relic
-require('newrelic') if NODE_ENV is 'production'
+require('newrelic') if NODE_ENV in ['qa', 'production']
 
 ## Requires
 express     = require('express')

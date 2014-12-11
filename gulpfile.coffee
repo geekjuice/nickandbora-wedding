@@ -179,34 +179,40 @@ gulp.task 'browser-sync', ['build:static:dev'], ->
 ###
 # Deploy Heroku
 ###
-gulp.task 'heroku', ->
+heroku = (prod) ->
+  app = "#{env.HEROKU_STATIC.toLowerCase()}#{unless prod then '-qa' else ''}"
 
-  CMDS = [
-    "cd #{_build}"
-    "rm -rf .git"
-    "git init"
-    "git add -A"
-    "git commit -m '.'"
-    "git remote add heroku git@heroku.com:#{env.HEROKU_STATIC.toLowerCase()}.git"
-    "git push -fu heroku master"
-  ].join(' && ')
+  ->
+    CMDS = [
+      "cd #{_build}"
+      "rm -rf .git"
+      "git init"
+      "git add -A"
+      "git commit -m '.'"
+      "git remote add heroku git@heroku.com:#{app}.git"
+      "git push -fu heroku master"
+    ].join(' && ')
 
-  exec CMDS, (err, stdout, stderr) ->
-    process.stdout.write stdout
-    process.stdout.write stderr
+    exec CMDS, (err, stdout, stderr) ->
+      process.stdout.write stdout
+      process.stdout.write stderr
 
+deploy = (prod) ->
+  ->
+    CMDS = [
+      "gulp clean"
+      "gulp build:prod"
+      "gulp heroku:#{if prod then 'prod' else 'qa'}"
+    ].join(' && ')
 
-gulp.task 'deploy', ->
+    exec CMDS, (err, stdout, stderr) ->
+      process.stdout.write stdout
+      process.stdout.write stderr
 
-  CMDS = [
-    "gulp clean"
-    "gulp build:prod"
-    "gulp heroku"
-  ].join(' && ')
-
-  exec CMDS, (err, stdout, stderr) ->
-    process.stdout.write stdout
-    process.stdout.write stderr
+gulp.task 'heroku:qa', heroku(false)
+gulp.task 'heroku:prod', heroku(true)
+gulp.task 'deploy:qa', deploy(false)
+gulp.task 'deploy:prod', deploy(true)
 
 
 ###
