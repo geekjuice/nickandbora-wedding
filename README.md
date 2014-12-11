@@ -8,3 +8,4 @@
 * [ ] Add image for email confirmation
 * [ ] Deploy backend to Heroku or use same Express server
 * [ ] Hook up MongoDB on backend
+* [ ] Modularize Gulp

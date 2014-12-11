@@ -1,7 +1,6 @@
 key.json
 node_modules
 
-_backend
-_static
+_build
 
 src/frontend/vendor

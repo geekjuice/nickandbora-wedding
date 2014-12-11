@@ -4,7 +4,12 @@ Backend
 ###
 
 ## Env
-{ NAME, SERVER_PORT } = require ('./env.json')
+{ NODE_ENV, PORT } = process.env
+
+NAME = 'NickAndBora'
+
+## New Relic
+require('newrelic') if NODE_ENV is 'production'
 
 ## Requires
 express     = require('express')
@@ -32,7 +37,7 @@ app.use(express.static("#{__dirname}/public"))
 require('./router')(app)
 
 ## Start Server
-app.set('port', process.env.PORT or SERVER_PORT or 8000)
+app.set('port', PORT or 7000)
 server = app.listen app.get('port'), ->
   debug('Express server listening on port ' + server.address().port)
 

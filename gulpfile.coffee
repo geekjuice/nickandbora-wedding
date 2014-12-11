@@ -29,9 +29,7 @@ data = _.extend({}, (key or {}), env)
 # Directory Paths
 ###
 _src = './src'
-_static = './_static'
-_backend = './_backend'
-_deploy = './_deploy'
+_build = './_build'
 d =
   modules: './node_modules'
   src:
@@ -41,19 +39,16 @@ d =
     img: "#{_src}/frontend/img"
     misc: "#{_src}/frontend/misc"
     vendor: "#{_src}/frontend/vendor"
-    server: "#{_src}/frontend/server"
     backend: "#{_src}/backend"
     shared: "#{_src}/shared"
-  static:
-    root: "#{_static}"
-    public: "#{_static}/public"
-    js: "#{_static}/public/js"
-    css: "#{_static}/public/css"
-    img: "#{_static}/public/img"
+  build:
+    public: "#{_build}/public"
+    js: "#{_build}/public/js"
+    css: "#{_build}/public/css"
+    img: "#{_build}/public/img"
     vendor:
-      js: "#{_static}/public/js/vendor"
-      css: "#{_static}/public/css/vendor"
-
+      js: "#{_build}/public/js/vendor"
+      css: "#{_build}/public/css/vendor"
 
 ###
 # Tasker
@@ -68,140 +63,126 @@ _do = (src='', dest='', task='', filename='') ->
   _imagemin = /imagemin/.test task
   _rename = /rename/.test task
   _dev = /dev/.test task
-  gulp.src(src)
-    .pipe(do plumber) # Plumber
-    .pipe(iif(_sass, sass({compass:true, style: 'compressed'}))) # Sass
-    .pipe(iif(_jade, jade({data, pretty: true}))) # Jade
-    .pipe(iif(_coffee, cjsx(bare:true))) # Coffee/React
-    .pipe(iif(_uglify and not _dev, uglify(compress: drop_debugger: false))) # Uglify
-    .pipe(iif(_minify and not _dev, minify())) # Minify
-    .pipe(iif(_imagemin and not _dev, imagemin())) # Imagemin
-    .pipe(iif(_rename and !!filename, rename(basename: filename))) # Rename
-    .pipe(gulp.dest(dest)) # Destination
-    .pipe(iif(_sass, filter('**/*.css'))) # Filter CSS
-    .pipe(iif(_copy or _sass, sync.reload(stream: true))) # BrowserSync
 
-
-###
-# Configs
-###
-gulp.task 'config', ->
-  _do('./env.json', _backend)
+  if _sass
+    sass(src, {compass:true, style: 'compressed', sourcemap: false}) # Sass
+      .pipe(gulp.dest(dest)) # Destination
+      .pipe(filter('**/*.css')) # Filter CSS
+      .pipe(sync.reload(stream: true)) # BrowserSync
+  else
+    gulp.src(src)
+      .pipe(do plumber) # Plumber
+      .pipe(iif(_jade, jade({data, pretty: true}))) # Jade
+      .pipe(iif(_coffee, cjsx(bare:true))) # Coffee/React
+      .pipe(iif(_uglify and not _dev, uglify(compress: drop_debugger: false))) # Uglify
+      .pipe(iif(_minify and not _dev, minify())) # Minify
+      .pipe(iif(_imagemin and not _dev, imagemin())) # Imagemin
+      .pipe(iif(_rename and !!filename, rename(basename: filename))) # Rename
+      .pipe(gulp.dest(dest)) # Destination
+      .pipe(iif(_copy, sync.reload(stream: true))) # BrowserSync
 
 
 ###
 # Clean
 ###
-gulp.task 'clean', ['clean:static', 'clean:backend']
-gulp.task 'clean:static', ->
-  gulp.src(_static, {read: false}).pipe(clean())
-gulp.task 'clean:backend', ->
-  gulp.src(_backend, {read: false}).pipe(clean())
-
-
-###
-# Clean libs
-###
-gulp.task 'wipe', ['clean'], ->
+gulp.task 'clean', ->
+  gulp.src(_build, {read: false}).pipe(clean())
+gulp.task 'clean:modules', ['clean'], ->
   gulp.src(d.modules, {read: false}).pipe(clean())
   gulp.src(d.src.vendor, {read: false}).pipe(clean())
+
+gulp.task 'clean:all', ['clean', 'clean:modules']
 
 
 ###
 # Vendor Files
 ###
 gulp.task 'vendor', ->
-  _do("#{d.src.vendor}/requirejs/require.js", d.static.vendor.js, 'uglify')
-  _do("#{d.src.vendor}/zepto/zepto.js", d.static.vendor.js, 'uglify')
-  _do("#{d.src.vendor}/lodash/dist/lodash.js", d.static.vendor.js, 'uglify')
-  _do("#{d.src.vendor}/q/q.js", d.static.vendor.js, 'uglify')
-  _do("#{d.src.vendor}/react/react-with-addons.js", d.static.vendor.js, 'uglify rename', 'react')
-  _do("#{d.src.vendor}/flux/dist/Flux.js", d.static.vendor.js, 'uglify rename', 'flux')
-  _do("#{d.src.vendor}/page/index.js", d.static.vendor.js, 'uglify rename', 'page')
-  _do("#{d.src.vendor}/eventEmitter/eventEmitter.js", d.static.vendor.js, 'uglify rename', 'event')
+  _do("#{d.src.vendor}/requirejs/require.js", d.build.vendor.js, 'uglify')
+  _do("#{d.src.vendor}/zepto/zepto.js", d.build.vendor.js, 'uglify')
+  _do("#{d.src.vendor}/lodash/dist/lodash.js", d.build.vendor.js, 'uglify')
+  _do("#{d.src.vendor}/q/q.js", d.build.vendor.js, 'uglify')
+  _do("#{d.src.vendor}/react/react-with-addons.js", d.build.vendor.js, 'uglify rename', 'react')
+  _do("#{d.src.vendor}/flux/dist/Flux.js", d.build.vendor.js, 'uglify rename', 'flux')
+  _do("#{d.src.vendor}/page/index.js", d.build.vendor.js, 'uglify rename', 'page')
+  _do("#{d.src.vendor}/eventEmitter/eventEmitter.js", d.build.vendor.js, 'uglify rename', 'event')
 
 
 ###
 # Tasks
 ###
 gulp.task 'misc', ->
-  _do("#{d.src.misc}/**/*",  d.static.public)
+  _do("#{d.src.misc}/**/*",  d.build.public)
 gulp.task 'html', ->
-  _do(["#{d.src.html}/**/*.jade", "!#{d.src.html}/**/_*.jade"],  d.static.public, 'jade')
+  _do(["#{d.src.html}/**/*.jade", "!#{d.src.html}/**/_*.jade"],  d.build.public, 'jade')
 gulp.task 'css', ->
-  _do("#{d.src.css}/**/*.sass", d.static.css, 'sass')
+  _do(d.src.css, d.build.css, 'sass')
 gulp.task 'js', ->
-  _do("#{d.src.js}/**/*.{coffee,cjsx}", d.static.js, 'cjsx uglify')
+  _do("#{d.src.js}/**/*.{coffee,cjsx}", d.build.js, 'cjsx uglify')
 gulp.task 'img', ->
-  _do("#{d.src.img}/**/*", d.static.img, 'imagemin')
+  _do("#{d.src.img}/**/*", d.build.img, 'imagemin')
 gulp.task 'js:dev', ->
-  _do("#{d.src.js}/**/*.{coffee,cjsx}", d.static.js, 'cjsx dev')
+  _do("#{d.src.js}/**/*.{coffee,cjsx}", d.build.js, 'cjsx dev')
 gulp.task 'img:dev', ->
-  _do("#{d.src.img}/**/*", d.static.img, 'imagemin dev')
-
-gulp.task 'server', ->
-  _do(["!#{d.src.server}/**/*.coffee", "#{d.src.server}/**/*"], _static)
-  _do("#{d.src.server}/**/*.coffee", _static, 'cjsx uglify')
+  _do("#{d.src.img}/**/*", d.build.img, 'imagemin dev')
 
 gulp.task 'backend', ->
-  _do("#{d.src.backend}/**/*.coffee", _backend, 'coffee')
-  _do("#{d.src.backend}/**/*.{text,jade,css}", _backend)
+  _do(["!#{d.src.backend}/**/*.coffee", "#{d.src.backend}/**/*"], _build)
+  _do("#{d.src.backend}/**/*.coffee", _build, 'cjsx uglify')
 
 gulp.task 'shared', ->
-  _do("#{d.src.shared}/**/*.coffee", d.static.js, 'coffee')
-  _do("#{d.src.shared}/**/*.coffee", _backend, 'coffee')
+  _do("#{d.src.shared}/**/*.coffee", d.build.js, 'coffee')
+  _do("#{d.src.shared}/**/*.coffee", _build, 'coffee')
 
 
 
 ###
 # Build
 ###
-gulp.task 'build:static:dev', ['server', 'vendor', 'shared', 'misc', 'html', 'css', 'js:dev', 'img:dev']
-gulp.task 'build:static:prod', ['server', 'vendor', 'shared', 'misc', 'html', 'js', 'css', 'img']
-gulp.task 'build:backend', ['config', 'shared', 'backend']
+gulp.task 'build:backend', ['shared', 'backend']
+gulp.task 'build:static:dev', ['vendor', 'shared', 'misc', 'html', 'css', 'js:dev', 'img:dev']
+gulp.task 'build:static:prod', ['vendor', 'shared', 'misc', 'html', 'js', 'css', 'img']
+gulp.task 'build:dev', ['build:static:dev', 'build:backend']
+gulp.task 'build:prod', ['build:static:prod', 'build:backend']
 
 
 ###
 # Watch/BrowserSync
 ###
-gulp.task 'watch', ['env', 'watch:backend', 'watch:static']
+gulp.task 'watch', ['watch:backend', 'watch:static']
 
 gulp.task 'env', ->
   enviro vars: { NODE_ENV: 'development' }
 
-gulp.task 'watch:backend', ['server:backend'], ->
-  gulp.watch "#{d.src.backend}/**/*", ['backend']
+gulp.task 'watch:backend', ['env', 'supervisor'], ->
+  gulp.watch ["!#{d.src.backend}/public", "#{d.src.backend}/**/*"], ['backend', sync.reload]
 
 gulp.task 'watch:static', ['browser-sync'], ->
   gulp.watch "#{d.src.js}/**/*.{coffee,cjsx}", ['js:dev', sync.reload]
-  gulp.watch "#{d.src.css}/**/*.sass", ['css', sync.reload]
+  gulp.watch "#{d.src.css}/**/*.sass", ['css']
   gulp.watch "#{d.src.html}/**/*.jade", ['html', sync.reload]
   gulp.watch "#{d.src.shared}/**/*.coffee", ['shared', sync.reload]
 
-gulp.task 'server:backend', ['build:backend'], ->
-  supervisor "#{_backend}/server.js",
-    watch: _backend
+gulp.task 'supervisor', ['build:backend'], ->
+  supervisor "#{_build}/server.js",
+    ignore: "#{_build}/public"
     extensions: 'js'
     debug: true
 
-gulp.task 'browser-sync', ['server:static'], ->
+gulp.task 'browser-sync', ['build:static:dev'], ->
   sync
-    proxy: "localhost:#{env.STATIC_PORT}"
+    proxy: "localhost:#{env.PORT}"
     port: env.BROWSERSYNC_PORT
     open: false
 
-gulp.task 'server:static', ['build:static:dev'], ->
-  supervisor "#{_static}/server.js",
-    watch: _static
-
 
 ###
-# Deploy to Static to Heroku
+# Deploy Heroku
 ###
-gulp.task 'heroku:static', ->
+gulp.task 'heroku', ->
 
   CMDS = [
-    "cd #{_static}"
+    "cd #{_build}"
     "rm -rf .git"
     "git init"
     "git add -A"
@@ -215,12 +196,12 @@ gulp.task 'heroku:static', ->
     process.stdout.write stderr
 
 
-gulp.task 'deploy:static', ->
+gulp.task 'deploy', ->
 
   CMDS = [
     "gulp clean"
-    "gulp build:static:prod"
-    "gulp heroku:static"
+    "gulp build:prod"
+    "gulp heroku"
   ].join(' && ')
 
   exec CMDS, (err, stdout, stderr) ->

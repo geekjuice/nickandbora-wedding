@@ -8,9 +8,22 @@ errorHandler = require('errorhandler')
 C   = require('./constants')
 api = require('./api')
 
+ROUTES =
+  '/saveTheDate': 'saveTheDate'
+  '/': 'index'
+
+_route = (file) ->
+  (req, res, next) ->
+    res.sendFile("#{__dirname}/public/#{file}.html")
+
 module.exports = (app) ->
 
+  ## Load MongoDB
   db = mongo.db(C.MONGOURI, {safe: true})
+
+  ## Static Routes
+  for route, file of ROUTES
+    app.use route, _route(file)
 
   ## API
   api.param 'collection', (req, res, next, collection) ->
