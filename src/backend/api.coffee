@@ -29,9 +29,9 @@ router.get "/:collection/:type/:value", (req, res, next) ->
 
 ## POST Contact
 router.post "/:collection", (req, res, next) ->
-  { body, header, collection } = req
+  { body, headers, collection } = req
 
-  unless C.REFERER_REGEX.test header?.referer
+  unless C.REFERER_REGEX.test headers?.referer
     return res.send({status: 401, message: C.TABLE_FLIP})
 
   { contact, valid, errors, fields } = _validateContact(body)
@@ -52,11 +52,11 @@ _validateContact = (contact) ->
 
 _sendThankYou = (contact) ->
   { name, email, address } = contact
-  editUrl = "#{C.URL}/?name=#{name}&email=#{email}&address=#{address}"
+  editUrl = "#{C.URL}/?name=#{name}&email=#{email}&address=#{address}&_authenticated=true"
   heroImage = C.EMAIL_IMAGE
   _authenticated = true
 
-  opts = _.extend(contact, { editUrl, _authenticated })
+  opts = _.extend(contact, { editUrl, heroImage, _authenticated })
   html = Templates.thankYou(opts)
   text = Templates.thankYouText(opts)
 

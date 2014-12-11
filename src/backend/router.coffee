@@ -21,10 +21,6 @@ module.exports = (app) ->
   ## Load MongoDB
   db = mongo.db(C.MONGOURI, {safe: true})
 
-  ## Static Routes
-  for route, file of ROUTES
-    app.use route, _route(file)
-
   ## API
   api.param 'collection', (req, res, next, collection) ->
     req.collection = db.collection(collection)
@@ -32,6 +28,10 @@ module.exports = (app) ->
 
   ## API Routes
   app.use '/api', api
+
+  ## Static Routes
+  for route, file of ROUTES
+    app.use route, _route(file)
 
   ## Catch 404
   app.get '*', (req, res, next) ->

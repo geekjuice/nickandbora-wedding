@@ -26,10 +26,6 @@ define [
   ThankYouElement
 ) ->
 
-  BASE_URL = if Env.isLocal('saveTheDate')
-  then 'localhost:8000'
-  else ''
-
   WHEELSCROLL = 'mousewheel DOMMouseScroll'
 
   FormElement = React.createClass
@@ -94,7 +90,7 @@ define [
         @_scrolling = null
 
     saveContact: (contact) ->
-      $.post "http://#{BASE_URL}/contact", contact, ({status, message}) =>
+      $.post "api/contact", contact, ({status, message}) =>
         if status is 200
           @setState(saved: true)
           FormActions.complete()

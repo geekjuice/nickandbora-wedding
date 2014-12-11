@@ -36,15 +36,15 @@ env = switch NODE_ENV
     MANDRILL_API_KEY: MANDRILL_API_KEY or key.MANDRILL_API_KEY
     EMAIL_IMAGE: 'http://nick.dev:7000/img/email_hero.jpg'
 
-  when 'production'
+  when 'qa'
     MONGOURI: MONGOLAB_URI
-    REFERER_REGEX: /^http(s)?:\/\/nickandbora-qa.herokuapp.com\/savethedate\/?$/i
+    REFERER_REGEX: /^http(s)?:\/\/nickandbora-qa.herokuapp.com\/savethedate/i
     MANDRILL_API_KEY: MANDRILL_API_KEY
-    EMAIL_IMAGE: 'http://NickAndBora.Life/img/email_hero.jpg'
+    EMAIL_IMAGE: 'http://placehold.it/800x600'
 
   when 'production'
     MONGOURI: MONGOLAB_URI
-    REFERER_REGEX: /^http(s)?:\/\/nickandbora.life\/savethedate\/?$/i
+    REFERER_REGEX: /^http(s)?:\/\/nickandbora.life\/savethedate/i
     MANDRILL_API_KEY: MANDRILL_API_KEY
     EMAIL_IMAGE: 'http://NickAndBora.Life/img/email_hero.jpg'
 
