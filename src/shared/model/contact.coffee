@@ -29,7 +29,7 @@ _contact = ->
       @sanitize()
 
     sanitize: ->
-      @contact = _pick @contact, REQUIRED_FIELDS
+      @contact = _pick @contact, ['_id', REQUIRED_FIELDS...]
       for key, value of @contact
         @contact[key] = value.trim()
 

@@ -78,7 +78,7 @@ p.edit a {
 
 p.lead {
   line-height: 1.4em;
-  word-break: break-word;
+  word-break: normal;
 }
 
 img.logo {

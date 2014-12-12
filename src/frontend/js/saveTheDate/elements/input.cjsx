@@ -74,5 +74,6 @@ define [
                onFocus={@handleFocus}
                onChange={@handleChange}
                onKeyUp={@handleKeyup}
+               spellCheck='false'
         />
       </div>

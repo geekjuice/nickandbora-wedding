@@ -8,6 +8,7 @@ define [
   'saveTheDate/actions/alertActions'
   'saveTheDate/stores/formStore'
   'saveTheDate/elements/input'
+  'saveTheDate/elements/hiddenInput'
   'saveTheDate/elements/button'
   'saveTheDate/elements/googleMaps'
   'saveTheDate/elements/thankYou'
@@ -21,6 +22,7 @@ define [
   AlertActions
   FormStore
   InputElement
+  HiddenInputElement
   ButtonElement
   MapElement
   ThankYouElement
@@ -36,6 +38,7 @@ define [
       saved: false
       address: 'Rancho Valencia, San Diego, CA'
       prefilled:
+        _id: ''
         name: ''
         email: ''
         address: ''
@@ -45,7 +48,7 @@ define [
       @listenTo(FormStore)
       $(window).on WHEELSCROLL, @_debouncedCancelScroll
 
-      queries = @parseQueryParams(['name', 'email', 'address'])
+      queries = @parseQueryParams(['_id', 'name', 'email', 'address'])
       unless _.isEmpty queries
         prefilled = _.extend @state.prefilled, queries
         @setState { prefilled }
@@ -109,9 +112,10 @@ define [
         @setState(address: _value)
 
     render: ->
-      { name, email, address } = @state.prefilled
+      { _id, name, email, address } = @state.prefilled
       <form id='contacts-form'>
         <div>
+          <HiddenInputElement name='_id' value={_id} />
           <InputElement name='name' value={name} />
           <InputElement name='email' value={email} />
           <InputElement name='address' value={address}
