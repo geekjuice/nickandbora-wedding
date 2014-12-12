@@ -2,7 +2,7 @@
 body {
   background-color:#f9f9f9;
   font-variant:small-caps;
-  letter-spacing:0.05em;
+  letter-spacing:0.02em;
 }
 
 header {
@@ -13,7 +13,16 @@ h1, h3 {
   border-left: 5px solid #1abc9c;
   padding-left: 0.4em;
   margin-bottom: 0.6em;
+  font-weight: 100;
   color: #2c3e50;
+}
+
+h1 {
+  font-size: 2.0em;
+}
+
+h3 {
+  font-size: 1.6em;
 }
 
 p {
@@ -28,44 +37,62 @@ p span {
   padding-left: 0.6em;
 }
 
-img {
-  box-shadow: 0 5px 10px #999;
-  margin: 1.6em 0;
-}
-
 table.main-container {
-  margin: 1.2em auto 2.4em;
+  margin: 1.2em auto;
 }
 
-table.button tr td.button-container {
-  padding: 1.0em;
-  border: 5px solid #1abc9c;
-  background: #1abc9c;
-  color: #f9f9f9;
+table.header.banner {
+  border-bottom: 0.2em solid #333;
 }
 
-table.button tr td.button-container:hover {
-  border: 5px solid #1abc9c;
-  color: #1abc9c;
-  background: #f9f9f9 !important;
+table.header.bottom {
+  border-top: 0.2em solid #333;
 }
 
-table.button tr td.button-container a.button-text {
-  font-size: 1.2em;
-  font-weight: 300;
+table.row.description {
+  margin-bottom: 1.6em;
 }
 
-table.button tr td.button-container:hover a.button-text {
-  font-size: 1.2em;
+table.row.sincerely h3 {
+  font-size: 1.1em;
+  padding-left: 0;
+  border: none;
+}
+
+table.row.sincerely img.logo {
+  height: 25px;
+  float: left;
+  display: block;
+}
+
+
+p.edit {
+  padding-top: 0.4em;
+}
+
+p.edit a {
+  font-size: 0.8em;
   font-weight: 300;
   color: #1abc9c !important;
 }
 
+p.lead {
+  line-height: 1.4em;
+  word-break: break-word;
+}
+
+img.logo {
+  float: none;
+  height: 3em;
+  margin: 0 auto;
+}
 
 .nab-header-text {
-  font-weight: 300;
-  font-size: 1.8em;
+  font-weight: 100;
+  font-size: 1.6em;
   color: #f9f9f9;
+  position: absolute;
+  left: -9999px;
 }
 
 .footer {

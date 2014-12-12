@@ -16,7 +16,7 @@ body
         center
 
           //-  Header
-          table.row.header
+          table.row.header.banner
             tr
               td.center(align="center")
                 center
@@ -28,7 +28,7 @@ body
                         table.twelve.columns
                           tr
                             td.twelve.sub-columns(style='padding: 0;text-align: center;')
-                              span.nab-header-text Nick & Bora - Save the Date
+                              img.logo(src='http://nickandbora.life/img/logo.png' alt='Nick & Bora - Save the Date')
                             td.expander
 
           br
@@ -38,7 +38,7 @@ body
             tr
               td
 
-                table.row
+                table.row.description
                   tr
                     td.wrapper.last
 
@@ -48,11 +48,10 @@ body
 
                             h1 Hi, #{name}
                             p.lead Thank you again for providing your information. We'll keep you in the loop with all the information you need for joining us in our special celebration.
-                            img(width="580", height="300", src="#{heroImage}")
 
                           td.expander
 
-                table.row
+                table.row.info
                   tr
                     td.wrapper.last
 
@@ -67,27 +66,25 @@ body
                               span= email
                             p Address:
                               span= address
+                            p.edit
+                              a(href="#{editUrl}") Edit contact info
 
                           td.expander
 
-
-                table.row
+                table.row.sincerely
                   tr
                     td.wrapper.last
 
                       table.twelve.columns
                         tr
                           td
-                            table.button
-                              tr
-                                td.button-container
-                                  a.button-text(href="#{editUrl}") Edit contact info
+                            h3 Thanks,
+                            img.logo(src='http://nickandbora-qa.herokuapp.com/img/logo.png' alt='Nick & Bora')
 
-                          td.expander
 
           br
 
-          table.row.header
+          table.row.header.bottom
             tr
               td.center(align="center")
                 center

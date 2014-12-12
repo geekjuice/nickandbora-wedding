@@ -53,10 +53,9 @@ _validateContact = (contact) ->
 _sendThankYou = (contact) ->
   { name, email, address } = contact
   editUrl = "#{C.URL}/?name=#{name}&email=#{email}&address=#{address}&_authenticated=true"
-  heroImage = C.EMAIL_IMAGE
   _authenticated = true
 
-  opts = _.extend(contact, { editUrl, heroImage, _authenticated })
+  opts = _.extend(contact, { editUrl, _authenticated })
   html = Templates.thankYou(opts)
   text = Templates.thankYouText(opts)
 
