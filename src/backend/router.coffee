@@ -5,8 +5,9 @@ Router
 mongo        = require('mongoskin')
 errorHandler = require('errorhandler')
 
-C   = require('./constants')
-api = require('./api')
+C       = require('./constants')
+api     = require('./api')
+Enviro  = require('./lib/enviro')
 
 ROUTES =
   '/saveTheDate': 'saveTheDate'
@@ -40,10 +41,10 @@ module.exports = (app) ->
     next(err)
 
   ## Error Handlers
-  switch app.get('env')
-    when 'development'
+  switch
+    when Enviro.isLocal() or Enviro.isQA()
       app.use(errorHandler())
-    when 'production'
+    when Enviro.isProd()
       app.use (err, req, res, next) ->
         res.status(err.status or 500)
         res.render 'error',

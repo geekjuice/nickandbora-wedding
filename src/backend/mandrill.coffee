@@ -2,8 +2,11 @@
 # Mandrill
 ###
 
+NAME = 'NickAndBora'
+
 _         = require('lodash')
 C         = require('./constants')
+debug     = require('debug')(NAME)
 mandrill  = require('mandrill-api/mandrill')
 
 mailer = new mandrill.Mandrill(C.MANDRILL_API_KEY)
@@ -57,12 +60,12 @@ defaults =
 class Mailer
 
   success: (result) ->
-    console.log '[SUCCESS] Email Sent!'
-    console.log result
+    debug '[SUCCESS] Email Sent!'
+    debug result
 
   error: (err) ->
-    console.log '[ERROR] Email not sent!'
-    console.log err
+    debug '[ERROR] Email not sent!'
+    debug err
 
   send: (options={}, success=@success, error=@error) ->
     message = _.merge {}, defaults, options

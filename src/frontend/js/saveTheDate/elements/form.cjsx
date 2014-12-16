@@ -53,6 +53,7 @@ define [
 
     setupFunctions: ->
       @_updateMap = MapActions.updateMap
+      @_onceSaveContact = _.once @saveContact
       @_debouncedUpdateMap = _.debounce MapActions.updateMap, 500
       @_debouncedCancelScroll = _.debounce @cancelScroll, 200,
         leading: true
@@ -66,7 +67,7 @@ define [
       { saved } = @state
       contact = FormStore.get('contact')
       if FormStore.get('valid') and not saved
-        @saveContact(contact)
+        @_onceSaveContact(contact)
       else
         @_scrolling = requestAnimationFrame @scrollToForm
         unless saved

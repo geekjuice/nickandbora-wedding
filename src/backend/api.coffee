@@ -2,9 +2,10 @@
 API
 ###
 
-KEY = 'NickAndBora-Env'
+NAME = 'NickAndBora'
 
 _             = require('lodash')
+debug         = require('debug')(NAME)
 router        = require('express').Router()
 Styliner      = require('styliner')
 { ObjectID }  = require('mongoskin')
@@ -72,7 +73,8 @@ _validateContact = (contact) ->
   (new Contact(contact)).validate()
 
 _sendThankYou = (contact) ->
-  return if Enviro.isLocal(KEY)
+  if Enviro.isLocal()
+    return debug '[API] Local environment: Email not sent.'
 
   query = ['_authenticated=true']
   for key, value of _.omit(contact, 'submitted')
@@ -86,6 +88,7 @@ _sendThankYou = (contact) ->
   text = Templates.thankYouText(opts)
 
   (new Styliner).processHTML(html).then (html) ->
+    { email, name } = contact
     options = { html, text, to: [{ email, name, type: 'to' }] }
     Mandrill.send({message: options})
 
