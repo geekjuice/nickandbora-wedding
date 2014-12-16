@@ -19,7 +19,8 @@ require.config
 
 require [
   'zepto'
-], ($) ->
+  'setup'
+], ($, Setup) ->
 
   getTransition = (value) ->
     '-webkit-transition': value
@@ -43,5 +44,6 @@ require [
       localStorage['NickAndBora:ComingSoon'] = now
 
   $ ->
+    do Setup
     showTransition()
     $('.background-image').addClass('loaded')

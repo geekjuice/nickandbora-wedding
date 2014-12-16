@@ -20,8 +20,10 @@ require.config
 require [
   'zepto'
   'react'
+  'setup'
   'saveTheDate/elements/app'
-], ($, React, App) ->
+], ($, React, Setup, App) ->
 
   $ ->
+    do Setup
     React.render(<App />, document.getElementById('login'))

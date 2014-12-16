@@ -1,6 +1,5 @@
 define [
   'react'
-  'saveTheDate/lib/env'
   'saveTheDate/mixins/queryparams'
   'saveTheDate/mixins/listen'
   'saveTheDate/actions/formActions'
@@ -14,7 +13,6 @@ define [
   'saveTheDate/elements/thankYou'
 ], (
   React
-  Env
   QueryMixin
   ListenMixin
   FormActions

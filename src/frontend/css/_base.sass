@@ -1,2 +1,21 @@
 @import _reset
 @import _font
+
+@import compass/css3/transition
+
+#NickAndBora-Env
+  +latofont(100)
+  position: fixed
+  bottom: 0
+  right: 0
+  padding: 0.6em 1.2em
+  background-color: black
+  color: white
+  font-variant: small-caps
+  opacity: 0.6
+  cursor: default
+  font-size: 1.4em
+  +transition(opacity 600ms)
+
+  &:hover
+    opacity: 1

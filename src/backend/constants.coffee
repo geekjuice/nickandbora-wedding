@@ -36,7 +36,7 @@ env = switch NODE_ENV
 
   when 'qa'
     MONGOURI: MONGOLAB_URI
-    REFERER_REGEX: /^http(s)?:\/\/nickandbora-qa.herokuapp.com\/savethedate/i
+    REFERER_REGEX: /^http(s)?:\/\/qa.nickandbora.life\/savethedate/i
     MANDRILL_API_KEY: MANDRILL_API_KEY
 
   when 'production'
