@@ -49,4 +49,4 @@ define [
     render: ->
       { showMap } = @state
 
-      <div ref={'map'} id={'address-map'} className={'address-map'} />
+      <div ref='map' id='address-map' className='component address-map' />

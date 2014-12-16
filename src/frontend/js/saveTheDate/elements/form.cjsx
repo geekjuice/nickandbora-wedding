@@ -70,22 +70,24 @@ define [
       if FormStore.get('valid') and not saved
         @saveContact(contact)
       else
-        @_scrolling = requestAnimationFrame @scrollUpToForm
+        @_scrolling = requestAnimationFrame @scrollToForm
         unless saved
           setTimeout ->
             AlertActions.alert("Please review the highlighted fields.")
           , 0
 
-    scrollUpToForm: ->
+    scrollToForm: ->
       current = $(window).scrollTop()
       destination = $('#contacts-form').get(0)?.offsetTop - 80
 
       return unless destination
 
-      if current > destination
-        interval = Math.max(1, Math.floor((current - destination) / 10))
-        $(window).scrollTop(current - interval)
-        @_scrolling = requestAnimationFrame @scrollUpToForm
+      diff = current - destination
+      direction = if diff < 0 then 1 else -1
+      unless Math.abs(diff) < 5
+        interval = Math.max(1, Math.floor(Math.abs(diff) / 10))
+        $(window).scrollTop(current + (interval * direction))
+        @_scrolling = requestAnimationFrame @scrollToForm
 
     cancelScroll: (e) ->
       if @_scrolling
@@ -116,7 +118,7 @@ define [
       <form id='contacts-form'>
         <div>
           <HiddenInputElement name='_id' value={_id} />
-          <InputElement name='name' value={name} />
+          <InputElement name='name' value={name} autoFocus={true} />
           <InputElement name='email' value={email} />
           <InputElement name='address' value={address}
                         placeholder='mailing address'

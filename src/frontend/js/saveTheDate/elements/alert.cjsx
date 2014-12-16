@@ -33,7 +33,7 @@ define [
         @_transitionId = null
 
       @_transitionId = setTimeout =>
-        @setState({visible: false})
+        @setState({visible: true})
       , DURATION
 
     render: ->

@@ -10,7 +10,7 @@ define [
 
     getDefaultProps: ->
       name: ''
-      date: '3/28/15'
+      date: 'March 28, 2015'
 
     getInitialState: ->
       completed: true
@@ -29,6 +29,11 @@ define [
 
     render: ->
       { name, date } = @props
-      <p className="welcome-message">
-        Welcome{if name then " #{name}" else ''}, you are cordially invited to the wedding of Nick & Bora on {date}. To ensure we can keep you up-to-date, please provide your contact information below.
+
+      classes = React.addons.classSet
+        'component': true
+        'welcome-message': true
+
+      <p className={classes}>
+        Welcome{if name then " #{name}" else ''}, you are cordially invited to the wedding of <span className="keyword">Nick & Bora</span> on <span className="keyword">{date}</span>. To ensure we can keep you up-to-date, please provide your contact information below.
       </p>

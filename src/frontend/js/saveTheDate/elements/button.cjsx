@@ -21,9 +21,10 @@ define [
       { text } = @props
 
       classes = React.addons.classSet
+        'component': true
         'form-button': true
 
-      <button type={'button'}
+      <button type={'submit'}
               className={classes}
               onClick={@handleClick}>
         {text}

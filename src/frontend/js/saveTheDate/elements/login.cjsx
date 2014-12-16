@@ -42,6 +42,7 @@ define [
       { placeholder } = @props
 
       classes = React.addons.classSet
+        'component': true
         'login-input': true
         'authenticated-input': authenticated
 
@@ -55,5 +56,5 @@ define [
              onFocus={this.handleFocus}
              onChange={this.handleChange}
              onKeyUp={this.handleKeyup}
-             autoFocus={true}
+             autoFocus={not authenticated}
       />

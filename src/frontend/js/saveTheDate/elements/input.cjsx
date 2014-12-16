@@ -13,6 +13,7 @@ define [
 
     getDefaultProps: ->
       name: 'input'
+      autoFocus: false
 
     getInitialState: ->
       value: @props.value or ''
@@ -38,7 +39,7 @@ define [
 
     handleBlur: (e) ->
       @props.onBlur?(e)
-      @setState { label: false }
+      @setState { valid: true, label: false }
 
     handleKeyup: (e) ->
       { keyCode } = e
@@ -51,9 +52,10 @@ define [
 
     render: ->
       { value, label, valid } = @state
-      { name } = @props
+      { name, autoFocus } = @props
 
       containerClasses = React.addons.classSet
+        'component': true
         'form-input-container': true
         'form-input-invalid': not valid
 
@@ -74,6 +76,7 @@ define [
                onFocus={@handleFocus}
                onChange={@handleChange}
                onKeyUp={@handleKeyup}
+               autoFocus={autoFocus}
                spellCheck='false'
         />
       </div>
