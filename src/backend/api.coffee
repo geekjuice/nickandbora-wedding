@@ -16,6 +16,7 @@ Contact   = require('./model/contact')
 Mandrill  = require('./mandrill')
 Templates = require('./templates')
 
+
 ## GET Item
 router.get "/:collection/:type/:value", (req, res, next) ->
   { collection, params: { type, value } } = req
