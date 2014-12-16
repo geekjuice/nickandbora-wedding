@@ -73,9 +73,12 @@ _validateContact = (contact) ->
 
 _sendThankYou = (contact) ->
   return if Enviro.isLocal(KEY)
-  { _id, name, email, address } = contact
-  # Encode?
-  editUrl = "#{C.URL}/?name=#{name}&email=#{email}&address=#{address}&_id=#{_id}&_authenticated=true"
+
+  query = ['_authenticated=true']
+  for key, value of _.omit(contact, 'submitted')
+    query.push "#{key}=#{encodeURIComponent value}"
+
+  editUrl = "#{C.URL}/?#{query.join('&')}"
   _authenticated = true
 
   opts = _.extend(contact, { editUrl, _authenticated })

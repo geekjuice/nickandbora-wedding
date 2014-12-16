@@ -18,28 +18,31 @@ if NODE_ENV in ['development', 'local', 'test']
 
 
 base =
-  URL: 'http://NickAndBora.Life/SaveTheDate'
   FIELDS: ['name', 'email', 'address']
   TABLE_FLIP: "Sorry, we encountered an error.  (╯°□°）╯︵ ┻━┻ "
 
 
 env = switch NODE_ENV
   when 'development', 'local'
+    URL: 'http://nick.dev:5000/SaveTheDate'
     MONGOURI: 'mongodb://@localhost:27017/nickAndBora_dev'
     REFERER_REGEX: /.*/i
     MANDRILL_API_KEY: MANDRILL_API_KEY or key.MANDRILL_API_KEY
 
   when 'test'
+    URL: 'http://nick.dev:5000/SaveTheDate'
     MONGOURI: 'mongodb://@localhost:27017/nickAndBora_test'
     REFERER_REGEX: /.*/i
     MANDRILL_API_KEY: MANDRILL_API_KEY or key.MANDRILL_API_KEY
 
   when 'qa'
+    URL: 'http://qa.NickAndBora.Life/SaveTheDate'
     MONGOURI: MONGOLAB_URI
     REFERER_REGEX: /^http(s)?:\/\/qa.nickandbora.life\/savethedate/i
     MANDRILL_API_KEY: MANDRILL_API_KEY
 
   when 'production'
+    URL: 'http://NickAndBora.Life/SaveTheDate'
     MONGOURI: MONGOLAB_URI
     REFERER_REGEX: /^http(s)?:\/\/nickandbora.life\/savethedate/i
     MANDRILL_API_KEY: MANDRILL_API_KEY
