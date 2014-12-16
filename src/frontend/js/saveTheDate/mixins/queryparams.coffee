@@ -17,6 +17,6 @@ define [
     for param in params
       [query, value] = param.split('=')
       if query and value and query in keys
-        values[query] = value
+        values[query] = decodeURIComponent(value)
 
     return values

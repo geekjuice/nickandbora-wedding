@@ -2,16 +2,18 @@
 API
 ###
 
+KEY = 'NickAndBora-Env'
+
 _             = require('lodash')
 router        = require('express').Router()
 Styliner      = require('styliner')
 { ObjectID }  = require('mongoskin')
 
 C         = require('./constants')
+Enviro    = require('./lib/enviro')
 Contact   = require('./model/contact')
 Mandrill  = require('./mandrill')
 Templates = require('./templates')
-
 
 ## GET Item
 router.get "/:collection/:type/:value", (req, res, next) ->
@@ -70,6 +72,7 @@ _validateContact = (contact) ->
   (new Contact(contact)).validate()
 
 _sendThankYou = (contact) ->
+  return if Enviro.isLocal(KEY)
   { _id, name, email, address } = contact
   # Encode?
   editUrl = "#{C.URL}/?name=#{name}&email=#{email}&address=#{address}&_id=#{_id}&_authenticated=true"

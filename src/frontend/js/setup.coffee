@@ -1,7 +1,7 @@
 define [
   'zepto'
-  'env'
-], ($, Env) ->
+  'lib/enviro'
+], ($, Enviro) ->
 
   KEY = 'NickAndBora-Env'
 
@@ -10,8 +10,8 @@ define [
 
   Setup = ->
     switch
-      when Env.isQA(KEY)
+      when Enviro.isQA(KEY)
         $('body').append EnvElement('QA')
-      when Env.isLocal(KEY)
+      when Enviro.isLocal(KEY)
         $('body').append EnvElement('Local')
 

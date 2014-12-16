@@ -19,9 +19,6 @@ define [
         , 0
       , 1000
 
-    componentWillEnter: (cb) ->
-      cb()
-
     render: ->
       { name, email, address } = FormStore.get('contact')
 

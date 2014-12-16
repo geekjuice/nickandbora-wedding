@@ -80,4 +80,3 @@ if typeof module is "object"
   module.exports = _contact()
 else
   define 'model/contact', [], _contact
-
