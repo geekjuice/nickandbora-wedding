@@ -4,7 +4,7 @@ define [
   'saveTheDate/actions/loginActions'
 ], (_, React, LoginActions) ->
 
-  PASSWORD = 'hello'
+  PASSWORD = /^march 28[,]? 2015$/i
 
   LoginElement = React.createClass
 
@@ -18,9 +18,12 @@ define [
       value: ''
       authenticated: @props.authenticated ? false
 
+    componentWillMount: ->
+      @_onceChangeLoginLabel = _.once @changeLoginLabel
+
     handleChange: (e) ->
       { value } = e.currentTarget
-      authenticated = value is PASSWORD
+      authenticated = PASSWORD.test value
       LoginActions.authenticate() if authenticated
       @setState { value, authenticated }
 
@@ -37,6 +40,11 @@ define [
     blur: (e) ->
       e.currentTarget.blur() if @state.authenticated
 
+    changeLoginLabel: ->
+      setTimeout =>
+        @setState { value: "Save the Date" }
+      , 500
+
     render: ->
       { value, authenticated } = @state
       { placeholder } = @props
@@ -46,7 +54,7 @@ define [
         'login-input': true
         'authenticated-input': authenticated
 
-      value = "Save the Date" if authenticated
+      do @_onceChangeLoginLabel if authenticated
 
       <input type='text'
              className={classes}
