@@ -66,6 +66,7 @@ _do = (src='', dest='', task='', filename='') ->
 
   if _sass
     sass(src, {compass:true, style: 'compressed', sourcemap: false}) # Sass
+      .pipe(do plumber) # Plumber
       .pipe(gulp.dest(dest)) # Destination
       .pipe(filter('**/*.css')) # Filter CSS
       .pipe(sync.reload(stream: true)) # BrowserSync
