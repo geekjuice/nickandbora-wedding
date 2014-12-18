@@ -11,6 +11,7 @@ Enviro  = require('./lib/enviro')
 
 ROUTES =
   '/saveTheDate': 'saveTheDate'
+  '/homepage': 'homepage'
   '/': 'index'
 
 _route = (file) ->
