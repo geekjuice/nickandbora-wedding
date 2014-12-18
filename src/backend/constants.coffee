@@ -4,7 +4,7 @@ Enviroment Configs
 
 _ = require('lodash')
 
-{ NODE_ENV, MANDRILL_API_KEY, MONGOLAB_URI } = process.env
+{ NODE_ENV, GOOGLE_SERVER_API_KEY, MANDRILL_API_KEY, MONGOLAB_URI } = process.env
 
 
 unless NODE_ENV
@@ -28,24 +28,28 @@ env = switch NODE_ENV
     MONGOURI: 'mongodb://@localhost:27017/nickAndBora_dev'
     REFERER_REGEX: /.*/i
     MANDRILL_API_KEY: MANDRILL_API_KEY or key.MANDRILL_API_KEY
+    GOOGLE_SERVER_API_KEY: GOOGLE_SERVER_API_KEY or key.GOOGLE_SERVER_API_KEY
 
   when 'test'
     URL: 'http://nick.dev:5000/SaveTheDate'
     MONGOURI: 'mongodb://@localhost:27017/nickAndBora_test'
     REFERER_REGEX: /.*/i
     MANDRILL_API_KEY: MANDRILL_API_KEY or key.MANDRILL_API_KEY
+    GOOGLE_SERVER_API_KEY: GOOGLE_SERVER_API_KEY or key.GOOGLE_SERVER_API_KEY
 
   when 'qa'
     URL: 'http://qa.NickAndBora.Life/SaveTheDate'
     MONGOURI: MONGOLAB_URI
     REFERER_REGEX: /^http(s)?:\/\/qa.nickandbora.life\/savethedate/i
     MANDRILL_API_KEY: MANDRILL_API_KEY
+    GOOGLE_SERVER_API_KEY: GOOGLE_SERVER_API_KEY
 
   when 'production'
     URL: 'http://NickAndBora.Life/SaveTheDate'
     MONGOURI: MONGOLAB_URI
     REFERER_REGEX: /^http(s)?:\/\/nickandbora.life\/savethedate/i
     MANDRILL_API_KEY: MANDRILL_API_KEY
+    GOOGLE_SERVER_API_KEY: GOOGLE_SERVER_API_KEY
 
 
 module.exports = _.extend({}, base, env)

@@ -19,7 +19,8 @@ define [
       authenticated: @props.authenticated ? false
 
     componentWillMount: ->
-      @_onceChangeLoginLabel = _.once @changeLoginLabel
+      { authenticated } = @props
+      @_onceChangeLoginLabel = _.once @changeLoginLabel(authenticated)
 
     handleChange: (e) ->
       { value } = e.currentTarget
@@ -40,10 +41,12 @@ define [
     blur: (e) ->
       e.currentTarget.blur() if @state.authenticated
 
-    changeLoginLabel: ->
-      setTimeout =>
-        @setState { value: "Save the Date" }
-      , 500
+    changeLoginLabel: (instant=false)->
+      =>
+        timeout = if instant then 0 else 500
+        setTimeout =>
+          @setState { value: "Save the Date" }
+        , timeout
 
     render: ->
       { value, authenticated } = @state

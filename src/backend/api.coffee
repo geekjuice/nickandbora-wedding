@@ -7,6 +7,7 @@ NAME = 'NickAndBora'
 _             = require('lodash')
 debug         = require('debug')(NAME)
 router        = require('express').Router()
+Googl         = require('goo.gl')
 Styliner      = require('styliner')
 { ObjectID }  = require('mongoskin')
 
@@ -16,6 +17,9 @@ Contact   = require('./model/contact')
 Mandrill  = require('./mandrill')
 Templates = require('./templates')
 
+
+## Setup Goo.gl
+Googl.setKey(C.GOOGLE_SERVER_API_KEY)
 
 ## GET Item
 router.get "/:collection/:type/:value", (req, res, next) ->
@@ -77,22 +81,30 @@ _sendThankYou = (contact) ->
   if Enviro.isLocal()
     return debug '[API] Local environment: Email not sent.'
 
-  query = ['_authenticated=true']
-  for key, value of _.omit(contact, 'submitted')
-    query.push "#{key}=#{encodeURIComponent value}"
-
-  editUrl = "#{C.URL}/?#{query.join('&')}"
-  _authenticated = true
-
-  opts = _.extend(contact, { editUrl, _authenticated })
-  html = Templates.thankYou(opts)
-  text = Templates.thankYouText(opts)
-
-  (new Styliner).processHTML(html).then (html) ->
+  sendEmail = (html, text) ->
     { email, name } = contact
     options = { html, text, to: [{ email, name, type: 'to' }] }
     Mandrill.send({message: options})
 
+  inlineStyles = (editUrl) ->
+    opts = _.extend(contact, { editUrl, _authenticated: true })
+    html = Templates.thankYou(opts)
+    text = Templates.thankYouText(opts)
+
+    (new Styliner).processHTML(html)
+      .then (inlinedHtml) -> sendEmail(inlinedHtml, text)
+      .fail (err) ->
+        debug "[Styliner] Failed to inline styles. Using original document."
+        sendEmail(html, text)
+
+  query = ['_authenticated=true']
+  for key, value of _.omit(contact, 'submitted')
+    query.push "#{key}=#{encodeURIComponent value}"
+  editUrl = "#{C.URL}/?#{query.join('&')}"
+
+  Googl.shorten(editUrl).then(inlineStyles).catch (err) ->
+    debug "[GOO.GL] Error shortening #{editUrl}. Using original URL."
+    inlineStyles(editUrl)
 
 # Mongo Helpers
 _findContact = (collection, query, callback) ->
