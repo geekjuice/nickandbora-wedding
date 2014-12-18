@@ -86,3 +86,45 @@ section
   +filter(saturate(0.6))
   +transform(translateZ(0))
   +transition(opacity 2s 2s)
+
+  ul
+    position: absolute
+    text-align: center
+    top: 40%
+    width: 100%
+    font-size: 0
+
+  li
+    display: inline-block
+
+  a
+    display: block
+    position: relative
+
+    &:hover
+      .active
+        opacity: 1
+
+      .inactive
+        opacity: 0
+
+  .nick, .bora
+    height: 52px
+    width: 108px
+
+  .and
+    height: 52px
+    width: 72px
+
+  img
+    position: absolute
+    top: 0
+    left: 0
+
+  .active
+    opacity: 0
+    +transition(opacity 300ms)
+
+  .inactive
+    opacity: 1
+    +transition(opacity 300ms)
