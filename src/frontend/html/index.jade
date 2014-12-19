@@ -1,9 +1,65 @@
 extends _main
 
 block head
-  +stylesheet("comingSoon")
-  script(data-main="/js/comingSoon", src="/js/vendor/require.js")
+  +stylesheet("homepage")
+  script(data-main="/js/homepage", src="/js/vendor/require.js")
 
 block content
-  .coming-soon Coming soon
-  .background-image
+  #NickAndBora
+    section.splash.visible
+    a.enter(href).visible
+      img(src='/img/enter.png')
+      //- .logo-parallax
+      //-   h1 Nick & Bora
+
+    section.home.hidden
+      ul
+        li
+          a.nick(href)
+            img.inactive(src='/img/nick_inactive.png')
+            img.active(src='/img/nick_active.png')
+        li
+          a.and(href='/SaveTheDate')
+            img.inactive(src='/img/and_inactive.png')
+            img.active(src='/img/and_active.png')
+        li
+          a.bora(href)
+            img.inactive(src='/img/bora_inactive.png')
+            img.active(src='/img/bora_active.png')
+      .mask
+
+      //- span.saveTheDate March 28, 2015
+
+    section.bios.nick-bio
+      .hello
+        .hello-bg
+          .gradient
+          .hi: img(src='/img/hi-nick.png')
+          .bio
+            .mynameis: img(src='/img/mynameisnick.png')
+            p I am a software engineer at HubSpot, builder of stuff, and a future happy husband.
+            ul.social
+              li: a(href='http://twitter.com/nick_geekjuice' target='_blank')
+                img(src='/img/social/blue_twitter.png')
+              li: a(href='http://nicholashwang.com' target='_blank')
+                img(src='/img/social/blue_blog.png')
+              li: a(href='http://linkedin.com/in/nicholashwang' target='_blank')
+                img(src='/img/social/blue_linkedin.png')
+        .overlay
+
+    section.bios.bora-bio
+      .hello
+        .hello-bg
+          .gradient
+          .hi: img(src='/img/hello-bora.png')
+          .bio
+            .mynameis: img(src='/img/mynameisbora.png')
+            p I am an artist, teacher, friend of the museum, designer, and most of all: a happy bride to be.
+            ul.social
+              li: a(href='http://facebook.com/bora.lee.5815' target='_blank')
+                img(src='/img/social/pink_facebook.png')
+              li: a(href='http://leebora.com' target='_blank')
+                img(src='/img/social/pink_blog.png')
+              li: a(href='http://www.linkedin.com/pub/bora-lee/82/b7/155' target='_blank')
+                img(src='/img/social/pink_linkedin.png')
+        .overlay

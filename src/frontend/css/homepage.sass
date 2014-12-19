@@ -87,11 +87,29 @@ section
   +transform(translateZ(0))
   +transition(opacity 2s 2s)
 
+  .mask
+    width: 100%
+    height: 100%
+    background-color: black
+    opacity: 0
+    +transition(opacity 600ms)
+
+    &.blurred
+      opacity: 0.2
+
+  .saveTheDate
+    +latofont(300)
+    position: absolute
+    text-align: center
+    width: 100%
+    top: 48%
+    font-variant: small-caps
+
   ul
     position: absolute
     text-align: center
-    top: 40%
     width: 100%
+    top: 40%
     font-size: 0
 
   li
@@ -104,9 +122,6 @@ section
     &:hover
       .active
         opacity: 1
-
-      .inactive
-        opacity: 0
 
   .nick, .bora
     height: 52px
@@ -123,8 +138,141 @@ section
 
   .active
     opacity: 0
+    z-index: 1
     +transition(opacity 300ms)
 
-  .inactive
+
+
+.bios
+  +latofont(300)
+  position: absolute
+  display: none
+  opacity: 0
+  top: 0
+  left: 0
+  width: 100%
+  +transition(transform 600ms ease-out)
+
+  &.revealing
+    +translate3d(0,0,0)
+
+  &.reveal
+    display: block
     opacity: 1
-    +transition(opacity 300ms)
+
+.hello
+  width: 100%
+  height: 100%
+  background-color: rgba(white, 0)
+
+.hello-bg
+  width: 50%
+  height: 100%
+  background-color: #f9f9f9
+  box-shadow: 0 0 20px rgba(#333, 0.6)
+
+.gradient
+  position: absolute
+  top: 0
+  width: 50%
+  height: 100%
+  background: linear-gradient(to bottom, rgba(#333, 0.2), rgba(#333, 0) 40%)
+
+.overlay
+  width: 50%
+  height: 100%
+
+.hi
+  position: relative
+  padding-top: 1em
+  margin: 0 auto
+  text-align: center
+
+.bio
+  position: absolute
+  width: 45%
+  bottom: 5em
+  background-color: rgba(darken(#2c3e50, 15%), 0.8)
+  padding: 1.2em 2em
+
+  p
+    +yanonefont()
+    text-transform: uppercase
+    font-size: 1.2em
+    line-height: 1.2em
+    word-spacing: 0.4em
+    letter-spacing: 0.05em
+    text-align: left
+    padding: 0.6em 0
+    color: rgba(#f9f9f9, 0.8)
+
+  .social
+    li
+      display: inline-block
+      margin-right: 0.6em
+
+      &:last-child
+        margin-right: 0
+
+      img
+        width: 2em
+        opacity: 0.8
+        +transition(opacity 600ms)
+
+        &:hover
+          opacity: 1
+
+
+// NICK
+.nick-bio
+  +translate3d(-50%,0,0)
+
+  .hello-bg
+    float: left
+    background: url('/img/nick-hello.jpg')
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center center
+
+  .gradient
+    left: 0
+
+  .hi img
+    width: 25%
+
+  .overlay
+    float: left
+
+  .bio
+    left: 0
+
+  .mynameis img
+    width: 60%
+
+
+// BORA
+.bora-bio
+  +translate3d(50%,0,0)
+
+  .hello-bg
+    float: right
+    background: url('/img/bora-hello.jpg')
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center center
+
+  .gradient
+    right: 0
+
+  .hi img
+    width: 80%
+
+  .overlay
+    float: right
+
+  .bio
+    right: 0
+
+  .mynameis img
+    width: 100%
+
