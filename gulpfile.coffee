@@ -65,7 +65,7 @@ _do = (src='', dest='', task='', filename='') ->
   _dev = /dev/.test task
 
   if _sass
-    sass(src, {compass:true, style: 'compressed', sourcemap: false}) # Sass
+    sass(src, {compass: true, style: 'compressed', sourcemap: false}) # Sass
       .pipe(do plumber) # Plumber
       .pipe(gulp.dest(dest)) # Destination
       .pipe(filter('**/*.css')) # Filter CSS
@@ -74,10 +74,10 @@ _do = (src='', dest='', task='', filename='') ->
     gulp.src(src)
       .pipe(do plumber) # Plumber
       .pipe(iif(_jade, jade({data, pretty: true}))) # Jade
-      .pipe(iif(_coffee, cjsx(bare:true))) # Coffee/React
+      .pipe(iif(_coffee, cjsx(bare: true))) # Coffee/React
       .pipe(iif(_uglify and not _dev, uglify(compress: drop_debugger: false))) # Uglify
       .pipe(iif(_minify and not _dev, minify())) # Minify
-      .pipe(iif(_imagemin and not _dev, imagemin())) # Imagemin
+      .pipe(iif(_imagemin and not _dev, imagemin(progressive: true))) # Imagemin
       .pipe(iif(_rename and !!filename, rename(basename: filename))) # Rename
       .pipe(gulp.dest(dest)) # Destination
       .pipe(iif(_copy, sync.reload(stream: true))) # BrowserSync
