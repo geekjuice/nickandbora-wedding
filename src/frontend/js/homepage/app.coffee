@@ -7,17 +7,10 @@ define [
   class App
 
     start: ->
-      $('.enter').on 'click', @enter
       $('.nick').on 'click', @showNick
       $('.bora').on 'click', @showBora
       $('.overlay').on 'click', @goBack
       Resizer.init()
-
-    enter: (e) =>
-      e.preventDefault()
-      @hide('.enter')
-      @hide('.splash')
-      @show('.home')
 
     showNick: (e) =>
       e.preventDefault()
