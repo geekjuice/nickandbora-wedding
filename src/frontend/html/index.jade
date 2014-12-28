@@ -6,23 +6,39 @@ block head
 
 block content
   #NickAndBora
-    section.home.visible
-      ul
-        li
-          a.nick(href)
-            img.inactive(src='/img/nick_inactive.png')
-            img.active(src='/img/nick_active.png')
-        li
-          a.and(href='/SaveTheDate')
-            img.inactive(src='/img/and_inactive.png')
-            img.active(src='/img/and_active.png')
-        li
-          a.bora(href)
-            img.inactive(src='/img/bora_inactive.png')
-            img.active(src='/img/bora_active.png')
+    section.home
+      .center-nav
+        ul
+          li
+            a.nick(href)
+              img.inactive(src='/img/nick_inactive.png')
+              img.active(src='/img/nick_active.png')
+          li
+            a.and(href='/SaveTheDate')
+              img.inactive(src='/img/and_inactive.png')
+              img.active(src='/img/and_active.png')
+          li
+            a.bora(href)
+              img.inactive(src='/img/bora_inactive.png')
+              img.active(src='/img/bora_active.png')
+        div.saveTheDate
+          span March 28, 2015
       .mask
 
-      //- span.saveTheDate March 28, 2015
+
+    section.modal.nick-bio
+      .modal-overlay
+      .modal-content
+        .gradient
+        .greeting-text Hi
+
+    section.modal.bora-bio
+      .modal-overlay
+      .modal-content
+        .gradient
+        .greeting-text Hello
+
+
 
     section.bios.nick-bio
       .hello
