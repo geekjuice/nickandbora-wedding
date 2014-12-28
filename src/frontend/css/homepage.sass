@@ -144,7 +144,10 @@ section
     box-shadow: 0 1px 20px rgba(#333, 0.6)
     +filter(saturate(0.8))
 
-    @media (min-width: 720px)
+    @media (min-aspect-ratio: 3/4)
+      width: 75%
+
+    @media (min-aspect-ratio: 1/1)
       width: 50%
 
   .gradient
@@ -152,7 +155,7 @@ section
     top: 0
     width: 100%
     height: 100%
-    background: linear-gradient(to bottom right, rgba(#000, 0.4), rgba(#333, 0) 40%)
+    background: linear-gradient(to bottom right, rgba(#000, 0.5), rgba(#333, 0) 40%)
 
   .greeting-text
     +yanonefont()
@@ -178,7 +181,7 @@ section
     font-size: 1.4em
     color: #f9f9f9
     background-color: #333
-    opacity: 0.6
+    opacity: 0.8
     text-decoration: none
     +transition(opacity 600ms ease-out)
 
