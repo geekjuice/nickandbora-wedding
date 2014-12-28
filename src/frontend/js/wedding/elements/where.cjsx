@@ -7,7 +7,7 @@ define [
 
   { Map, Marker, Geocoder, GeocoderStatus, LatLng } = google.maps
 
-  MapElement = React.createClass
+  Where = React.createClass
 
     componentDidMount: ->
       $maps = @refs.map.getDOMNode()
@@ -26,9 +26,9 @@ define [
           console.log "Error: #{address}"
 
     render: ->
-      <div className='location'>
-        <h3>Location</h3>
-        <section ref='map' className='location-img' />
+      <section className='where'>
+        <h3>Where?</h3>
+        <section ref='map' className='where-img' />
         <h4>
           <a href='http://www.ranchovalencia.com/' target='_blank'>
             Rancho Valencia Resort & Spa
@@ -36,4 +36,4 @@ define [
         </h4>
         <p>5921 Valencia Circle</p>
         <p>Rancho Santa Fe, CA 92067</p>
-      </div>
+      </section>

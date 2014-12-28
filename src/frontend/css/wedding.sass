@@ -10,9 +10,6 @@
 html, body
   background-color: #f9f9f9
 
-section
-  width: 100%
-
 .hero
   position: fixed
   top: 0
@@ -41,30 +38,42 @@ section
     font-size: 2rem
     margin-top: 0.6rem
 
+
 .content
   position: absolute
   width: 100%
   margin-top: 30em
-  background-color: #2c3e50
   box-shadow: 0 1px 20px rgba(#000, 0.25)
 
-.location
+  section
+    padding: 2.4rem 0
+
+
+section
   +latofont(100)
-  text-align: center
-  padding: 2.4em 0
+  width: 100%
   color: #f9f9f9
   font-variant: small-caps
+  text-align: center
+
+  &:nth-child(even)
+    color: #f9f9f9
+    background-color: #2c3e50
+
+  &:nth-child(odd)
+    color: #2c3e50
+    background-color: #f9f9f9
 
   h3
-    font-size: 2.4em
+    +latofont(300)
+    font-size: 2.6em
     padding: 0.4em
 
   h4
-    font-size: 1.1em
+    font-size: 1.8em
     padding: 0.4em 0 1em
 
   a
-    font-size: 1.6em
     text-decoration: none
     border-bottom: 1px solid rgba(#f9f9f9, 0)
     +transition(border 600ms)
@@ -77,12 +86,14 @@ section
 
   p
     color: #aaa
-    font-size: 1.8em
+    font-size: 1.6em
     line-height: 1.4em
 
-  .location-img
+.when
+
+.where
+  .where-img
     width: 100%
     height: 30em
     margin: 2.4em 0
-    // box-shadow: 0px 5px 10px #999
 

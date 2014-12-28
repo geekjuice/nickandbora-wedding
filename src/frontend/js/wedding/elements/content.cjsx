@@ -1,11 +1,13 @@
 define [
   'react'
-  'wedding/elements/venue'
-], (React, VenueElement) ->
+  'wedding/elements/when'
+  'wedding/elements/where'
+], (React, WhenElement, WhereElement) ->
 
   Content = React.createClass
 
     render: ->
       <section className='content'>
-        <VenueElement />
+        <WhenElement />
+        <WhereElement />
       </section>
