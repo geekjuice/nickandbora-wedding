@@ -31,45 +31,31 @@ block content
       .modal-content
         .gradient
         .greeting-text Hi
+        .bio
+          .mynameis: img(src='/img/mynameisnick.png')
+          p I am a software engineer at HubSpot, builder of stuff, and a future happy husband.
+          ul.social
+            li: a(href='http://twitter.com/nick_geekjuice' target='_blank')
+              img(src='/img/social/blue_twitter.png')
+            li: a(href='http://nicholashwang.com' target='_blank')
+              img(src='/img/social/blue_blog.png')
+            li: a(href='http://linkedin.com/in/nicholashwang' target='_blank')
+              img(src='/img/social/blue_linkedin.png')
+        a.modal-close(href) x
 
     section.modal.bora-bio
       .modal-overlay
       .modal-content
         .gradient
         .greeting-text Hello
-
-
-
-    section.bios.nick-bio
-      .hello
-        .hello-bg
-          .gradient
-          .hi: img(src='/img/hi-nick.png')
-          .bio
-            .mynameis: img(src='/img/mynameisnick.png')
-            p I am a software engineer at HubSpot, builder of stuff, and a future happy husband.
-            ul.social
-              li: a(href='http://twitter.com/nick_geekjuice' target='_blank')
-                img(src='/img/social/blue_twitter.png')
-              li: a(href='http://nicholashwang.com' target='_blank')
-                img(src='/img/social/blue_blog.png')
-              li: a(href='http://linkedin.com/in/nicholashwang' target='_blank')
-                img(src='/img/social/blue_linkedin.png')
-        .overlay
-
-    section.bios.bora-bio
-      .hello
-        .hello-bg
-          .gradient
-          .hi: img(src='/img/hello-bora.png')
-          .bio
-            .mynameis: img(src='/img/mynameisbora.png')
-            p I am an artist, teacher, friend of the museum, designer, and most of all: a happy bride to be.
-            ul.social
-              li: a(href='http://facebook.com/bora.lee.5815' target='_blank')
-                img(src='/img/social/pink_facebook.png')
-              li: a(href='http://leebora.com' target='_blank')
-                img(src='/img/social/pink_blog.png')
-              li: a(href='http://www.linkedin.com/pub/bora-lee/82/b7/155' target='_blank')
-                img(src='/img/social/pink_linkedin.png')
-        .overlay
+        .bio
+          .mynameis: img(src='/img/mynameisbora.png')
+          p I am an artist, teacher, friend of the museum, designer, and most of all: a happy bride to be.
+          ul.social
+            li: a(href='http://facebook.com/bora.lee.5815' target='_blank')
+              img(src='/img/social/pink_facebook.png')
+            li: a(href='http://leebora.com' target='_blank')
+              img(src='/img/social/pink_blog.png')
+            li: a(href='http://www.linkedin.com/pub/bora-lee/82/b7/155' target='_blank')
+              img(src='/img/social/pink_linkedin.png')
+        a.modal-close(href) x

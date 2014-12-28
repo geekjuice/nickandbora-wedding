@@ -9,7 +9,7 @@
   +box-sizing(border-box)
 
 html, body
-  background-color: rgba(black, 0.7)
+  background-color: #f9f9f9
 
 section
   width: 100%
@@ -25,7 +25,7 @@ section
   background-size: cover
   background-repeat: no-repeat
   background-position: center center
-  background-color: rgba(black, 0.7)
+  background-color: #f9f9f9
   +filter(saturate(0.6) brightness(1.0))
   +transform(translateZ(0))
   +transition(all 600ms ease-out 200ms)
@@ -48,9 +48,14 @@ section
   .saveTheDate
     +yanonefont()
     text-align: center
+    font-size: 0.8em
     letter-spacing: 0.4em
     font-variant: small-caps
-    margin-top: 1em
+    margin-top: 0.8em
+
+    @media (min-width: 720px)
+      font-size: 1em
+      margin-top: 1em
 
     span
       cursor: default
@@ -77,145 +82,31 @@ section
         opacity: 1
 
   .nick, .bora
-    height: 52px
-    width: 108px
+    height: 39px
+    width: 71px
+
+    @media (min-width: 720px)
+      height: 52px
+      width: 108px
 
   .and
-    height: 52px
-    width: 72px
+    height: 39px
+    width: 54px
 
+    @media (min-width: 720px)
+      height: 52px
+      width: 72px
   img
     position: absolute
     top: 0
     left: 0
+    height: inherit
+    width: inherit
 
   .active
     opacity: 0
     z-index: 1
     +transition(opacity 300ms)
-
-
-// BIOS
-.bios
-  +latofont(300)
-  position: absolute
-  display: none
-  opacity: 0
-  top: 0
-  left: 0
-  width: 100%
-  +transition(transform 600ms ease-out)
-
-  &.revealing
-    +translate3d(0,0,0)
-
-  &.reveal
-    display: block
-    opacity: 1
-
-.hello
-  width: 100%
-  height: 100%
-  background-color: rgba(white, 0)
-
-.hello-bg
-  width: 50%
-  min-height: 100%
-  box-shadow: 0 0 20px rgba(#333, 0.6)
-
-.overlay
-  width: 50%
-  height: 100%
-
-.bio
-  position: absolute
-  width: 45%
-  bottom: 5em
-  background-color: rgba(darken(#2c3e50, 15%), 0.8)
-  padding: 1.2em 2em
-
-  p
-    +yanonefont()
-    text-transform: uppercase
-    font-size: 1.2em
-    line-height: 1.2em
-    word-spacing: 0.4em
-    letter-spacing: 0.05em
-    text-align: left
-    padding: 0.6em 0
-    color: rgba(#f9f9f9, 0.8)
-
-  .social
-    li
-      display: inline-block
-      margin-right: 0.6em
-
-      &:last-child
-        margin-right: 0
-
-      img
-        width: 2em
-        opacity: 0.8
-        +transition(opacity 600ms)
-
-        &:hover
-          opacity: 1
-
-
-// NICK
-.nick-bio
-  +translate3d(-50%,0,0)
-
-  .hello-bg
-    float: left
-    background: url('/img/nick-hello.jpg')
-    background-color: #f9f9f9
-    background-size: cover
-    background-repeat: no-repeat
-    background-position: center center
-
-  .gradient
-    left: 0
-
-  .hi img
-    width: 25%
-
-  .overlay
-    float: left
-
-  .bio
-    left: 0
-
-  .mynameis img
-    width: 60%
-
-
-// BORA
-.bora-bio
-  +translate3d(50%,0,0)
-
-  .hello-bg
-    float: right
-    background: url('/img/bora-hello.jpg')
-    background-color: #f9f9f9
-    background-size: cover
-    background-repeat: no-repeat
-    background-position: center center
-
-  .gradient
-    right: 0
-
-  .hi img
-    width: 80%
-
-  .overlay
-    float: right
-
-  .bio
-    right: 0
-
-  .mynameis img
-    width: 100%
 
 
 // MODAL
@@ -227,26 +118,6 @@ section
   opacity: 0
   z-index: 9999
   +transition(opacity 400ms ease-out, transform 600ms ease-out)
-
-  &.nick-bio
-    +transform(translate3d(-1em, 0, 0))
-
-    .modal-content
-      background: url('/img/nick-hello.jpg')
-      background-color: rgba(black, 0.7)
-      background-size: cover
-      background-repeat: no-repeat
-      background-position: center center
-
-  &.bora-bio
-    +transform(translate3d(1em, 0, 0))
-
-    .modal-content
-      background: url('/img/bora-hello.jpg')
-      background-color: rgba(black, 0.7)
-      background-size: cover
-      background-repeat: no-repeat
-      background-position: center center
 
   &.animating
     visibility: visible
@@ -266,12 +137,15 @@ section
     bottom: 0
     left: 0
     right: 0
-    width: 50%
+    width: 100%
     height: 100%
     margin: auto
     background-color: rgba(black, 0.7)
     box-shadow: 0 1px 20px rgba(#333, 0.6)
     +filter(saturate(0.8))
+
+    @media (min-width: 720px)
+      width: 50%
 
   .gradient
     position: absolute
@@ -283,10 +157,119 @@ section
   .greeting-text
     +yanonefont()
     font-variant: small-caps
-    font-size: 12em
+    font-size: 8em
     line-height: 0.9em
     color: #f9f9f9
     position: relative
     letter-spacing: 0.1em
     text-indent: 0.1em
     float: left
+
+    @media (min-width: 720px)
+      font-size: 12em
+
+  .modal-close
+    +latofont(100)
+    text-transform: uppercase
+    position: absolute
+    top: 0
+    right: 0
+    padding: 0.2em 0.4em
+    font-size: 1.4em
+    color: #f9f9f9
+    background-color: #333
+    opacity: 0.6
+    text-decoration: none
+    +transition(opacity 600ms ease-out)
+
+    @media (min-width: 720px)
+      font-size: 1.6em
+
+    &:hover
+      opacity: 1
+
+  .bio
+    position: absolute
+    width: 100%
+    bottom: 0em
+    background-color: rgba(darken(#2c3e50, 15%), 0.8)
+    padding: 1.2em 2em
+
+    @media (min-width: 720px)
+      width: 90%
+      bottom: 5em
+
+    p
+      +yanonefont()
+      text-transform: uppercase
+      font-size: 0.8em
+      line-height: 1.2em
+      word-spacing: 0.4em
+      letter-spacing: 0.05em
+      text-align: left
+      padding: 0.6em 0
+      color: rgba(#f9f9f9, 0.8)
+
+      @media (min-width: 720px)
+        font-size: 1.2em
+
+    .social
+      li
+        display: inline-block
+        margin-right: 0.6em
+
+        &:last-child
+          margin-right: 0
+
+        img
+          width: 1.6em
+          opacity: 0.8
+          +transition(opacity 600ms)
+
+          @media (min-width: 720px)
+            width: 2em
+
+          &:hover
+            opacity: 1
+
+
+// NICK
+.nick-bio
+  +transform(translate3d(-1em, 0, 0))
+
+  .modal-content
+    background: url('/img/nick-hello.jpg')
+    background-color: rgba(black, 0.7)
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center center
+
+  .hi img
+    width: 25%
+
+  .bio
+    left: 0
+
+  .mynameis img
+    width: 60%
+
+
+// BORA
+.bora-bio
+  +transform(translate3d(1em, 0, 0))
+
+  .modal-content
+    background: url('/img/bora-hello.jpg')
+    background-color: rgba(black, 0.7)
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center center
+
+  .hi img
+    width: 80%
+
+  .bio
+    right: 0
+
+  .mynameis img
+    width: 100%

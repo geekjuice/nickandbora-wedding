@@ -10,15 +10,19 @@ define [
 
     start: ->
       Resizer.init()
+      @bindNavEvents()
+      @bindModalEvents()
 
-      $('.nick').on 'click', @showModal('.nick-bio')
-      $('.bora').on 'click', @showModal('.bora-bio')
-      $('.modal-overlay').on 'click', @hideModal('.modal')
-
+    bindNavEvents: ->
       $('a.and').on 'mouseenter', ->
         $('.saveTheDate').addClass('hovered')
       $('a.and').on 'mouseleave', ->
         $('.saveTheDate').removeClass('hovered')
+
+    bindModalEvents: ->
+      $('.nick').on 'click', @showModal('.nick-bio')
+      $('.bora').on 'click', @showModal('.bora-bio')
+      $('.modal-overlay, .modal-close').on 'click', @hideModal('.modal')
 
     showModal: (selector) =>
       (e) =>
