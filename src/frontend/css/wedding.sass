@@ -49,26 +49,31 @@ section
   box-shadow: 0 1px 20px rgba(#000, 0.25)
 
 .location
-  +yanonefont()
+  +latofont(100)
   text-align: center
   padding: 2.4em 0
   color: #f9f9f9
+  font-variant: small-caps
 
   h3
     font-size: 2.4em
     padding: 0.4em
 
   h4
-    font-size: 1.2em
+    font-size: 1.1em
     padding: 0.4em 0 1em
 
   a
-    font-size: 1.8em
+    font-size: 1.6em
     text-decoration: none
-    color: #f9f9f9
+    border-bottom: 1px solid rgba(#f9f9f9, 0)
+    +transition(border 600ms)
 
     &:visited
       color: #f9f9f9
+
+    &:hover
+      border-bottom: 1px solid rgba(#f9f9f9, 1)
 
   p
     color: #aaa

@@ -3,7 +3,7 @@ define [
   'wedding/lib/mapConfig'
 ], (React, MapConfig) ->
 
-  WEDDING_LOCATION = 'Rancho Valencia, San Diego, CA'
+  WEDDING_LOCATION = '32.991062,-117.186107'
 
   { Map, Marker, Geocoder, GeocoderStatus, LatLng } = google.maps
 
@@ -30,7 +30,7 @@ define [
         <h3>Location</h3>
         <section ref='map' className='location-img' />
         <h4>
-          <a href='http://www.ranchovalencia.com/'>
+          <a href='http://www.ranchovalencia.com/' target='_blank'>
             Rancho Valencia Resort & Spa
           </a>
         </h4>
