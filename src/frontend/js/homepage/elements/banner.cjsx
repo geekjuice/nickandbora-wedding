@@ -28,7 +28,6 @@ define [
         @startAnimation(selector)
 
     render: ->
-      console.log 'render'
       { showNav } = @state
 
       classes = React.addons.classSet

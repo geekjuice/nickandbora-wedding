@@ -1,0 +1,24 @@
+// NAV
+#nav
+  margin: 1.6rem 0
+  opacity: 0
+  visibility: hidden
+  +transition(opacity 600ms 1.2s)
+
+  li
+    margin-right: 0.6rem
+    opacity: 0.6
+    +transition(opacity 300ms)
+
+    &:last-child
+      margin-right: 0
+
+    &:hover
+      opacity: 1
+
+  img
+    position: relative
+
+  &.nav-visible
+    visibility: visible
+    opacity: 1

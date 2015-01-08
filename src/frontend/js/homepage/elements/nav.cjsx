@@ -9,10 +9,9 @@ define [
 
     render: ->
       classes = React.addons.classSet
-        'nav': true
         'nav-visible': @props.showNav
 
-      <div className={classes}>
+      <div id='nav' className={classes}>
         <ul>
           {for i in [0..5]
             <li key={"nav-#{i}"}>
