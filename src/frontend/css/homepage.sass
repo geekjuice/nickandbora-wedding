@@ -39,6 +39,11 @@ section
     text-align: center
     width: 100%
     top: 40%
+    +translate3d(0, 0, 0)
+    +transition(transform 1.2s)
+
+    &.nav-visible
+      +translate3d(0, -2em, 0)
 
   .mask
     height: 100%
@@ -104,6 +109,31 @@ section
     z-index: 1
     +transition(opacity 300ms)
 
+
+// NAV
+.nav
+  margin: 1.6rem 0
+  opacity: 0
+  visibility: hidden
+  +transition(opacity 600ms 1.2s)
+
+  li
+    margin-right: 0.6rem
+    opacity: 0.6
+    +transition(opacity 300ms)
+
+    &:last-child
+      margin-right: 0
+
+    &:hover
+      opacity: 1
+
+  img
+    position: relative
+
+  &.nav-visible
+    visibility: visible
+    opacity: 1
 
 // MODAL
 .modal
