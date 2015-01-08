@@ -9,23 +9,35 @@ require.config
     lodash: 'vendor/lodash'
     react: 'vendor/react'
     flux: 'vendor/flux'
-    page: 'vendor/page'
     event: 'vendor/event'
+    backbone: 'vendor/backbone'
+    underscore: 'vendor/lodash'
+    jquery: 'vendor/zepto'
+  map:
+    '*':
+      jquery: 'zepto'
+      underscore: 'lodash'
   shim:
     zepto:
       exports: '$'
-    page:
-      exports: 'page'
+    backbone:
+      deps: ['zepto', 'lodash']
 
 require [
   'zepto'
-  'react'
+  'backbone'
   'setup'
+  'homepage/lib/router'
   'homepage/lib/resizer'
-  'homepage/elements/app'
-], ($, React, Setup, Resizer, App) ->
+  'homepage/lib/pushstate'
+], ($, Backbone, Setup, Router, Resizer, Pushstate) ->
 
   $ ->
     do Setup
     Resizer.init()
-    React.render(<App />, document.getElementById('NickAndBora'))
+    Pushstate.init()
+    Router.init()
+
+    Backbone.history.start
+      pushState: true
+      root: '/'

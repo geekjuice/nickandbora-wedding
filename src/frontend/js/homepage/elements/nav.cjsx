@@ -15,7 +15,7 @@ define [
         <ul>
           {for i in [0..5]
             <li key={"nav-#{i}"}>
-              <a href>
+              <a href='gallery'>
                 <img src='http://placehold.it/50x50' />
               </a>
             </li>

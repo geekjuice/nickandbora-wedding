@@ -38,19 +38,19 @@ define [
         <div className={classes}>
           <ul>
             <li>
-              <a className='nick' href onClick={@showBio(NICK)}>
+              <a className='nick' href='#' onClick={@showBio(NICK)}>
                 <img className='inactive' src='/img/nick_inactive.png' />
                 <img className='active' src='/img/nick_active.png' />
               </a>
             </li>
             <li>
-              <a className='and' href onClick={@showNav}>
+              <a className='and' href='#' onClick={@showNav}>
                 <img className='inactive' src='/img/and_inactive.png' />
                 <img className='active' src='/img/and_active.png' />
               </a>
             </li>
             <li>
-              <a className='bora' href onClick={@showBio(BORA)}>
+              <a className='bora' href='#' onClick={@showBio(BORA)}>
                 <img className='inactive' src='/img/bora_inactive.png' />
                 <img className='active' src='/img/bora_active.png' />
               </a>

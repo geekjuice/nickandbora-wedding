@@ -14,13 +14,13 @@
     "tests"
   ],
   "dependencies": {
-    "requirejs": "^2.1.14",
+    "requirejs": "^2.1.15",
     "zepto": "^1.1.4",
     "lodash": "^2.4.1",
     "react": "^0.12.0",
     "q": "q#^1.0.1",
     "flux": "~2.0.2",
-    "page": "~1.5.0",
-    "eventEmitter": "~4.2.9"
+    "eventEmitter": "~4.2.9",
+    "backbone": "~1.1.2"
   }
 }
