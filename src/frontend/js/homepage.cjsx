@@ -21,9 +21,11 @@ require [
   'zepto'
   'react'
   'setup'
-  'homepage/app'
-], ($, React, Setup, App) ->
+  'homepage/lib/resizer'
+  'homepage/elements/app'
+], ($, React, Setup, Resizer, App) ->
 
   $ ->
     do Setup
-    (new App).start()
+    Resizer.init()
+    React.render(<App />, document.getElementById('NickAndBora'))
