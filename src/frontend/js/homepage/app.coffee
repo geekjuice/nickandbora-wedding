@@ -4,58 +4,50 @@ define [
   'homepage/resizer'
 ], (_, $, Resizer) ->
 
+  DEFAULT_TRANSITION = 600
+
   class App
 
     start: ->
-      $('.enter').on 'click', @enter
-      $('.nick').on 'click', @showNick
-      $('.bora').on 'click', @showBora
-      $('.overlay').on 'click', @goBack
       Resizer.init()
+      @bindNavEvents()
+      @bindModalEvents()
 
-    enter: (e) =>
-      e.preventDefault()
-      @hide('.enter')
-      @hide('.splash')
-      @show('.home')
+    bindNavEvents: ->
+      $('a.and').on 'mouseenter', ->
+        $('.saveTheDate').addClass('hovered')
+      $('a.and').on 'mouseleave', ->
+        $('.saveTheDate').removeClass('hovered')
 
-    showNick: (e) =>
-      e.preventDefault()
-      @blurBackground()
-      $nick = $('.nick-bio')
-      $nick.addClass('reveal')
-      setTimeout ->
-        $nick.addClass('revealing')
-      , 25
+    bindModalEvents: ->
+      $('.nick').on 'click', @showModal('.nick-bio')
+      $('.bora').on 'click', @showModal('.bora-bio')
+      $('.modal-overlay, .modal-close').on 'click', @hideModal('.modal')
 
-    showBora: (e) =>
-      e.preventDefault()
-      @blurBackground()
-      $bora = $('.bora-bio')
-      $bora.addClass('reveal')
-      setTimeout ->
-        $bora.addClass('revealing')
-      , 25
+    showModal: (selector) =>
+      (e) =>
+        e.preventDefault()
+        $('.home').addClass('unfocused')
+        $(selector).addClass('animating visible')
+        @startAnimation(selector)
 
-    goBack: (e) =>
-      @unblurBackground()
-      $bios = $('.bios')
-      $bios.removeClass('revealing')
-      setTimeout ->
-        $bios.removeClass('reveal')
-      , 600
+    hideModal: (selector) =>
+      (e) =>
+        e.preventDefault()
+        $('.home').removeClass('unfocused')
+        $(selector).addClass('animating').removeClass('visible')
+        @startAnimation(selector)
 
-    blurBackground: ->
-      $('.mask').addClass('blurred')
+    startAnimation: (selector) ->
+      duration = @getTransitionDuration(selector, 'transform')
+      setTimeout @animatingFinished(selector), duration
 
-    unblurBackground: ->
-      $('.mask').removeClass('blurred')
+    animatingFinished: (selector) ->
+      (e) ->
+        $(selector).removeClass('animating')
 
-    show: (selector) ->
-      $(selector).addClass('visible').removeClass('hidden')
-
-    hide: (selector) ->
-      $(selector).addClass('hidden').removeClass('visible')
-      setTimeout ->
-        $(selector).addClass('removed')
-      , 1000
+    getTransitionDuration: _.memoize (selector, property) ->
+      TRANSITION_REGEX = new RegExp "#{property}\\s+([0-9.]+)"
+      transition = $(selector).css 'transition'
+      match = transition.match TRANSITION_REGEX
+      match[1] * 1000 ? DEFAULT_TRANSITION

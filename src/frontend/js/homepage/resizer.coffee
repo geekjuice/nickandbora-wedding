@@ -17,9 +17,14 @@ define [
       $window = $(window)
       h = $window.height()
       w = $window.width()
-      backgroundPosition = if (h / (w / 2)) < 1.5
-      then 'center 25%'
-      else 'center center'
-      $('.hello-bg').css { backgroundPosition }
+
+      if (h / (w / 2)) < 1
+        styles =
+          backgroundPosition: 'center 25%'
+      else
+        styles =
+          backgroundPosition: 'center center'
+
+      $('.modal-content').css(styles)
 
   new Resizer
