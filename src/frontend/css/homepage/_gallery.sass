@@ -1,2 +1,56 @@
 // Gallery
 #gallery
+  position: absolute
+  top: 0
+  left: 0
+  min-height: 100%
+  max-height: 100%
+  height: 100%
+  word-spacing: 0
+  overflow-x: scroll
+  white-space: nowrap
+
+  h1
+    font-size: 2em
+
+  ul
+    margin: 1.4em 0
+
+  li
+    padding: 0.4em 0
+    +transition(padding 300ms ease-out)
+
+    &:hover
+      padding-left: 0.4em
+
+  a
+    text-decoration: none
+
+    &:visited
+      color: #666
+
+  .left
+    +latofont(100)
+    position: relative
+    width: 20em
+    display: inline-block
+    float: left
+    background-color: #eee
+    padding: 10em 2em
+    height: 100%
+    font-variant: small-caps
+
+  .gallery
+    position: relative
+    display: inline-block
+    height: 100%
+
+  .image
+    position: relative
+    display: inline-block
+    height: 100%
+    padding: 10em 2em
+    text-align: center
+
+    img
+      height: 100%

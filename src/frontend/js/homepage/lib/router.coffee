@@ -7,8 +7,9 @@ define [
 
   class Router extends Backbone.Router
 
-    @init: ->
+    @init: (root='/', pushState=true)->
       new Router
+      Backbone.history.start { root, 'pushState' }
 
     routes:
       'gallery(/)': 'gallery'
@@ -18,7 +19,18 @@ define [
       React.render(<App />, document.getElementById('NickAndBora'))
 
     gallery: ->
-      React.render(
-        <div>Hello</div>
-        document.getElementById('NickAndBora')
-      )
+      $el = ''
+      for i in [0..5]
+        width = 500 + Math.floor((500 * Math.random()))
+        height = 500 + Math.floor((500 * Math.random()))
+        $el += """
+          <div id='img#{i}' class='image'>
+            <img src="http://placehold.it/#{width}x#{height}">
+          </div>
+        """
+      $('.gallery').html($el)
+
+      # React.render(
+      #   <h1>Hello</h1>
+      #   document.getElementById('NickAndBora')
+      # )

@@ -36,7 +36,3 @@ require [
     do Setup
     Pushstate.init()
     Router.init()
-
-    Backbone.history.start
-      pushState: true
-      root: '/'
