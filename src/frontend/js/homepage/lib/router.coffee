@@ -1,9 +1,11 @@
 define [
+  'zepto'
+  'lodash'
   'backbone'
   'react'
   'homepage/lib/router'
   'homepage/elements/app'
-], (Backbone, React, Router, App) ->
+], ($, _, Backbone, React, Router, App) ->
 
   class Router extends Backbone.Router
 
