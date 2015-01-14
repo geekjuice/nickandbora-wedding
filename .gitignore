@@ -4,3 +4,5 @@ node_modules
 _build
 
 src/frontend/vendor
+
+mongo2excel
