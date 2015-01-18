@@ -32,7 +32,7 @@ define [
     render: ->
       { showNav } = @state
 
-      if Enviro.isLocal(KEY)
+      if Enviro.isProd(KEY)
         andLink = '/SaveTheDate'
         andClick = _.noop
       else
