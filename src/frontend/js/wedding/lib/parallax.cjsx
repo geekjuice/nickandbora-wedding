@@ -5,8 +5,11 @@ define [
 
   class Parallax
 
+    @init: ->
+      new Parallax
+
     constructor: ->
-      $(window).on('scroll', @parallaxHeader).scroll()
+      $(window).on('scroll', @parallaxHero).scroll()
 
     vendorize: (css, value) ->
       transition = {}
@@ -21,11 +24,12 @@ define [
         transition[vendor] = value
       transition
 
-    parallaxHeader: (e) =>
-      height = $('.splash').height()
+    parallaxHero: (e) =>
+      height = $('.hero').height()
       scrollTop = $(window).scrollTop()
-      translate3d = "translate3d(0,#{0.48 * scrollTop}px,0)"
+      translate3d = "translate3d(0,-#{0.45 * scrollTop}px,0)"
       opacity = (0.8 * height - scrollTop) / (0.75 * height)
       style = _.extend {}, @vendorize('transform', translate3d),
         opacity: Math.max(0, Math.min(1, opacity))
-      $('.logo-parallax').css(style)
+      $('.logo-text, .logo-subtext').css(style)
+

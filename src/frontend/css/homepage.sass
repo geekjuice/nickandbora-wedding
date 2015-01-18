@@ -5,6 +5,10 @@
 @import compass/css3/transform
 @import compass/css3/filter
 
+@import homepage/_nav
+@import homepage/_modal
+@import homepage/_gallery
+
 *
   +box-sizing(border-box)
 
@@ -16,7 +20,6 @@ section
   height: 100%
 
 
-// HOME
 .home
   position: absolute
   top: 0
@@ -39,6 +42,11 @@ section
     text-align: center
     width: 100%
     top: 40%
+    +translate3d(0, 0, 0)
+    +transition(transform 1.2s)
+
+    &.nav-visible
+      +translate3d(0, -2em, 0)
 
   .mask
     height: 100%
@@ -61,10 +69,6 @@ section
       cursor: default
       color: black
       +transition(color 600ms)
-
-    &.hovered
-      span
-        color: #c0392b
 
   ul
     text-align: center
@@ -107,172 +111,3 @@ section
     opacity: 0
     z-index: 1
     +transition(opacity 300ms)
-
-
-// MODAL
-.modal
-  visibility: hidden
-  position: fixed
-  width: 100%
-  height: 100%
-  opacity: 0
-  z-index: 9999
-  +transition(opacity 400ms ease-out, transform 600ms ease-out)
-
-  &.animating
-    visibility: visible
-
-  &.visible
-    visibility: visible
-    opacity: 1
-    +transform(translate3d(0, 0, 0) scale(1.0))
-
-  .modal-overlay
-    width: 100%
-    height: 100%
-
-  .modal-content
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
-    width: 100%
-    height: 100%
-    margin: auto
-    background-color: rgba(black, 0.7)
-    box-shadow: 0 1px 20px rgba(#333, 0.6)
-    +filter(saturate(0.8))
-
-    @media (min-aspect-ratio: 3/4)
-      width: 75%
-
-    @media (min-aspect-ratio: 1/1)
-      width: 50%
-
-  .gradient
-    position: absolute
-    top: 0
-    width: 100%
-    height: 100%
-    background: linear-gradient(to bottom right, rgba(#000, 0.5), rgba(#333, 0) 40%)
-
-  .greeting-text
-    +yanonefont()
-    font-variant: small-caps
-    font-size: 8em
-    line-height: 0.9em
-    color: #f9f9f9
-    position: relative
-    letter-spacing: 0.1em
-    text-indent: 0.1em
-    float: left
-
-    @media (min-width: 720px)
-      font-size: 12em
-
-  .modal-close
-    +latofont(100)
-    text-transform: uppercase
-    position: absolute
-    top: 0
-    right: 0
-    padding: 0.2em 0.4em
-    font-size: 1.4em
-    color: #f9f9f9
-    background-color: #333
-    opacity: 0.8
-    text-decoration: none
-    +transition(opacity 600ms ease-out)
-
-    @media (min-width: 720px)
-      font-size: 1.6em
-
-    &:hover
-      opacity: 1
-
-  .bio
-    position: absolute
-    width: 100%
-    bottom: 0em
-    background-color: rgba(darken(#2c3e50, 15%), 0.8)
-    padding: 1.2em 2em
-
-    @media (min-width: 720px)
-      width: 90%
-      bottom: 5em
-
-    p
-      +yanonefont()
-      text-transform: uppercase
-      font-size: 0.8em
-      line-height: 1.2em
-      word-spacing: 0.4em
-      letter-spacing: 0.05em
-      text-align: left
-      padding: 0.6em 0
-      color: rgba(#f9f9f9, 0.8)
-
-      @media (min-width: 720px)
-        font-size: 1.2em
-
-    .social
-      li
-        display: inline-block
-        margin-right: 0.6em
-
-        &:last-child
-          margin-right: 0
-
-        img
-          width: 1.6em
-          opacity: 0.8
-          +transition(opacity 600ms)
-
-          @media (min-width: 720px)
-            width: 2em
-
-          &:hover
-            opacity: 1
-
-
-// NICK
-.nick-bio
-  +transform(translate3d(-1em, 0, 0))
-
-  .modal-content
-    background: url('/img/nick-hello.jpg')
-    background-color: rgba(black, 0.7)
-    background-size: cover
-    background-repeat: no-repeat
-    background-position: center center
-
-  .hi img
-    width: 25%
-
-  .bio
-    left: 0
-
-  .mynameis img
-    width: 60%
-
-
-// BORA
-.bora-bio
-  +transform(translate3d(1em, 0, 0))
-
-  .modal-content
-    background: url('/img/bora-hello.jpg')
-    background-color: rgba(black, 0.7)
-    background-size: cover
-    background-repeat: no-repeat
-    background-position: center center
-
-  .hi img
-    width: 80%
-
-  .bio
-    right: 0
-
-  .mynameis img
-    width: 100%

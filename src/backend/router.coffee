@@ -9,14 +9,21 @@ C       = require('./constants')
 api     = require('./api')
 Enviro  = require('./lib/enviro')
 
+KEY = 'NickAndBora-Env'
+
 ROUTES =
   '/saveTheDate': 'saveTheDate'
   '/comingSoon': 'comingSoon'
+  '/wedding': 'wedding'
   '/': 'index'
+
+ROUTES = _.omit ROUTES, ['/comingSoon', '/wedding'] if Enviro.isProd(KEY)
+
 
 _route = (file) ->
   (req, res, next) ->
     res.sendFile("#{__dirname}/public/#{file}.html")
+
 
 module.exports = (app) ->
 

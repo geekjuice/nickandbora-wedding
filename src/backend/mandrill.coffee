@@ -5,17 +5,27 @@
 NAME = 'NickAndBora'
 
 _         = require('lodash')
-C         = require('./constants')
 debug     = require('debug')(NAME)
 mandrill  = require('mandrill-api/mandrill')
 
+C         = require('./constants')
+Enviro    = require('./lib/enviro')
+
 mailer = new mandrill.Mandrill(C.MANDRILL_API_KEY)
+
+subject = switch
+  when Enviro.isLocal()
+    "Nick & Bora - Save the Date [LOCAL]"
+  when Enviro.isQA()
+    "Nick & Bora - Save the Date [QA]"
+  when Enviro.isProd()
+    "Nick & Bora - Save the Date"
 
 defaults =
   message:
     html: "<h1>Save the Date</h1>"
     text: "Save the Date"
-    subject: "Nick & Bora - Save the Date"
+    subject: subject
     from_email: "TheCouple@NickAndBora.Life"
     from_name: "Nick & Bora"
     to: [

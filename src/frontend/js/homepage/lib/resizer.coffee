@@ -3,6 +3,8 @@ define [
   'zepto'
 ], (_, $) ->
 
+  # NOTE: This can probably be done with media queries
+
   class Resizer
 
     throttleRate: 500

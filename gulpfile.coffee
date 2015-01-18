@@ -105,8 +105,8 @@ gulp.task 'vendor', ->
   _do("#{d.src.vendor}/q/q.js", d.build.vendor.js, 'uglify')
   _do("#{d.src.vendor}/react/react-with-addons.js", d.build.vendor.js, 'uglify rename', 'react')
   _do("#{d.src.vendor}/flux/dist/Flux.js", d.build.vendor.js, 'uglify rename', 'flux')
-  _do("#{d.src.vendor}/page/index.js", d.build.vendor.js, 'uglify rename', 'page')
   _do("#{d.src.vendor}/eventEmitter/eventEmitter.js", d.build.vendor.js, 'uglify rename', 'event')
+  _do("#{d.src.vendor}/backbone/backbone.js", d.build.vendor.js, 'uglify')
 
 
 ###
