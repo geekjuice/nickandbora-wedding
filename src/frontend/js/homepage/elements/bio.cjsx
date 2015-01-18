@@ -25,7 +25,9 @@ define [
         <div className='modal-overlay' onClick={@hideModal} />
         <div className='modal-content'>
           <div className='gradient' />
-          <div className='greeting-text'>{greeting}</div>
+          <div className='greeting'>
+            <span className='greeting-text'>{greeting}</span>
+          </div>
           <div className='bio'>
             <div className='mynameis'>
               <img src={mynameis} />

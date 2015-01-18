@@ -33,11 +33,14 @@
     box-shadow: 0 1px 20px rgba(#333, 0.6)
     +filter(saturate(0.8))
 
-    @media (min-aspect-ratio: 3/4)
-      width: 75%
+    @media screen and (min-width: 720px)
+      width: 600px
 
-    @media (min-aspect-ratio: 1/1)
-      width: 50%
+    @media screen and (min-width: 960px)
+      width: 720px
+
+    @media screen and (min-width: 1260px)
+      width: 960p6
 
   .gradient
     position: absolute
@@ -46,22 +49,33 @@
     height: 100%
     background: linear-gradient(to bottom right, rgba(#000, 0.5), rgba(#333, 0) 40%)
 
+  .greeting
+    position: relative
+    float: left
+    width: 100%
+    overflow: hidden
+
   .greeting-text
     +yanonefont()
-    font-variant: small-caps
     font-size: 8em
-    line-height: 0.9em
     color: #f9f9f9
-    position: relative
-    letter-spacing: 0.1em
+    text-transform: uppercase
+    letter-spacing: 0.05em
     text-indent: 0.1em
-    float: left
+    line-height: 0.9em
+    padding-left: 0.2em
 
-    @media (min-width: 720px)
+    @media screen and (min-width: 720px)
+      font-size: 10em
+
+    @media screen and (min-width: 960px)
       font-size: 12em
 
+    @media screen and (min-width: 1260px)
+      font-size: 14em
+
   .modal-close
-    +latofont(100)
+    +yanonefont()
     text-transform: uppercase
     position: absolute
     top: 0
@@ -70,12 +84,18 @@
     font-size: 1.4em
     color: #f9f9f9
     background-color: #333
-    opacity: 0.8
+    opacity: 0.6
     text-decoration: none
     +transition(opacity 600ms ease-out)
 
-    @media (min-width: 720px)
+    @media screen and (min-width: 720px)
       font-size: 1.6em
+
+    @media screen and (min-width: 960px)
+      font-size: 1.8em
+
+    @media screen and (min-width: 1260px)
+      font-size: 1.8em
 
     &:hover
       opacity: 1
@@ -87,7 +107,7 @@
     background-color: rgba(darken(#2c3e50, 15%), 0.8)
     padding: 1.2em 2em
 
-    @media (min-width: 720px)
+    @media screen and (min-width: 720px)
       width: 90%
       bottom: 5em
 
@@ -102,8 +122,11 @@
       padding: 0.6em 0
       color: rgba(#f9f9f9, 0.8)
 
-      @media (min-width: 720px)
+      @media screen and (min-width: 720px)
         font-size: 1.2em
+
+      @media screen and (min-width: 960px)
+        font-size: 1.4em
 
     .social
       li
@@ -118,8 +141,14 @@
           opacity: 0.8
           +transition(opacity 600ms)
 
-          @media (min-width: 720px)
+          @media screen and (min-width: 720px)
             width: 2em
+
+          @media screen and (min-width: 960px)
+            width: 2.4em
+
+          @media screen and (min-width: 1260px)
+            width: 3em
 
           &:hover
             opacity: 1
