@@ -2,6 +2,7 @@
 Router
 ###
 
+_            = require('lodash')
 mongo        = require('mongoskin')
 errorHandler = require('errorhandler')
 
