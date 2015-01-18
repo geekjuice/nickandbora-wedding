@@ -34,7 +34,6 @@ require [
 
   $ ->
     do Setup
-    Resizer.init()
     Pushstate.init()
     Router.init()
 
