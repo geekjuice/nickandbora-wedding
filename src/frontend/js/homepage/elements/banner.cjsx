@@ -1,10 +1,12 @@
 define [
   'lodash'
   'react'
+  'lib/enviro'
   'homepage/mixers/transition'
   'homepage/elements/nav'
-], (_, React, TransitionMixin, NavElement) ->
+], (_, React, Enviro, TransitionMixin, NavElement) ->
 
+  KEY = 'NickAndBora-Env'
   NICK = 'nick'
   BORA = 'bora'
 
@@ -30,6 +32,13 @@ define [
     render: ->
       { showNav } = @state
 
+      if Enviro.isLocal(KEY)
+        andLink = '/SaveTheDate'
+        andClick = _.noop
+      else
+        andLink = '#'
+        andClick = @showNav
+
       classes = React.addons.classSet
         'center-nav': true
         'nav-visible': showNav
@@ -44,7 +53,7 @@ define [
               </a>
             </li>
             <li>
-              <a className='and' href='#' onClick={@showNav}>
+              <a className='and' href={andLink} onClick={andClick}>
                 <img className='inactive' src='/img/and_inactive.png' />
                 <img className='active' src='/img/and_active.png' />
               </a>

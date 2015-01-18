@@ -9,6 +9,7 @@ C       = require('./constants')
 api     = require('./api')
 Enviro  = require('./lib/enviro')
 
+KEY = 'NickAndBora-Env'
 
 ROUTES =
   '/saveTheDate': 'saveTheDate'
@@ -16,7 +17,7 @@ ROUTES =
   '/wedding': 'wedding'
   '/': 'index'
 
-ROUTES = _.omit ROUTES, ['/comingSoon', '/wedding'] if Enviro.isProd()
+ROUTES = _.omit ROUTES, ['/comingSoon', '/wedding'] if Enviro.isProd(KEY)
 
 
 _route = (file) ->
