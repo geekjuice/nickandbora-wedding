@@ -11,7 +11,7 @@ define [
   HomepageApp = React.createClass
 
     render: ->
-      <div>
+      <div className='NickAndBora-homepage'>
         <BannerElement />
         <BioElement who='nick' />
         <BioElement who='bora' />

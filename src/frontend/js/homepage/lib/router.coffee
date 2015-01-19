@@ -14,15 +14,29 @@ define [
       new Router
       Backbone.history.start { root, 'pushState' }
 
-    initialize: ->
-      @el = $('#NickAndBora').get(0)
-
     routes:
       'gallery(/)': 'gallery'
       '(/)': 'index'
 
+    initialLoad: true
+
+    initialize: ->
+      @el = $('#NickAndBora').get(0)
+      @$body = $('body')
+
     index: ->
-      React.render(<App />, @el)
+      @fancyRoute(App)
 
     gallery: ->
-      React.render(<GalleryApp />, @el)
+      @fancyRoute(GalleryApp)
+
+    fancyRoute: (Element) ->
+      if @initialLoad
+        @initialLoad = false
+        React.render(<Element />, @el)
+      else
+        @$body.addClass('transitioning')
+        setTimeout =>
+          @$body.removeClass('transitioning')
+          React.render(<Element />, @el)
+        , 1000
