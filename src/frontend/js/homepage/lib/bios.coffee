@@ -2,7 +2,7 @@ define [], ->
 
   nick:
     greeting: 'Hi'
-    mynameis: '/img/mynameisnick.png'
+    mynameis: '/img/bio/mynameisnick.png'
     bio: 'I am a software engineer at HubSpot, builder of stuff, and a future happy husband.'
     social: [
       {

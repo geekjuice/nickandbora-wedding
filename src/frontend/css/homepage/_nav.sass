@@ -1,4 +1,8 @@
 // NAV
+
+$iconWidth: 50px
+$iconHeight: 50px
+
 #nav
   margin: 1.6rem 0
   opacity: 0
@@ -6,6 +10,8 @@
   +transition(opacity 600ms 1.2s)
 
   li
+    width: $iconWidth
+    height: $iconHeight
     margin-right: 0.6rem
     opacity: 0.6
     +transition(opacity 300ms)
@@ -16,8 +22,17 @@
     &:hover
       opacity: 1
 
-  img
+  .icon
+    width: $iconWidth
+    height: $iconHeight
     position: relative
+    background: url('/img/nav-icons/registry.png')
+    background-repeat: no-repeat
+    background-position: 0 0
+    background-size: $iconWidth 2*$iconHeight
+
+    &:hover
+      background-position: 0 -1*$iconHeight
 
   &.nav-visible
     visibility: visible
