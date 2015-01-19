@@ -1,7 +1,8 @@
 // NAV
 
-$iconWidth: 50px
-$iconHeight: 50px
+$iconSize: 50px
+$iconMedium: 35px
+$iconSmall: 25px
 
 $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, wedding, weddingParty
 
@@ -9,7 +10,13 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
   background: url('/img/nav-icons/#{$name}.png')
   background-repeat: no-repeat
   background-position: 0 0
-  background-size: $iconWidth 2*$iconHeight
+  background-size: $iconSmall 2*$iconSmall
+
+  @media screen and (min-width: 720px)
+    background-size: $iconMedium 2*$iconMedium
+
+  @media screen and (min-width: 960px)
+    background-size: $iconSize 2*$iconSize
 
 
 #nav
@@ -23,25 +30,50 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     opacity: 1
 
   li
-    width: $iconWidth
-    height: $iconHeight
-    margin-right: 2.4rem
+    width: $iconSmall
+    height: $iconSmall
+    margin-right: 1.2rem
     +transition(opacity 300ms)
+
+    @media screen and (min-width: 720px)
+      width: $iconMedium
+      height: $iconMedium
+      margin-right: 2.0rem
+
+    @media screen and (min-width: 960px)
+      width: $iconSize
+      height: $iconSize
+      margin-right: 2.4rem
+
 
     &:last-child
       margin-right: 0
 
   .icon
-    width: $iconWidth
-    height: $iconHeight
+    width: $iconSmall
+    height: $iconSmall
     position: relative
+
+    @media screen and (min-width: 720px)
+      width: $iconMedium
+      height: $iconMedium
+
+    @media screen and (min-width: 960px)
+      width: $iconSize
+      height: $iconSize
 
     @each $icon in $icons
       &.#{$icon}
         +icon($icon)
 
     &:hover
-      background-position: 0 -1*$iconHeight
+      background-position: 0 -1*$iconSmall
+
+      @media screen and (min-width: 720px)
+        background-position: 0 -1*$iconMedium
+
+      @media screen and (min-width: 960px)
+        background-position: 0 -1*$iconSize
 
   .icon-text-container
     margin: 1em auto
