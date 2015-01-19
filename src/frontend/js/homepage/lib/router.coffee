@@ -5,8 +5,18 @@ define [
   'react'
   'homepage/lib/router'
   'homepage/elements/app'
-  'gallery/elements/app'
-], ($, _, Backbone, React, Router, App, GalleryApp) ->
+  'homepage/elements/gallery/app'
+  'homepage/elements/travel/app'
+], (
+  $
+  _
+  Backbone
+  React
+  Router
+  HomepageApp
+  GalleryApp
+  TravelApp
+) ->
 
   class Router extends Backbone.Router
 
@@ -15,6 +25,7 @@ define [
       Backbone.history.start { root, 'pushState' }
 
     routes:
+      'travel(/)': 'travel'
       'gallery(/)': 'gallery'
       '(/)': 'index'
 
@@ -23,12 +34,6 @@ define [
     initialize: ->
       @el = $('#NickAndBora').get(0)
       @$body = $('body')
-
-    index: ->
-      @fancyRoute(App)
-
-    gallery: ->
-      @fancyRoute(GalleryApp)
 
     fancyRoute: (Element) ->
       if @initialLoad
@@ -40,3 +45,13 @@ define [
           @$body.removeClass('transitioning')
           React.render(<Element />, @el)
         , 1000
+
+    travel: ->
+      @fancyRoute(TravelApp)
+
+    gallery: ->
+      @fancyRoute(GalleryApp)
+
+    index: ->
+      @fancyRoute(HomepageApp)
+

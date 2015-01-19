@@ -20,5 +20,10 @@ define [
               </a>
             </li>
           }
+          <li>
+            <a href='travel' className='icon-container'>
+              <div className='icon' />
+            </a>
+          </li>
         </ul>
       </div>
