@@ -6,4 +6,4 @@ define [
   TravelApp = React.createClass
 
     render: ->
-      <div className='NickAndBora-Travel'>Travel</div>
+      <div className='NickAndBora-travel'>Travel</div>

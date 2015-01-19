@@ -5,8 +5,12 @@ define [
   'react'
   'homepage/lib/router'
   'homepage/elements/app'
-  'homepage/elements/gallery/app'
+  'homepage/elements/story/app'
+  # 'homepage/elements/proposal/app'
+  # 'homepage/elements/weddingParty/app'
+  # 'homepage/elements/details/app'
   'homepage/elements/travel/app'
+  'homepage/elements/gallery/app'
 ], (
   $
   _
@@ -14,8 +18,11 @@ define [
   React
   Router
   HomepageApp
-  GalleryApp
+  # StoryApp
+  # WeddingPartyAppApp
+  # DetailsApp
   TravelApp
+  GalleryApp
 ) ->
 
   class Router extends Backbone.Router
@@ -25,11 +32,30 @@ define [
       Backbone.history.start { root, 'pushState' }
 
     routes:
+      'story(/)': 'story'
+      'proposal(/)': 'proposal'
+      'wedding-party(/)': 'weddingParty'
+      'wedding(/)': 'details'
       'travel(/)': 'travel'
       'gallery(/)': 'gallery'
       '(/)': 'index'
 
+    elements:
+      # 'story': StoryApp
+      # 'proposal': ProposalApp
+      # 'weddingParty': WeddingPartyApp
+      # 'details': DetailsApp
+      'travel': TravelApp
+      'gallery': GalleryApp
+      'index': HomepageApp
+
     initialLoad: true
+
+    constructor: ->
+      for route, Element of @elements
+        do (Element) =>
+          @[route] = -> @fancyRoute(Element)
+      super
 
     initialize: ->
       @el = $('#NickAndBora').get(0)
@@ -45,13 +71,3 @@ define [
           @$body.removeClass('transitioning')
           React.render(<Element />, @el)
         , 1000
-
-    travel: ->
-      @fancyRoute(TravelApp)
-
-    gallery: ->
-      @fancyRoute(GalleryApp)
-
-    index: ->
-      @fancyRoute(HomepageApp)
-
