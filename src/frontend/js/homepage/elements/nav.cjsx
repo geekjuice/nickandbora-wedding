@@ -19,7 +19,7 @@ define [
     mouseenterHandler: (e) ->
       { currentTarget } = e
       route = $(currentTarget).data('icon')
-      $(".icon-text.#{route}").addClass('active')
+      $(".icon-text.#{route}-text").addClass('active')
 
     mouseleaveHandler: (e) ->
       $('.icon-text.active').removeClass('active')
@@ -37,7 +37,7 @@ define [
                  onMouseEnter={@mouseenterHandler}
                  onMouseLeave={@mouseleaveHandler}
                  data-icon={route} >
-                <div className="icon #{route}"></div>
+                <div className="icon #{route}-icon"></div>
               </a>
             </li>
           }
@@ -45,7 +45,7 @@ define [
         <div className='icon-text-container'>
           {for route, name of @routes
             <span key="icon-text-#{route}"
-                  className="icon-text #{route}">
+                  className="icon-text #{route}-text">
               {name}
             </span>
           }

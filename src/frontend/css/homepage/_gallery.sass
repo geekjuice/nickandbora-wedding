@@ -1,50 +1,24 @@
 // Gallery
 
-$navWidth: 20em
-
 .NickAndBora-gallery
   height: 100%
-  word-spacing: 0
   white-space: nowrap
-  float: left
 
-  h1
-    font-size: 2em
-
-  ul
-    margin: 1.4em 0
-
-  li
-    padding: 0.4em 0
-    +transition(padding 300ms ease-out)
-
-    &:hover
-      padding-left: 0.4em
-
-  a
-    text-decoration: none
-
-    &:visited
-      color: #666
-
+  // Images
   .gallery-container
     height: 100%
-
-  .left
-    +latofont(100)
-    width: $navWidth
-    display: inline-block
-    float: left
-    background-color: #eee
-    padding: 10em 2em
-    height: 100%
-    font-variant: small-caps
-    z-index: 2
 
   .gallery
     position: relative
     display: inline-block
     z-index: 1
+    +filter(saturate(1))
+    +translate3d(0, 0, 0)
+    +transition(all 600ms)
+
+    &.nav-visible
+      +filter(saturate(0.4))
+      +translate3d(0, 3em, 0)
 
   .image
     position: relative
@@ -63,14 +37,13 @@ $navWidth: 20em
       position: absolute
 
     .gallery
-      height: 60% // Add media query
-      margin-left: $navWidth
-      padding: 0 5em 0 0
+      height: 100%
+      padding: 10em 2em
 
     .image
       display: inline-block
       height: 100%
-      padding: 10em 2em
+      padding: 0 2em
 
     .polaroid
       height: 100%
@@ -109,12 +82,12 @@ $navWidth: 20em
 
     .gallery
       width: 100%
-      padding-left: $navWidth
+      padding: 0 2em
 
     .image
       display: block
       width: 100%
-      padding: 2em 10em
+      padding: 2em 0
 
     .polaroid
       width: 100%

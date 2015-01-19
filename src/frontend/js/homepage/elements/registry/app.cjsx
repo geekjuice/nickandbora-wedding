@@ -1,10 +1,14 @@
 define [
   'zepto'
   'react'
-], ($, React) ->
+  'homepage/elements/navbar'
+], ($, React, NavBarElement) ->
 
   RegistryApp = React.createClass
 
     render: ->
-      <div className='NickAndBora-registry'>Registry</div>
+      <div className='NickAndBora-registry'>
+        <NavBarElement />
+        <span>Registry</span>
+      </div>
 

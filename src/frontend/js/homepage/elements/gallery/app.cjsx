@@ -1,7 +1,8 @@
 define [
   'zepto'
   'react'
-], ($, React) ->
+  'homepage/elements/navbar'
+], ($, React, NavBarElement) ->
 
   IMAGES =
     engagement: [
@@ -16,10 +17,12 @@ define [
       'img8.jpg'
     ]
 
-  App = React.createClass
+  GalleryApp = React.createClass
 
     getInitialState: ->
-      numberOfImages: 2
+      numberOfImages: 8
+      increment: 8
+      navOpen: false
 
     componentWillMount: ->
       $('html, body').css('height', '100%')
@@ -29,39 +32,19 @@ define [
       $('html, body').css('height', '')
       $('#NickAndBora').removeClass('NickAndBora-gallery')
 
-    switchOrientation: ->
-      $container = $('.gallery-container')
-      if $container.hasClass('horizontal')
-        $container.removeClass('horizontal').addClass('vertical')
-      else
-        $container.removeClass('vertical').addClass('horizontal')
-
     showMore: ->
-      { numberOfImages } = @state
-      @setState { numberOfImages: numberOfImages + 2 }
+      { numberOfImages, increment } = @state
+      @setState { numberOfImages: numberOfImages + increment }
+
+    onNavChange: (navOpen) ->
+      @setState { navOpen }
 
     render: ->
-      { numberOfImages } = @state
+      { numberOfImages, navOpen } = @state
 
       <div className='gallery-container horizontal'>
-        <div className='left'>
-          <h1>Nav</h1>
-          <div className='links'>
-            <ul>
-              <li>
-                <a href='gallery' onClick={@switchOrientation}>Switch</a>
-              </li>
-            </ul>
-            <ul>
-              {for i in [0..5]
-                <li key={"gallery=#{i}"} >
-                  <a href='gallery'>Gallery {i}</a>
-                </li>
-              }
-            </ul>
-          </div>
-        </div>
-        <div className='gallery'>
+        <NavBarElement onNavChange={@onNavChange} />
+        <div className="gallery #{if navOpen then 'nav-visible' else ''}">
           {for image, i in IMAGES.engagement[0...numberOfImages]
             <div key={"engagement-#{i}"} className='image'>
               <div className='polaroid'>

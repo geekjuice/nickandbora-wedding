@@ -7,6 +7,7 @@ $iconSmall: 25px
 $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, wedding, weddingParty
 
 =icon($name)
+  padding: 0
   background: url('/img/nav-icons/#{$name}.png')
   background-repeat: no-repeat
   background-position: 0 0
@@ -23,6 +24,7 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
   margin: 2.0rem 0
   opacity: 0
   visibility: hidden
+  text-align: center
   +transition(opacity 1.2s 1.6s)
 
   &.nav-visible
@@ -30,6 +32,7 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     opacity: 1
 
   li
+    display: inline-block
     width: $iconSmall
     height: $iconSmall
     margin-right: 1.2rem
@@ -49,6 +52,10 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     &:last-child
       margin-right: 0
 
+  a
+    position: relative
+    display: block
+
   .icon
     width: $iconSmall
     height: $iconSmall
@@ -63,7 +70,7 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
       height: $iconSize
 
     @each $icon in $icons
-      &.#{$icon}
+      &.#{$icon}-icon
         +icon($icon)
 
     &:hover
@@ -91,3 +98,34 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
 
     .active
       opacity: 1
+
+// Pulldown Nav
+#navbar
+  .nav
+    position: fixed
+    width: 100%
+    background-color: #eee
+    padding-bottom: 2em
+    z-index: 2
+    +translate3d(0, -100%, 0)
+    +transition(transform 600ms)
+
+    &.nav-visible
+      +translate3d(0, 0, 0)
+
+  .nav-link
+    position: fixed
+    top: 1em
+    right: 1em
+    z-index: 3
+    opacity: 0.6
+    cursor: pointer
+    +scale(1.4)
+    +transition(opacity 300ms)
+
+    &:hover
+      opacity: 1
+
+    span
+      color: #333
+
