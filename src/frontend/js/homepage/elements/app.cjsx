@@ -8,7 +8,7 @@ define [
   BioElement
 ) ->
 
-  App = React.createClass
+  HomepageApp = React.createClass
 
     render: ->
       <div>
