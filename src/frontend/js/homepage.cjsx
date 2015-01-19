@@ -28,9 +28,8 @@ require [
   'backbone'
   'setup'
   'homepage/lib/router'
-  'homepage/lib/resizer'
   'homepage/lib/pushstate'
-], ($, Backbone, Setup, Router, Resizer, Pushstate) ->
+], ($, Backbone, Setup, Router, Pushstate) ->
 
   $ ->
     do Setup

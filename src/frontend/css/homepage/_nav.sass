@@ -3,16 +3,29 @@
 $iconWidth: 50px
 $iconHeight: 50px
 
+$icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, wedding, weddingParty
+
+=icon($name)
+  background: url('/img/nav-icons/#{$name}.png')
+  background-repeat: no-repeat
+  background-position: 0 0
+  background-size: $iconWidth 2*$iconHeight
+
+
 #nav
-  margin: 1.6rem 0
+  margin: 2.0rem 0
   opacity: 0
   visibility: hidden
   +transition(opacity 600ms 1.2s)
 
+  &.nav-visible
+    visibility: visible
+    opacity: 1
+
   li
     width: $iconWidth
     height: $iconHeight
-    margin-right: 0.6rem
+    margin-right: 1.2rem
     opacity: 0.6
     +transition(opacity 300ms)
 
@@ -26,14 +39,27 @@ $iconHeight: 50px
     width: $iconWidth
     height: $iconHeight
     position: relative
-    background: url('/img/nav-icons/registry.png')
-    background-repeat: no-repeat
-    background-position: 0 0
-    background-size: $iconWidth 2*$iconHeight
+
+    @each $icon in $icons
+      &.#{$icon}
+        +icon($icon)
 
     &:hover
       background-position: 0 -1*$iconHeight
 
-  &.nav-visible
-    visibility: visible
-    opacity: 1
+  .icon-text-container
+    margin: 1em auto
+
+    span
+      +yanonefont()
+      position: absolute
+      left: 0
+      right: 0
+      opacity: 0
+      font-size: 1.2em
+      letter-spacing: 0.2em
+      font-variant: small-caps
+      +transition(opacity 300ms)
+
+    .active
+      opacity: 1
