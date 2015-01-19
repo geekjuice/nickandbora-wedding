@@ -6,5 +6,5 @@ define [
   DetailsApp = React.createClass
 
     render: ->
-      <div className='NickAndBora-details'>Details</div>
+      <div className='NickAndBora-details'>Wedding</div>
 

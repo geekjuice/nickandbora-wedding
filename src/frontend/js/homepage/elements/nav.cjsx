@@ -4,6 +4,16 @@ define [
 
   Nav = React.createClass
 
+    routes: [
+      'story'
+      'proposal'
+      'weddingParty'
+      'wedding'
+      'travel'
+      'gallery'
+      'registry'
+    ]
+
     getDefaultProps: ->
       showNav: false
 
@@ -13,17 +23,12 @@ define [
 
       <div id='nav' className={classes}>
         <ul>
-          {for i in [0..5]
-            <li key={"nav-#{i}"}>
-              <a href='gallery' className='icon-container'>
+          {for route in @routes
+            <li key={"nav-#{route}"}>
+              <a href={route} className='icon-container'>
                 <div className='icon' />
               </a>
             </li>
           }
-          <li>
-            <a href='travel' className='icon-container'>
-              <div className='icon' />
-            </a>
-          </li>
         </ul>
       </div>

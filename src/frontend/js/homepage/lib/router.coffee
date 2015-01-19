@@ -6,11 +6,12 @@ define [
   'homepage/lib/router'
   'homepage/elements/app'
   'homepage/elements/story/app'
-  # 'homepage/elements/proposal/app'
-  # 'homepage/elements/weddingParty/app'
-  # 'homepage/elements/details/app'
+  'homepage/elements/proposal/app'
+  'homepage/elements/weddingParty/app'
+  'homepage/elements/details/app'
   'homepage/elements/travel/app'
   'homepage/elements/gallery/app'
+  'homepage/elements/registry/app'
 ], (
   $
   _
@@ -18,11 +19,13 @@ define [
   React
   Router
   HomepageApp
-  # StoryApp
-  # WeddingPartyAppApp
-  # DetailsApp
+  StoryApp
+  ProposalApp
+  WeddingPartyApp
+  DetailsApp
   TravelApp
   GalleryApp
+  RegistryApp
 ) ->
 
   class Router extends Backbone.Router
@@ -34,20 +37,22 @@ define [
     routes:
       'story(/)': 'story'
       'proposal(/)': 'proposal'
-      'wedding-party(/)': 'weddingParty'
+      'weddingParty(/)': 'weddingParty'
       'wedding(/)': 'details'
       'travel(/)': 'travel'
       'gallery(/)': 'gallery'
+      'registry(/)': 'registry'
       '(/)': 'index'
 
     elements:
-      # 'story': StoryApp
-      # 'proposal': ProposalApp
-      # 'weddingParty': WeddingPartyApp
-      # 'details': DetailsApp
+      'index': HomepageApp
+      'story': StoryApp
+      'proposal': ProposalApp
+      'weddingParty': WeddingPartyApp
+      'details': DetailsApp
       'travel': TravelApp
       'gallery': GalleryApp
-      'index': HomepageApp
+      'registry': RegistryApp
 
     initialLoad: true
 
