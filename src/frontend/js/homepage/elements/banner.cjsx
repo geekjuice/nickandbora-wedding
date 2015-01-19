@@ -14,8 +14,11 @@ define [
 
     mixins: [TransitionMixin]
 
+    getDefaultProps: ->
+      coldStart: false
+
     getInitialState: ->
-      showNav: false
+      showNav: not @props.coldStart or false
 
     showNav: (e) ->
       e.preventDefault()

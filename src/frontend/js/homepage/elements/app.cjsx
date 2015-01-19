@@ -10,9 +10,12 @@ define [
 
   HomepageApp = React.createClass
 
+    getDefaultProps: ->
+      coldStart: false
+
     render: ->
       <div className='NickAndBora-homepage'>
-        <BannerElement />
+        <BannerElement coldStart={@props.coldStart}/>
         <BioElement who='nick' />
         <BioElement who='bora' />
       </div>

@@ -69,7 +69,7 @@ define [
     fancyRoute: (Element) ->
       if @initialLoad
         @initialLoad = false
-        React.render(<Element />, @el)
+        React.render(<Element coldStart={true} />, @el)
       else
         @$body.addClass('transitioning')
         setTimeout =>
