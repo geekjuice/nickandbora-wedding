@@ -14,11 +14,8 @@ define [
 
     mixins: [TransitionMixin]
 
-    getDefaultProps: ->
-      coldStart: false
-
     getInitialState: ->
-      showNav: not @props.coldStart or false
+      showNav: false
 
     showNav: (e) ->
       e.preventDefault()
@@ -46,7 +43,7 @@ define [
         'center-nav': true
         'nav-visible': showNav
 
-      <section className='home'>
+      <div className='home'>
         <div className={classes}>
           <ul>
             <li>
@@ -74,6 +71,4 @@ define [
           <NavElement showNav={showNav}/>
         </div>
         <div className='mask' />
-      </section>
-
-
+      </div>

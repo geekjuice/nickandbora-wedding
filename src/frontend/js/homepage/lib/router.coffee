@@ -54,8 +54,6 @@ define [
       'gallery': GalleryApp
       'registry': RegistryApp
 
-    initialLoad: true
-
     constructor: ->
       for route, Element of @elements
         do (Element) =>
@@ -64,15 +62,11 @@ define [
 
     initialize: ->
       @el = $('#NickAndBora').get(0)
-      @$body = $('body')
+      @$body = $('#NickAndBora')
 
     fancyRoute: (Element) ->
-      if @initialLoad
-        @initialLoad = false
-        React.render(<Element coldStart={true} />, @el)
-      else
-        @$body.addClass('transitioning')
-        setTimeout =>
-          @$body.removeClass('transitioning')
-          React.render(<Element />, @el)
-        , 1000
+      @$body.removeClass('loaded')
+      setTimeout =>
+        @$body.addClass('loaded')
+        React.render(<Element />, @el)
+      , 1000

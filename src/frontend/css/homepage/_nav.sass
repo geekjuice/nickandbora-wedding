@@ -16,7 +16,7 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
   margin: 2.0rem 0
   opacity: 0
   visibility: hidden
-  +transition(opacity 600ms 1.2s)
+  +transition(opacity 1.2s 1.6s)
 
   &.nav-visible
     visibility: visible
@@ -25,15 +25,11 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
   li
     width: $iconWidth
     height: $iconHeight
-    margin-right: 1.2rem
-    opacity: 0.6
+    margin-right: 2.4rem
     +transition(opacity 300ms)
 
     &:last-child
       margin-right: 0
-
-    &:hover
-      opacity: 1
 
   .icon
     width: $iconWidth

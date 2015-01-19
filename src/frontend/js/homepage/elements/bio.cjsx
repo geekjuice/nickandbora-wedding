@@ -21,7 +21,7 @@ define [
       { who } = @props
       { greeting, mynameis, bio, social} = BIOS[who]
 
-      <section className="modal #{who}-bio">
+      <div className="modal #{who}-bio">
         <div className='modal-overlay' onClick={@hideModal} />
         <div className='modal-content'>
           <div className='gradient' />
@@ -45,6 +45,6 @@ define [
           </div>
           <a className='modal-close' href='#' onClick={@hideModal}>x</a>
         </div>
-      </section>
+      </div>
 
 
