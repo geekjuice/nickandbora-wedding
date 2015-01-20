@@ -1,10 +1,14 @@
 define [
   'zepto'
   'react'
-], ($, React) ->
+  'homepage/elements/navbar'
+], ($, React, NavBarElement) ->
 
   ProposalApp = React.createClass
 
     render: ->
-      <div className='NickAndBora-proposal'>Proposal</div>
+      <div className='NickAndBora-proposal'>
+        <NavBarElement onNavChange={@onNavChange} />
+        <span>Proposal</span>
+      </div>
 

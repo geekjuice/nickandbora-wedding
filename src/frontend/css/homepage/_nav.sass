@@ -104,12 +104,14 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
 #navbar
   .nav
     position: fixed
+    top: 0
+    left: 0
     width: 100%
     background-color: #eee
     padding: 0 0 1em
     z-index: 2
     +translate3d(0, -100%, 0)
-    +transition(transform 600ms)
+    +transition(transform 600ms ease-in-out)
 
     @media screen and (min-width: 720px)
       padding: 1em 0 2em
@@ -147,14 +149,13 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
 // Banner
 #banner
   display: block
-  position: absolute
-  top: 0
+  position: relative
   text-align: center
   background: url('/img/banner.png')
   background-repeat: no-repeat
   background-position: center center
   background-size: 255px 43px
-  margin: 2em 0
+  margin: 3em 0
   height: 43px
   width: 100%
 

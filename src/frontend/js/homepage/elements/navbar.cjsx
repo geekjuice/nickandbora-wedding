@@ -21,6 +21,7 @@ define [
       { navOpen } = @state
 
       <div id='navbar'>
+        <span id='banner' />
         <div href='#' className='nav-link' onClick={@toggleNav}>
           <span className="icono-#{if navOpen then 'cross' else 'hamburger'}" />
         </div>

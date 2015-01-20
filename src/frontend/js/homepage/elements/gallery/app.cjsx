@@ -43,7 +43,6 @@ define [
       { numberOfImages, navOpen } = @state
 
       <div className='gallery-container horizontal'>
-        <span id='banner' />
         <NavBarElement onNavChange={@onNavChange} />
         <div className="gallery #{if navOpen then 'nav-visible' else ''}">
           {for image, i in IMAGES.engagement[0...numberOfImages]

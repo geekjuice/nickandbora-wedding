@@ -1,9 +1,13 @@
 define [
   'zepto'
   'react'
-], ($, React) ->
+  'homepage/elements/navbar'
+], ($, React, NavBarElement) ->
 
   TravelApp = React.createClass
 
     render: ->
-      <div className='NickAndBora-travel'>Travel</div>
+      <div className='NickAndBora-travel'>
+        <NavBarElement onNavChange={@onNavChange} />
+        <span>Travel</span>
+      </div>

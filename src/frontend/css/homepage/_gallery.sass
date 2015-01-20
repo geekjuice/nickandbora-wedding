@@ -18,7 +18,7 @@ $imageHeightSmall: 350px
     z-index: 1
     +filter(saturate(1))
     +translate3d(0, 0, 0)
-    +transition(all 600ms)
+    +transition(all 600ms ease-in-out)
 
     &.nav-visible
       +filter(saturate(0.4))
@@ -47,13 +47,7 @@ $imageHeightSmall: 350px
 
     .gallery
       height: 100%
-      padding: 8em 2em 0
-
-      @media screen and (min-width: 720px)
-        padding-top: 10em
-
-      @media screen and (min-width: 960px)
-        padding-top: 14em
+      padding: 1em 2em
 
     .image
       display: inline-block
