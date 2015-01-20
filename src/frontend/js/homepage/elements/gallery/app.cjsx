@@ -23,8 +23,8 @@ define [
   GalleryApp = React.createClass
 
     getInitialState: ->
-      numberOfImages: 5
-      increment: 5
+      numberOfImages: 8
+      increment: 8
       navOpen: false
 
     showMore: ->

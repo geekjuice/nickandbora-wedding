@@ -21,7 +21,7 @@ define [], ->
 
   bora:
     greeting: 'Hello'
-    mynameis: '/img/mynameisbora.png'
+    mynameis: '/img/bio/mynameisbora.png'
     bio: 'I am an artist, teacher, friend of the museum, designer, and most of all: a happy bride to be.'
     social: [
       {

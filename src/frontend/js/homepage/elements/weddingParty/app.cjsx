@@ -3,71 +3,76 @@ define [
   'react'
   'homepage/elements/navbar'
   'homepage/elements/footer'
-], ($, React, NavBarElement, FooterElement) ->
-
-  GROOMSMEN =
-    'andy': 'Andrew Kim'
-    'dj': 'Daniel Jae'
-    'hoyoung': 'Hoyoung Chin'
-    'dave': 'David Lee'
-    'seongwoo': 'Seongwoo Byun'
-
-  BRIDAL_PARTY =
-    'sora': 'Sora Lee'
-    'julia': 'Julia Park'
-    'claire': 'Claire Park'
-    'alice': 'Alice Hwang'
-    'other': 'Art friend'
+  'homepage/lib/partyBios'
+], ($, React, NavBarElement, FooterElement, PARTY_BIOS) ->
 
   WeddingPartyApp = React.createClass
 
+    goToMember: (key) ->
+      (e) ->
+        $('html, body').scrollTop $("[data-bio=#{key}]").offset().top
+
     render: ->
-      <div className='NickAndBora-weddingParty'>
+      <section className='NickAndBora-weddingParty'>
         <NavBarElement onNavChange={@onNavChange} />
 
         <div className='container'>
-          <div className='header-text'>
+          <header className='header-text'>
             <img src="/img/wedding-party/weddingparty-text.png" />
-          </div>
+          </header>
 
-          <div className='party'>
+          <section className='party'>
             <div className='person'>
-              <img src='/img/wedding-party/bora.png' />
+              <img src='/img/wedding-party/people/bora.png' />
             </div>
             <div className='members'>
               <div className='members-text'>
                 <img src='/img/wedding-party/bridalparty-text.png' />
               </div>
               <ul>
-                {for bridalParty, name of BRIDAL_PARTY
-                  <li key={bridalParty}>
-                    <span>{name}</span>
+                {for key, person of PARTY_BIOS.bridalParty
+                  <li key={key} onClick={@goToMember(key)} data-name={key}>
+                    <span>{person.name}</span>
                   </li>
                 }
               </ul>
             </div>
-          </div>
+          </section>
 
-          <div className='party'>
+          <section className='party'>
             <div className='person'>
-              <img src='/img/wedding-party/nick.png' />
+              <img src='/img/wedding-party/people/nick.png' />
             </div>
             <div className='members'>
               <div className='members-text'>
                 <img src='/img/wedding-party/groomsmen-text.png' />
               </div>
               <ul>
-                {for groomsman, name of GROOMSMEN
-                  <li key={groomsman}>
-                    <span>{name}</span>
+                {for key, person of PARTY_BIOS.groomsmen
+                  <li key={key} onClick={@goToMember(key)} data-name={key}>
+                    <span>{person.name}</span>
                   </li>
                 }
               </ul>
             </div>
-          </div>
+          </section>
 
+          <section className='party-members'>
+            {for key, person of PARTY_BIOS.bridalParty
+              <div className='party-member' data-bio={key}>
+                <img src="/img/wedding-party/people/#{key}.png" />
+                <p>{person.bio or PARTY_BIOS.lorem}</p>
+              </div>
+            }
+            {for key, person of PARTY_BIOS.groomsmen
+              <div className='party-member' data-bio={key}>
+                <img src="/img/wedding-party/people/#{key}.png" />
+                <p>{person.bio or PARTY_BIOS.lorem}</p>
+              </div>
+            }
+          </section>
         </div>
 
         <FooterElement />
-      </div>
+      </section>
 
