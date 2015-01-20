@@ -28,6 +28,8 @@ define [
   RegistryApp
 ) ->
 
+  TITLE = 'Nick & Bora'
+
   class Router extends Backbone.Router
 
     @init: (root='/', pushState=true) ->
@@ -45,28 +47,29 @@ define [
       '(/)': 'index'
 
     elements:
-      'index': HomepageApp
-      'story': StoryApp
-      'proposal': ProposalApp
-      'weddingParty': WeddingPartyApp
-      'details': DetailsApp
-      'travel': TravelApp
-      'gallery': GalleryApp
-      'registry': RegistryApp
+      'index': [null, HomepageApp]
+      'story': ['Our Story', StoryApp]
+      'proposal': ['Proposal', ProposalApp]
+      'weddingParty': ['Wedding Party', WeddingPartyApp]
+      'details': ['Wedding', DetailsApp]
+      'travel': ['Travel Information', TravelApp]
+      'gallery': ['Gallery', GalleryApp]
+      'registry': ['Registry', RegistryApp]
 
     constructor: ->
       for route, Element of @elements
         do (Element) =>
-          @[route] = -> @fancyRoute(Element)
+          @[route] = -> @fancyRoute(Element[0], Element[1])
       super
 
     initialize: ->
       @el = $('#NickAndBora').get(0)
       @$body = $('#NickAndBora')
 
-    fancyRoute: (Element) ->
+    fancyRoute: (title, App) ->
+      document.title = if title then "#{TITLE} | #{title}" else TITLE
       @$body.removeClass('loaded')
       setTimeout =>
         @$body.addClass('loaded')
-        React.render(<Element />, @el)
+        React.render(<App />, @el)
       , 1000
