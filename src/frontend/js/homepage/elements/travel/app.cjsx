@@ -2,7 +2,8 @@ define [
   'zepto'
   'react'
   'homepage/elements/navbar'
-], ($, React, NavBarElement) ->
+  'homepage/elements/footer'
+], ($, React, NavBarElement, FooterElement) ->
 
   TravelApp = React.createClass
 
@@ -10,4 +11,5 @@ define [
       <div className='NickAndBora-travel'>
         <NavBarElement onNavChange={@onNavChange} />
         <span>Travel</span>
+        <FooterElement />
       </div>

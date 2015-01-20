@@ -2,7 +2,8 @@ define [
   'zepto'
   'react'
   'homepage/elements/navbar'
-], ($, React, NavBarElement) ->
+  'homepage/elements/footer'
+], ($, React, NavBarElement, FooterElement) ->
 
   RegistryApp = React.createClass
 
@@ -10,5 +11,6 @@ define [
       <div className='NickAndBora-registry'>
         <NavBarElement />
         <span>Registry</span>
+        <FooterElement />
       </div>
 

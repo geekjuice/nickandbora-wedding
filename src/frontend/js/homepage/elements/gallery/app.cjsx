@@ -2,7 +2,8 @@ define [
   'zepto'
   'react'
   'homepage/elements/navbar'
-], ($, React, NavBarElement) ->
+  'homepage/elements/footer'
+], ($, React, NavBarElement, FooterElement) ->
 
   IMAGES =
     engagement: [
@@ -60,4 +61,5 @@ define [
             </div>
           }
         </div>
+        <FooterElement />
       </div>

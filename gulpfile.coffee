@@ -176,6 +176,8 @@ gulp.task 'browser-sync', ['build:static:dev'], ->
     proxy: "localhost:#{env.PORT}"
     port: env.BROWSERSYNC_PORT
     open: false
+    notify: false
+    reloadDelay: 500
 
 
 ###
