@@ -14,6 +14,7 @@ require.config
     underscore: 'vendor/lodash'
     jquery: 'vendor/zepto'
     masonry: 'vendor/masonry'
+    imagesloaded: 'vendor/imagesloaded'
   map:
     '*':
       jquery: 'zepto'

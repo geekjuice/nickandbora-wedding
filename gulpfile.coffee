@@ -108,7 +108,8 @@ gulp.task 'vendor', ->
   _do("#{d.src.vendor}/eventEmitter/eventEmitter.js", d.build.vendor.js, 'uglify rename', 'event')
   _do("#{d.src.vendor}/backbone/backbone.js", d.build.vendor.js, 'uglify')
   _do("#{d.src.vendor}/icono/icono.min.css", d.build.vendor.css)
-  _do("#{d.src.vendor}/masonry/dist/masonry.pkgd.min.js", d.build.vendor.js, 'uglify rename', 'masonry')
+  _do("#{d.src.vendor}/masonry/dist/masonry.pkgd.min.js", d.build.vendor.js, 'rename', 'masonry')
+  _do("#{d.src.vendor}/imagesloaded/imagesloaded.pkgd.min.js", d.build.vendor.js, 'rename', 'imagesloaded')
 
 
 

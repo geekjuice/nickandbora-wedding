@@ -23,6 +23,7 @@
     "eventEmitter": "~4.2.9",
     "backbone": "~1.1.2",
     "icono": "*",
-    "masonry": "~3.2.2"
+    "masonry": "~3.2.2",
+    "imagesloaded": "~3.1.8"
   }
 }

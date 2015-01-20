@@ -2,9 +2,10 @@ define [
   'zepto'
   'react'
   'masonry'
+  'imagesloaded'
   'homepage/elements/navbar'
   'homepage/elements/footer'
-], ($, React, Masonry, NavBarElement, FooterElement) ->
+], ($, React, Masonry, Imagesloaded, NavBarElement, FooterElement) ->
 
   IMAGES =
     engagement: [
@@ -40,9 +41,11 @@ define [
       @masonrize()
 
     masonrize: ->
-      new Masonry '.gallery',
+      masonry = new Masonry '.gallery',
         columnWidth: '.image'
         itemSelector: '.image'
+      Imagesloaded '.gallery', ->
+        masonry.layout()
 
     render: ->
       { numberOfImages, navOpen } = @state
