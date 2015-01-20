@@ -21,17 +21,9 @@ define [
   GalleryApp = React.createClass
 
     getInitialState: ->
-      numberOfImages: 8
-      increment: 8
+      numberOfImages: 5
+      increment: 5
       navOpen: false
-
-    componentWillMount: ->
-      $('html, body').css('height', '100%')
-      $('#NickAndBora').addClass('NickAndBora-gallery')
-
-    componentDidUnmount: ->
-      $('html, body').css('height', '')
-      $('#NickAndBora').removeClass('NickAndBora-gallery')
 
     showMore: ->
       { numberOfImages, increment } = @state
@@ -43,7 +35,7 @@ define [
     render: ->
       { numberOfImages, navOpen } = @state
 
-      <div className='gallery-container horizontal'>
+      <div className='NickAndBora-gallery'>
         <NavBarElement onNavChange={@onNavChange} />
         <div className="gallery #{if navOpen then 'nav-visible' else ''}">
           {for image, i in IMAGES.engagement[0...numberOfImages]
@@ -55,9 +47,7 @@ define [
           }
           {if numberOfImages < IMAGES.engagement.length
             <div className='showMore'>
-              <div className='showMore-link'>
-                <a href='gallery' onClick={@showMore}>Show me more ↠</a>
-              </div>
+              <a href='gallery' onClick={@showMore}>Show me more</a>
             </div>
           }
         </div>

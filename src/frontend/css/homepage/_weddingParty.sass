@@ -1,4 +1,64 @@
 // Wedding Party
 
-.NickAndBora-weddingParty
+=clearfix
+  &:after
+    content: ''
+    display: table
+    clear: both
 
+.NickAndBora-weddingParty
+  +yanonefont()
+  text-align: center
+
+  .container
+    margin: 2em 0
+    height: 200%
+
+  .header-text img
+    height: 8em
+    padding-bottom: 2em
+
+  .party
+    +clearfix()
+    display: block
+    margin-bottom: 2em
+
+    .person
+      float: left
+      width: 50%
+      padding-right: 5%
+
+      img
+        height: 15em
+        float: right
+
+    .members
+      float: right
+      width: 50%
+      padding-left: 5%
+
+      img
+        height: 5em
+        float: left
+
+      ul
+        float: left
+
+      li
+        font-size: 1.4em
+        text-align: left
+        cursor: pointer
+        margin: 0.6em 0
+
+        span
+          padding: 0.2em 0
+          border-bottom: 2px solid rgba(#333, 0)
+          +transition(padding 600ms, border 600ms)
+
+        &:hover
+          span
+            padding: 0.2em 0.4em
+            border-bottom: 2px solid rgba(#333, 1)
+
+    .members-text
+      +clearfix()
