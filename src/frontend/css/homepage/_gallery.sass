@@ -47,7 +47,13 @@ $imageHeightSmall: 350px
 
     .gallery
       height: 100%
-      padding: 10em 2em 0
+      padding: 8em 2em 0
+
+      @media screen and (min-width: 720px)
+        padding-top: 10em
+
+      @media screen and (min-width: 960px)
+        padding-top: 14em
 
     .image
       display: inline-block

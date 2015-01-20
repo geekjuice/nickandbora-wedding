@@ -20,6 +20,7 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     background-size: $iconSize 2*$iconSize
 
 
+// Main nav component
 #nav
   margin: 2.0rem 0
   opacity: 0
@@ -99,16 +100,22 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     .active
       opacity: 1
 
-// Pulldown Nav
+// Pulldown nav
 #navbar
   .nav
     position: fixed
     width: 100%
     background-color: #eee
-    padding-bottom: 2em
+    padding: 0 0 1em
     z-index: 2
     +translate3d(0, -100%, 0)
     +transition(transform 600ms)
+
+    @media screen and (min-width: 720px)
+      padding: 1em 0 2em
+
+    @media screen and (min-width: 960px)
+      padding: 2em 0 4em
 
     &.nav-visible
       +translate3d(0, 0, 0)
@@ -120,8 +127,16 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     z-index: 3
     opacity: 0.6
     cursor: pointer
-    +scale(1.4)
+    +scale(1)
     +transition(opacity 300ms)
+
+    @media screen and (min-width: 720px)
+      +scale(1.2)
+      background-position: 0 -1*$iconMedium
+
+    @media screen and (min-width: 960px)
+      +scale(1.6)
+      background-position: 0 -1*$iconSize
 
     &:hover
       opacity: 1
@@ -129,3 +144,24 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     span
       color: #333
 
+// Banner
+#banner
+  display: block
+  position: absolute
+  top: 0
+  text-align: center
+  background: url('/img/banner.png')
+  background-repeat: no-repeat
+  background-position: center center
+  background-size: 255px 43px
+  margin: 2em 0
+  height: 43px
+  width: 100%
+
+  @media screen and (min-width: 720px)
+    background-size: 510px 85px
+    height: 85px
+
+  @media screen and (min-width: 960px)
+    background-size: 780px 127px
+    height: 127px
