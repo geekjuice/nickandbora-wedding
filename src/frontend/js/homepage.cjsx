@@ -13,6 +13,7 @@ require.config
     backbone: 'vendor/backbone'
     underscore: 'vendor/lodash'
     jquery: 'vendor/zepto'
+    masonry: 'vendor/masonry'
   map:
     '*':
       jquery: 'zepto'

@@ -1,9 +1,10 @@
 define [
   'zepto'
   'react'
+  'masonry'
   'homepage/elements/navbar'
   'homepage/elements/footer'
-], ($, React, NavBarElement, FooterElement) ->
+], ($, React, Masonry, NavBarElement, FooterElement) ->
 
   IMAGES =
     engagement: [
@@ -32,6 +33,17 @@ define [
     onNavChange: (navOpen) ->
       @setState { navOpen }
 
+    componentDidMount: ->
+      @masonrize()
+
+    componentDidUpdate: ->
+      @masonrize()
+
+    masonrize: ->
+      new Masonry '.gallery',
+        columnWidth: '.image'
+        itemSelector: '.image'
+
     render: ->
       { numberOfImages, navOpen } = @state
 
@@ -45,11 +57,11 @@ define [
               </div>
             </div>
           }
-          {if numberOfImages < IMAGES.engagement.length
-            <div className='showMore'>
-              <a href='gallery' onClick={@showMore}>Show me more</a>
-            </div>
-          }
         </div>
+        {if numberOfImages < IMAGES.engagement.length
+          <div className='showMore'>
+            <a href='gallery' onClick={@showMore}>Show me more</a>
+          </div>
+        }
         <FooterElement />
       </div>
