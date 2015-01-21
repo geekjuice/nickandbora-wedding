@@ -21,40 +21,42 @@ define [
             <img src="/img/wedding-party/weddingparty-text.png" />
           </header>
 
-          <section className='party'>
-            <div className='person'>
-              <img src='/img/wedding-party/people/bora.png' />
-            </div>
-            <div className='members'>
-              <div className='members-text'>
-                <img src='/img/wedding-party/bridalparty-text.png' />
+          <section className='bride-and-groom'>
+            <section className='party'>
+              <div className='person'>
+                <img src='/img/wedding-party/people/bora.png' />
               </div>
-              <ul>
-                {for key, person of PARTY_BIOS.bridalParty
-                  <li key={key} onClick={@goToMember(key)} data-name={key}>
-                    <span>{person.name}</span>
-                  </li>
-                }
-              </ul>
-            </div>
-          </section>
+              <div className='members'>
+                <div className='members-text'>
+                  <img src='/img/wedding-party/bridalparty-text.png' />
+                </div>
+                <ul>
+                  {for key, person of PARTY_BIOS.bridalParty
+                    <li key={key} onClick={@goToMember(key)} data-name={key}>
+                      <span>{person.name}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </section>
 
-          <section className='party'>
-            <div className='person'>
-              <img src='/img/wedding-party/people/nick.png' />
-            </div>
-            <div className='members'>
-              <div className='members-text'>
-                <img src='/img/wedding-party/groomsmen-text.png' />
+            <section className='party'>
+              <div className='person'>
+                <img src='/img/wedding-party/people/nick.png' />
               </div>
-              <ul>
-                {for key, person of PARTY_BIOS.groomsmen
-                  <li key={key} onClick={@goToMember(key)} data-name={key}>
-                    <span>{person.name}</span>
-                  </li>
-                }
-              </ul>
-            </div>
+              <div className='members'>
+                <div className='members-text'>
+                  <img src='/img/wedding-party/groomsmen-text.png' />
+                </div>
+                <ul>
+                  {for key, person of PARTY_BIOS.groomsmen
+                    <li key={key} onClick={@goToMember(key)} data-name={key}>
+                      <span>{person.name}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </section>
           </section>
 
           <section className='party-members'>

@@ -3,14 +3,16 @@ define [
   'react'
   'homepage/elements/navbar'
   'homepage/elements/footer'
-], ($, React, NavBarElement, FooterElement) ->
+  'homepage/elements/map'
+], ($, React, NavBarElement, FooterElement, MapElement) ->
 
   DetailsApp = React.createClass
 
     render: ->
       <div className='NickAndBora-details'>
         <NavBarElement onNavChange={@onNavChange} />
-        <span>Wedding Details</span>
+        <h1>Wedding Details</h1>
+        <MapElement />
         <FooterElement />
       </div>
 

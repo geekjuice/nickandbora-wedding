@@ -11,12 +11,20 @@
   text-align: center
 
   .container
-    margin: 2em 0
+    margin-bottom: 2em
     height: 200%
 
   .header-text img
-    height: 8em
-    padding-bottom: 2em
+    height: 6em
+
+    @media screen and (min-width: 720px)
+      height: 7em
+
+    @media screen and (min-width: 960px)
+      height: 8em
+
+  .bride-and-groom
+    padding: 2em 0
 
   .party
     +clearfix()
@@ -29,8 +37,15 @@
       padding-right: 5%
 
       img
-        height: 15em
+        height: 10em
         float: right
+
+        @media screen and (min-width: 720px)
+          height: 12em
+
+        @media screen and (min-width: 960px)
+          height: 15em
+
 
     .members
       float: right
@@ -38,17 +53,30 @@
       padding-left: 5%
 
       img
-        height: 5em
+        height: 3em
         float: left
+
+        @media screen and (min-width: 720px)
+          height: 4em
+
+        @media screen and (min-width: 960px)
+          height: 5em
+
 
       ul
         float: left
 
       li
-        font-size: 1.4em
+        font-size: 1.2em
         text-align: left
         cursor: pointer
         margin: 0.6em 0
+
+        @media screen and (min-width: 720px)
+          font-size: 1.3em
+
+        @media screen and (min-width: 960px)
+          font-size: 1.4em
 
         span
           padding: 0.2em 0
@@ -65,17 +93,21 @@
 
   // Party Members
   .party-members
-    margin-top: 5em
 
     .party-member
-      width: 60%
-      margin: 0 auto
+      width: 80%
+      margin: 3em auto
+
+      @media screen and (min-width: 720px)
+        width: 500px
+
+      @media screen and (min-width: 960px)
+        width: 600px
 
       img
         height: 20em
-        margin: 1em 0
 
       p
         margin: 0 auto
         font-size: 1.2em
-        line-height: 1.2em
+        line-height: 1.4em
