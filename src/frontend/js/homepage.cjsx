@@ -15,6 +15,7 @@ require.config
     jquery: 'vendor/zepto'
     masonry: 'vendor/masonry'
     imagesloaded: 'vendor/imagesloaded'
+    velocity: 'vendor/velocity'
   map:
     '*':
       jquery: 'zepto'
@@ -22,16 +23,19 @@ require.config
   shim:
     zepto:
       exports: '$'
+    velocity:
+      deps: ['zepto']
     backbone:
       deps: ['zepto', 'lodash']
 
 require [
   'zepto'
+  'velocity'
   'backbone'
   'setup'
   'homepage/lib/router'
   'homepage/lib/pushstate'
-], ($, Backbone, Setup, Router, Pushstate) ->
+], ($, Velocity, Backbone, Setup, Router, Pushstate) ->
 
   $ ->
     do Setup

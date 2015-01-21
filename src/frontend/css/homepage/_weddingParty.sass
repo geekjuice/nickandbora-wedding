@@ -1,5 +1,13 @@
 // Wedding Party
 
+@import compass/css3/animation
+
++keyframes(bounce)
+  0%, 100%
+    +translate3d(0, 0, 0)
+  50%
+    +translate3d(0, 0.2em, 0)
+
 =clearfix
   &:after
     content: ''
@@ -9,6 +17,21 @@
 .NickAndBora-weddingParty
   +yanonefont()
   text-align: center
+
+  .back-to-top
+    position: fixed
+    bottom: 0.4em
+    right: 0.2em
+    font-size: 4em
+    opacity: 0
+    visibility: hidden
+    cursor: pointer
+    +animation(bounce 2s infinite)
+    +transition(opacity 600ms, visibility 0 600ms)
+
+    &.visible
+      opacity: 1
+      visibility: visible
 
   .container
     margin-bottom: 2em

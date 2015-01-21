@@ -110,6 +110,7 @@ gulp.task 'vendor', ->
   _do("#{d.src.vendor}/icono/icono.min.css", d.build.vendor.css)
   _do("#{d.src.vendor}/masonry/dist/masonry.pkgd.min.js", d.build.vendor.js, 'rename', 'masonry')
   _do("#{d.src.vendor}/imagesloaded/imagesloaded.pkgd.min.js", d.build.vendor.js, 'rename', 'imagesloaded')
+  _do("#{d.src.vendor}/velocity/velocity.min.js", d.build.vendor.js, 'rename', 'velocity')
 
 
 
@@ -145,7 +146,7 @@ gulp.task 'shared', ->
 # Build
 ###
 gulp.task 'build:backend', ['shared', 'backend']
-gulp.task 'build:static:dev', ['vendor', 'shared', 'misc', 'html', 'css', 'js:dev', 'img:dev']
+gulp.task 'build:static:dev', ['shared', 'misc', 'html', 'css', 'js:dev', 'img:dev']
 gulp.task 'build:static:prod', ['vendor', 'shared', 'misc', 'html', 'js', 'css', 'img']
 gulp.task 'build:dev', ['build:static:dev', 'build:backend']
 gulp.task 'build:prod', ['build:static:prod', 'build:backend']

@@ -39,11 +39,10 @@ define [
       @masonrize()
 
     masonrize: ->
-      masonry = new Masonry '.gallery',
-        columnWidth: '.image'
-        itemSelector: '.image'
       Imagesloaded '.gallery', ->
-        masonry.layout()
+        new Masonry '.gallery',
+          columnWidth: '.image'
+          itemSelector: '.image'
 
     showMore: ->
       { numberOfImages, increment } = @state

@@ -1,20 +1,49 @@
 define [
   'zepto'
   'react'
+  'velocity'
   'homepage/elements/navbar'
   'homepage/elements/footer'
   'homepage/lib/partyBios'
-], ($, React, NavBarElement, FooterElement, PARTY_BIOS) ->
+], ($, React, Velocity, NavBarElement, FooterElement, PARTY_BIOS) ->
 
   WeddingPartyApp = React.createClass
 
+    getInitialState: ->
+      backToTopVisible: false
+
+    componentWillMount: ->
+      @_debouncedShowBackToTop = _.debounce @showBackToTop, 500
+      $(window).on 'scroll', @_debouncedShowBackToTop
+
+    showBackToTop: ->
+      partyMemberTop = $('.party-members').offset().top
+      scrollTop = $('body').scrollTop()
+      if partyMemberTop <= scrollTop
+        @setState { backToTopVisible: true }
+      else
+        @setState { backToTopVisible: false }
+
+    backToTop: ->
+      [duration, easing, offset] = [1600, 'ease-in-out', 0]
+      Velocity(document.body, 'scroll', { duration, easing, offset })
+
     goToMember: (key) ->
       (e) ->
-        $('html, body').scrollTop $("[data-bio=#{key}]").offset().top
+        [duration, easing, offset] = [1600, 'ease-in-out', $("[data-bio=#{key}]").offset().top]
+        Velocity(document.body, 'scroll', { duration, easing, offset })
 
     render: ->
+      { backToTopVisible } = @state
+
+      backToTopClasses = React.addons.classSet
+        'back-to-top': true
+        'visible': backToTopVisible
+
       <section className='NickAndBora-weddingParty'>
         <NavBarElement onNavChange={@onNavChange} />
+
+        <span className={backToTopClasses} onClick={@backToTop}>↟</span>
 
         <div className='container'>
           <header className='header-text'>
@@ -61,13 +90,13 @@ define [
 
           <section className='party-members'>
             {for key, person of PARTY_BIOS.bridalParty
-              <div className='party-member' data-bio={key}>
+              <div key={key} className='party-member' data-bio={key}>
                 <img src="/img/wedding-party/people/#{key}.png" />
                 <p>{person.bio or PARTY_BIOS.lorem}</p>
               </div>
             }
             {for key, person of PARTY_BIOS.groomsmen
-              <div className='party-member' data-bio={key}>
+              <div key={key} className='party-member' data-bio={key}>
                 <img src="/img/wedding-party/people/#{key}.png" />
                 <p>{person.bio or PARTY_BIOS.lorem}</p>
               </div>
