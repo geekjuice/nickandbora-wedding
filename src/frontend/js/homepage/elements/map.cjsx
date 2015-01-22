@@ -23,6 +23,9 @@ define [
       @geocoder = new Geocoder()
       @updateMap()
 
+    componentWillUnmount: ->
+      $(window).off 'resize', @_debouncedUpdate
+
     updateMap: ->
       address = @props.address or WEDDING_LOCATION
       @geocoder.geocode { address }, (results, status) =>

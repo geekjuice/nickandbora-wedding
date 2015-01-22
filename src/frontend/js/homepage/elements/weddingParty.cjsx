@@ -12,9 +12,12 @@ define [
     getInitialState: ->
       backToTopVisible: false
 
-    componentWillMount: ->
+    componentDidMount: ->
       @_debouncedShowBackToTop = _.debounce @showBackToTop, 500
       $(window).on 'scroll', @_debouncedShowBackToTop
+
+    componentWillUnmount: ->
+      $(window).off 'scroll', @_debouncedShowBackToTop
 
     showBackToTop: ->
       partyMemberTop = $('.party-members').offset().top
