@@ -10,8 +10,15 @@ define [
 
   HomepageApp = React.createClass
 
+    showRsvp: (e) ->
+      console.log 'rsvp'
+
     render: ->
       <div className='NickAndBora-homepage'>
+        <div className='rsvp-container' onClick={@showRsvp}>
+          <span className='rsvp-icon icono-pin' />
+          <span className='rsvp-text'>RSVP</span>
+        </div>
         <BannerElement />
         <BioElement who='nick' />
         <BioElement who='bora' />

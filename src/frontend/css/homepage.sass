@@ -16,6 +16,12 @@
 @import homepage/_travel
 @import homepage/_registry
 
++keyframes(rotatedBounce)
+  0%, 100%
+    +transform(rotate(-45deg) translate3d(0, 0, 0) scale(1.2))
+  50%
+    +transform(rotate(-45deg) translate3d(-0.2em, 0.2em, 0) scale(1.2))
+
 
 #NickAndBora
   width: 100%
@@ -25,6 +31,44 @@
 
   &.loaded
     opacity: 1
+
+.__hidden
+  display: none
+
+.rsvp-container
+  position: fixed
+  top: 0
+  right: 0
+  background-color: rgba(#333, 0)
+  cursor: pointer
+  padding: 1em
+  z-index: 999
+  +transition(background 600ms)
+
+  .rsvp-icon
+    display: block
+    color: #333
+    +transform(rotate(-45deg) scale(1.2))
+    +animation(rotatedBounce 2s infinite)
+    +transition(color 600ms)
+
+  .rsvp-text
+    +yanonefont()
+    display: block
+    color: #333
+    font-size: 1em
+    font-variant: small-caps
+    letter-spacing: 0.05em
+    text-align: center
+    margin-top: 1.4em
+    +transition(color 600ms)
+
+  &:hover
+    background-color: rgba(#333, 0.9)
+
+    .rsvp-icon, .rsvp-text
+      color: #f9f9f9
+
 
 .home
   position: absolute
