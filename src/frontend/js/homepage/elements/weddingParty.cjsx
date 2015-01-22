@@ -48,11 +48,9 @@ define [
 
         <span className={backToTopClasses} onClick={@backToTop}>↟</span>
 
-        <div className='container'>
-          <header className='header-text'>
-            <img src="/img/wedding-party/weddingparty-text.png" />
-          </header>
+        <h1>Wedding Party</h1>
 
+        <div className='container'>
           <section className='bride-and-groom'>
             <section className='party'>
               <div className='person'>

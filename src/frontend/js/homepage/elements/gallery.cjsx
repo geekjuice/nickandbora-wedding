@@ -71,6 +71,8 @@ define [
       <div className='NickAndBora-gallery'>
         <NavBarElement onNavChange={@onNavChange} />
 
+        <h1>Gallery</h1>
+
         <div className="image-modal-container #{if modalOpen then 'image-modal-open' else ''}">
           <div className='image-modal-overlay' />
           <div className="image-modal #{orientation}" onClick={@closeModal}>

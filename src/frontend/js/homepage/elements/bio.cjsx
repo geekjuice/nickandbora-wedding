@@ -43,7 +43,9 @@ define [
               }
             </ul>
           </div>
-          <a className='modal-close' href='#' onClick={@hideModal}>x</a>
+          <a className='modal-close' href='#' onClick={@hideModal}>
+            <span className="icono-cross" />
+          </a>
         </div>
       </div>
 

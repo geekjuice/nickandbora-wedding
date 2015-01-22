@@ -76,26 +76,25 @@
 
   .modal-close
     +yanonefont()
-    text-transform: uppercase
     position: absolute
     top: 0
     right: 0
-    padding: 0.2em 0.4em
-    font-size: 1.4em
+    padding: 0
     color: #f9f9f9
     background-color: #333
     opacity: 0.6
-    text-decoration: none
+    +scale(1)
     +transition(opacity 600ms ease-out)
 
     @media screen and (min-width: 720px)
-      font-size: 1.6em
+      top: 0.2em
+      right: 0.2em
+      +scale(1.2)
 
     @media screen and (min-width: 960px)
-      font-size: 1.8em
-
-    @media screen and (min-width: 1260px)
-      font-size: 1.8em
+      top: 0.6em
+      right: 0.6em
+      +scale(1.6)
 
     &:hover
       opacity: 1

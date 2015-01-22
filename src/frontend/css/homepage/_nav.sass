@@ -122,6 +122,30 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     &.nav-visible
       +translate3d(0, 0, 0)
 
+  .home-link
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 3
+    cursor: pointer
+    +scale(0.8)
+
+    @media screen and (min-width: 720px)
+      +scale(1.0)
+      top: 1em
+      left: 1em
+
+    @media screen and (min-width: 960px)
+      +scale(1.2)
+
+    span
+      color: #333
+      +transition(color 600ms)
+
+    &:hover
+      span
+        color: #1abc9c
+
   .nav-link
     position: fixed
     top: 0
@@ -136,11 +160,9 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
       +scale(1.2)
       top: 1em
       right: 1em
-      background-position: 0 -1*$iconMedium
 
     @media screen and (min-width: 960px)
       +scale(1.6)
-      background-position: 0 -1*$iconSize
 
     span
       color: #333

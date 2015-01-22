@@ -10,7 +10,7 @@ define [
     render: ->
       <div className='NickAndBora-story'>
         <NavBarElement onNavChange={@onNavChange} />
-        <span>Story</span>
+        <h1>Story</h1>
         <FooterElement />
       </div>
 

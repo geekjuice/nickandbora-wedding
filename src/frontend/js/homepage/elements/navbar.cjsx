@@ -27,7 +27,10 @@ define [
         <div className='banner top'>
           <img src="/img/wedding-party/banner-top.png" />
         </div>
-        <div href='#' className='nav-link'
+        <a href='/' className='home-link'>
+          <span className="icono-heart" />
+        </a>
+        <div className='nav-link'
              onMouseEnter={@openNav}
              onClick={@toggleNav}>
           <span className="icono-#{if navOpen then 'cross' else 'hamburger'}" />
