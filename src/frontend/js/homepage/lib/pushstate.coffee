@@ -3,7 +3,7 @@ define [
   'backbone'
 ], ($, Backbone) ->
 
-  EXTERNAL_LINK_REGEX = /(^http:\/\/.*)|(^\/.*)/
+  EXTERNAL_LINK_REGEX = /(^http[s]?:\/\/.*)|(^\/.*)|(mailto:)/
 
   class Pushstate
 
