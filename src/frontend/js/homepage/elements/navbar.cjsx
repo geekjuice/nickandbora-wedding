@@ -17,6 +17,9 @@ define [
       @props.onNavChange?(navOpen)
       @setState { navOpen }
 
+    openNav: ->
+      @setState { navOpen: true }
+
     render: ->
       { navOpen } = @state
 
@@ -24,7 +27,9 @@ define [
         <div className='banner top'>
           <img src="/img/wedding-party/banner-top.png" />
         </div>
-        <div href='#' className='nav-link' onClick={@toggleNav}>
+        <div href='#' className='nav-link'
+             onMouseEnter={@openNav}
+             onClick={@toggleNav}>
           <span className="icono-#{if navOpen then 'cross' else 'hamburger'}" />
         </div>
         <div className="nav #{if navOpen then 'nav-visible' else ''}">

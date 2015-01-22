@@ -36,13 +36,13 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     display: inline-block
     width: $iconSmall
     height: $iconSmall
-    margin-right: 1.2rem
+    margin-right: 1rem
     +transition(opacity 300ms)
 
     @media screen and (min-width: 720px)
       width: $iconMedium
       height: $iconMedium
-      margin-right: 2.0rem
+      margin-right: 1.6rem
 
     @media screen and (min-width: 960px)
       width: $iconSize
@@ -124,8 +124,8 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
 
   .nav-link
     position: fixed
-    top: 1em
-    right: 1em
+    top: 0
+    right: 0
     z-index: 3
     cursor: pointer
     background-color: rgba(#333, 0)
@@ -134,6 +134,8 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
 
     @media screen and (min-width: 720px)
       +scale(1.2)
+      top: 1em
+      right: 1em
       background-position: 0 -1*$iconMedium
 
     @media screen and (min-width: 960px)
