@@ -5,13 +5,13 @@ define [
   'react'
   'homepage/lib/router'
   'homepage/elements/app'
-  'homepage/elements/story/app'
-  'homepage/elements/proposal/app'
-  'homepage/elements/weddingParty/app'
-  'homepage/elements/details/app'
-  'homepage/elements/travel/app'
-  'homepage/elements/gallery/app'
-  'homepage/elements/registry/app'
+  'homepage/elements/story'
+  'homepage/elements/proposal'
+  'homepage/elements/weddingParty'
+  'homepage/elements/details'
+  'homepage/elements/travel'
+  'homepage/elements/gallery'
+  'homepage/elements/registry'
 ], (
   $
   _
