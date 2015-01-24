@@ -109,10 +109,31 @@
             border-bottom: 2px solid rgba(#333, 1)
 
     .members-text
+      cursor: pointer
       +clearfix()
+
+      img
+        padding: 0
+        border-left: 0.2em solid rgba(#333, 0)
+        +transition(padding 600ms, border 600ms)
+
+      &:hover
+        img
+          padding: 0 0.6em
+          border-left: 0.2em solid rgba(#333, 1)
+
 
   // Party Members
   .party-members
+
+    .party-members-text
+      width: 60%
+
+      @media screen and (min-width: 720px)
+        width: 400px
+
+      @media screen and (min-width: 960px)
+        width: 500px
 
     .party-member
       width: 80%

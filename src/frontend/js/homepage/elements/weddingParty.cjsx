@@ -7,6 +7,9 @@ define [
   'homepage/lib/partyBios'
 ], ($, React, Velocity, NavBarElement, FooterElement, PARTY_BIOS) ->
 
+  BRIDESMAIDS = 'bridesmaids'
+  GROOMSMEN = 'groomsmen'
+
   WeddingPartyApp = React.createClass
 
     getInitialState: ->
@@ -33,7 +36,7 @@ define [
 
     goToMember: (key) ->
       (e) ->
-        [duration, easing, offset] = [1600, 'ease-in-out', $("[data-bio=#{key}]").offset().top]
+        [duration, easing, offset] = [1600, 'ease-in-out', $("[data-member=#{key}]").offset().top]
         Velocity(document.body, 'scroll', { duration, easing, offset })
 
     render: ->
@@ -57,7 +60,7 @@ define [
                 <img src='/img/wedding-party/people/bora.png' />
               </div>
               <div className='members'>
-                <div className='members-text'>
+                <div className='members-text' onClick={@goToMember(BRIDESMAIDS)}>
                   <img src='/img/wedding-party/bridalparty-text.png' />
                 </div>
                 <ul>
@@ -75,7 +78,7 @@ define [
                 <img src='/img/wedding-party/people/nick.png' />
               </div>
               <div className='members'>
-                <div className='members-text'>
+                <div className='members-text' onClick={@goToMember(GROOMSMEN)}>
                   <img src='/img/wedding-party/groomsmen-text.png' />
                 </div>
                 <ul>
@@ -90,14 +93,20 @@ define [
           </section>
 
           <section className='party-members'>
+            <img className='party-members-text'
+                 src='/img/wedding-party/bridalparty-text.png'
+                 data-member={BRIDESMAIDS} />
             {for key, person of PARTY_BIOS.bridalParty
-              <div key={key} className='party-member' data-bio={key}>
+              <div key={key} className='party-member' data-member={key}>
                 <img src="/img/wedding-party/people/#{key}.png" />
                 <p>{person.bio or PARTY_BIOS.lorem}</p>
               </div>
             }
+            <img className='party-members-text'
+                 src='/img/wedding-party/groomsmen-text.png'
+                 data-member={GROOMSMEN} />
             {for key, person of PARTY_BIOS.groomsmen
-              <div key={key} className='party-member' data-bio={key}>
+              <div key={key} className='party-member' data-member={key}>
                 <img src="/img/wedding-party/people/#{key}.png" />
                 <p>{person.bio or PARTY_BIOS.lorem}</p>
               </div>
