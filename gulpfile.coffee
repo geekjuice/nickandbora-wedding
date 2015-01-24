@@ -31,6 +31,7 @@ data = _.extend({}, (key or {}), env)
 Process Handler
 ###
 { exec, spawn } = require('child_process')
+killSwitchActivated = true
 children = []
 
 addProcess = (task, color='gray') ->
@@ -40,6 +41,7 @@ addProcess = (task, color='gray') ->
   children.push(child)
 
 killSwitch = ->
+  return unless killSwitchActivated
   process.stdout.write(chalk.red('\nKilling child processes...\n'))
   child.kill() for child in children
 
@@ -208,35 +210,62 @@ gulp.task 'browser-sync', ['build:static:dev'], ->
 ###
 Deploy Heroku
 ###
+run = (cmd, cwd, cb) ->
+  opts = if cwd then { cwd } else {}
+  parts = cmd.split(/\s+/g)
+  p = spawn(parts[0], parts[1..], opts)
+  p.stdout.on 'data', (data) ->
+    process.stdout.write(chalk.gray(data.toString()))
+  p.stderr.on 'data', (data) ->
+    process.stdout.write(chalk.gray(data.toString()))
+  p.on 'exit', (code) ->
+    err = null
+    if code
+      err = new Error("command #{cmd} exited with wrong status code: #{code}")
+      err = _.extend {}, err, { code, cmd }
+    cb?(err)
+
+series = (cmds, cwd, cb) ->
+  do execNext = ->
+    run cmds.shift(), cwd, (err) ->
+      return cb(err) if err
+      if cmds.length then execNext() else cb(null)
+
 heroku = (prod) ->
+  killSwitchActivated = false
   app = "#{env.HEROKU_STATIC.toLowerCase()}#{unless prod then '-qa' else ''}"
 
   ->
     CMDS = [
-      "cd #{_build}"
       "rm -rf .git"
       "git init"
       "git add -A"
       "git commit -m '.'"
       "git remote add heroku git@heroku.com:#{app}.git"
       "git push -fu heroku master"
-    ].join(' && ')
+    ]
 
-    exec CMDS, (err, stdout, stderr) ->
-      process.stdout.write stdout
-      process.stdout.write stderr
+    series CMDS, _build, (err) ->
+      if err
+        console.log err
+        console.log(chalk.red('[Error] Deploy to Heroku failed!'))
+      else
+        console.log(chalk.green('[Success] Deploy to Heroku successful!'))
 
 deploy = (prod) ->
+  killSwitchActivated = false
   ->
     CMDS = [
       "gulp clean"
       "gulp build:prod"
       "gulp heroku:#{if prod then 'prod' else 'qa'}"
-    ].join(' && ')
+    ]
 
-    exec CMDS, (err, stdout, stderr) ->
-      process.stdout.write stdout
-      process.stdout.write stderr
+    series CMDS, null, (err) ->
+      if err
+        console.log(chalk.red('[Error] Deploy failed!'))
+      else
+        console.log(chalk.green('[Success] Deploy successful!'))
 
 gulp.task 'heroku:qa', heroku(false)
 gulp.task 'heroku:prod', heroku(true)
