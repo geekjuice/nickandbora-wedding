@@ -31,9 +31,8 @@ define [
           <span className="icono-heart" />
         </a>
         <div className='nav-link'
-             onMouseEnter={@openNav}
              onClick={@toggleNav}>
-          <span className="icono-#{if navOpen then 'cross' else 'hamburger'}" />
+          <span className="icono-#{if navOpen then 'crossCircle' else 'plusCircle'}" />
         </div>
         <div className="nav #{if navOpen then 'nav-visible' else ''}">
           <NavElement showNav={true} />
