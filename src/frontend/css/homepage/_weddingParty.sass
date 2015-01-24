@@ -1,7 +1,5 @@
 // Wedding Party
 
-@import compass/css3/animation
-
 =clearfix
   &:after
     content: ''
@@ -33,6 +31,10 @@
     &.visible
       opacity: 1
       visibility: visible
+      +transition(color 600ms)
+
+      &:hover
+        color: #1abc9c
 
   .container
     margin-bottom: 2em

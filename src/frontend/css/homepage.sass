@@ -3,6 +3,9 @@
 @import compass/css3/background-size
 @import compass/css3/transform
 @import compass/css3/filter
+@import compass/css3/animation
+
+@import homepage/_animations
 
 @import homepage/_nav
 @import homepage/_modal
@@ -15,12 +18,6 @@
 @import homepage/_gallery
 @import homepage/_travel
 @import homepage/_registry
-
-+keyframes(rotatedBounce)
-  0%, 100%
-    +transform(rotate(-45deg) translate3d(0, 0, 0) scale(1.2))
-  50%
-    +transform(rotate(-45deg) translate3d(-0.2em, 0.2em, 0) scale(1.2))
 
 #NickAndBora
   width: 100%
