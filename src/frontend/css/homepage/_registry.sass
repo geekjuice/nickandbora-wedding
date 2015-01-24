@@ -38,24 +38,26 @@
 
     a
       font-weight: bold
-      border-bottom: 1px solid #333
-      color: #333
+      border-bottom: 1px solid #1abc9c
+      color: #1abc9c
       padding: 0 0.2em
       background-color: rgba(#333, 0)
       text-decoration: none
-      +transition(background 600ms, color 600ms)
+      +transition(border 600ms, background 600ms, color 600ms)
 
       &:hover
         color: #f9f9f9
         background-color: rgba(#333, 1)
+        border-bottom: 1px solid #333
 
       &:visited
-        color: black
+        color: #1abc9c
 
         &:hover
           color: #f9f9f9
 
   em
+    font-size: 1.1em
     font-weight: bold
 
   img.cnb
