@@ -33,68 +33,134 @@
 
     a
       font-weight: bold
-      border-bottom: 1px solid #333
-      color: #333
+      border-bottom: 1px solid #1abc9c
+      color: #1abc9c
       padding: 0 0.2em
       background-color: rgba(#333, 0)
       text-decoration: none
-      +transition(background 600ms, color 600ms)
+      +transition(border 600ms, background 600ms, color 600ms)
 
       &:hover
         color: #f9f9f9
         background-color: rgba(#333, 1)
+        border-bottom: 1px solid #333
 
       &:visited
-        color: black
+        color: #1abc9c
 
         &:hover
           color: #f9f9f9
 
   em
+    font-size: 1.1em
     font-weight: bold
 
-  .split
-    padding: 1em 0
-    +clearfix()
+  // .split
+  //   padding: 1em 0
+  //   +clearfix()
 
-    @media screen and (min-width: 720px)
-      padding: 1.6em 0
+  //   @media screen and (min-width: 720px)
+  //     padding: 1.6em 0
 
-    .left, .right
-      float: none
-      padding: 1rem 0
+  //   .left, .right
+  //     float: none
+  //     padding: 1rem 0
 
-    .left
+  //   .left
+  //     @media screen and (min-width: 720px)
+  //       float: left
+  //       padding-right: 1em
+
+  //   .right
+  //     @media screen and (min-width: 720px)
+  //       float: right
+  //       padding-left: 1em
+
+  //   p, .img-container
+  //     width: 100%
+  //     margin: 0
+
+  //     @media screen and (min-width: 720px)
+  //       width: 50%
+
+  //   .third
+  //     width: 100%
+
+  //     @media screen and (min-width: 720px)
+  //       width: 33%
+
+  //   .two-thirds
+  //     width: 100%
+
+  //     @media screen and (min-width: 720px)
+  //       width: 67%
+
+  //   img
+  //     height: auto
+  //     width: 100%
+  //     box-shadow: 0 1px 5px #666
+
+  // Image Modal
+  .image-modal-container
+    position: fixed
+    display: table
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    opacity: 0
+    visibility: hidden
+    z-index: 99
+    +transition(opacity 600ms ease-in-out, visibility 0 600ms ease-in-out)
+
+    &.image-modal-open
+      visibility: visible
+      opacity: 1
+
+    .image-modal-overlay
+      position: absolute
+      top: 0
+      left: 0
+      width: 100vw
+      height: 100vh
+      background-color: black
+      opacity: 0.8
+
+    .image-modal-close
+      +yanonefont()
+      position: fixed
+      top: 0.5em
+      right: 0.5em
+      color: #f9f9f9
+      font-size: 2em
+      cursor: pointer
+      +transform(scale(1) rotate(45deg))
+
       @media screen and (min-width: 720px)
-        float: left
-        padding-right: 1em
+        +transform(scale(1.2) rotate(45deg))
 
-    .right
-      @media screen and (min-width: 720px)
-        float: right
-        padding-left: 1em
+      @media screen and (min-width: 960px)
+        +transform(scale(1.6) rotate(45deg))
 
-    p, .img-container
-      width: 100%
-      margin: 0
-
-      @media screen and (min-width: 720px)
-        width: 50%
-
-    .third
-      width: 100%
-
-      @media screen and (min-width: 720px)
-        width: 33%
-
-    .two-thirds
-      width: 100%
-
-      @media screen and (min-width: 720px)
-        width: 67%
+    .image-modal
+      display: table-cell
+      vertical-align: middle
+      text-align: center
+      position: relative
+      width: 100vw
+      height: 100vh
 
     img
+      display: block
+      margin: 0 auto
+      border: 1em solid #f9f9f9
+      border-bottom: 3em solid #f9f9f9
+
+    .portrait img
+      height: 80vh
+      width: auto
+
+    .landscape img
       height: auto
-      width: 100%
-      box-shadow: 0 1px 5px #666
+      width: 80vw
 
