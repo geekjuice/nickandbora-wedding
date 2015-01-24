@@ -4,6 +4,12 @@
 @import compass/css3/box-sizing
 @import compass/css3/transition
 
+=clearfix
+  &:after
+    content: ''
+    display: table
+    clear: both
+
 *
   +box-sizing(border-box)
 
