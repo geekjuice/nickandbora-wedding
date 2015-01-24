@@ -1,7 +1,7 @@
 // NAV
 
-$iconSize: 50px
-$iconMedium: 35px
+$iconSize: 40px
+$iconMedium: 30px
 $iconSmall: 25px
 
 $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, wedding, weddingParty
@@ -22,11 +22,17 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
 
 // Main nav component
 #nav
-  margin: 1.6rem 0
+  margin: 0.8rem 0 1.0em
   opacity: 0
   visibility: hidden
   text-align: center
   +transition(opacity 1.2s 1.6s)
+
+  @media screen and (min-width: 720px)
+    margin: 1.0rem 0 1.2em
+
+  @media screen and (min-width: 960px)
+    margin: 1.2rem 0 1.4em
 
   &.nav-visible
     visibility: visible
@@ -84,7 +90,7 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
         background-position: 0 -1*$iconSize
 
   .icon-text-container
-    margin: 0.6em auto
+    margin: 0.4em auto
 
     span
       +yanonefont()
@@ -92,10 +98,16 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
       left: 0
       right: 0
       opacity: 0
-      font-size: 1.2em
+      font-size: 1.0em
       letter-spacing: 0.2em
       font-variant: small-caps
       +transition(opacity 300ms)
+
+      @media screen and (min-width: 720px)
+        font-size: 1.1em
+
+      @media screen and (min-width: 960px)
+        font-size: 1.2em
 
     .active
       opacity: 1
@@ -108,16 +120,16 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
     left: 0
     width: 100%
     background-color: #eee
-    padding: 0 0 1em
+    padding: 0.4em 0 0.6em
     z-index: 2
     +translate3d(0, -100%, 0)
     +transition(transform 600ms ease-in-out)
 
     @media screen and (min-width: 720px)
-      padding: 0.6em 0 1.2em
+      padding: 0.6em 0 1.0em
 
     @media screen and (min-width: 960px)
-      padding: 1em 0 1.4em
+      padding: 1em 0 1.2em
 
     &.nav-visible
       +translate3d(0, 0, 0)
@@ -156,6 +168,10 @@ $icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, 
 
     @media screen and (min-width: 720px)
       right: 1em
+
+    &:hover
+      [class*="icono-"]
+        color: #1abc9c
 
 // Banner
 #banner
