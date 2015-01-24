@@ -41,6 +41,8 @@ define [
 
           <p>San Diego spring weather is typically mild <a href='http://forecast.io/#/f/32.7157,-117.1617/1396033200' target='_blank'>(60s - 70s)</a>, but could get chilly once the sun goes down. The ceremony will be outside and the reception will be inside, but be sure to bring a sweater or light jacket just in case.</p>
 
+          <p>Also, San Diego is not blessed with public transportation. Keep that in mind when you need to get around. A few options we recommend are <a href='http://uber.com' target='_blank'>Uber</a>, <a href='http://lyft.com'>Lyft</a>, or <a href='http://zipcar.com' target='_blank'>Zipcar</a>.</p>
+
           <p>If you have any questions about any of the above, feel free to email us at <a href='mailto:nickandbora@gmail.com?subject=%5BNick%20%26%20Bora%5D%20Hey!%20Listen!' target='_top'>NickAndBora@gmail.com</a>.</p>
         </section>
 

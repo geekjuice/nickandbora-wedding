@@ -40,17 +40,16 @@
     "gulp": "*",
     "gulp-cjsx": "*",
     "gulp-concat": "*",
-    "gulp-env": "*",
     "gulp-filter": "*",
     "gulp-if": "*",
     "gulp-imagemin": "*",
     "gulp-jade": "*",
     "gulp-minify-css": "*",
+    "gulp-nodemon": "*",
     "gulp-plumber": "*",
     "gulp-rename": "*",
     "gulp-rimraf": "*",
     "gulp-ruby-sass": "*",
-    "gulp-supervisor": "*",
     "gulp-uglify": "*"
   }
 }

@@ -7,7 +7,6 @@ gulp        = require('gulp')
 clean       = require('gulp-rimraf')
 cjsx        = require('gulp-cjsx')
 concat      = require('gulp-concat')
-enviro      = require('gulp-env')
 filter      = require('gulp-filter')
 iif         = require('gulp-if')
 imagemin    = require('gulp-imagemin')
@@ -16,7 +15,7 @@ minify      = require('gulp-minify-css')
 plumber     = require('gulp-plumber')
 rename      = require('gulp-rename')
 sass        = require('gulp-ruby-sass')
-supervisor  = require('gulp-supervisor')
+nodemon     = require('gulp-nodemon')
 uglify      = require('gulp-uglify')
 sync        = require('browser-sync')
 
@@ -31,11 +30,11 @@ data = _.extend({}, (key or {}), env)
 ###
 Process Handler
 ###
-{ exec, spawn, fork } = require('child_process')
+{ exec, spawn } = require('child_process')
 children = []
 
 addProcess = (task, color='gray') ->
-  child = spawn('gulp', ["#{task}:process"])
+  child = spawn('gulp', ["#{task}:process"], { cwd: __dirname})
   child.stdout.on 'data', (data) ->
     process.stdout.write(chalk[color](data.toString()))
   children.push(child)
@@ -179,10 +178,7 @@ Watch/BrowserSync
 ###
 gulp.task 'watch', ['watch:backend', 'watch:static']
 
-gulp.task 'env', ->
-  enviro vars: { NODE_ENV: 'development' }
-
-gulp.task 'watch:backend', ['env', 'supervisor'], ->
+gulp.task 'watch:backend', ['nodemon'], ->
   gulp.watch ["!#{d.src.backend}/public", "#{d.src.backend}/**/*"], ['backend', sync.reload]
 
 gulp.task 'watch:static', ['browser-sync'], ->
@@ -191,19 +187,17 @@ gulp.task 'watch:static', ['browser-sync'], ->
   gulp.watch "#{d.src.html}/**/*.jade", ['html', sync.reload]
   gulp.watch "#{d.src.shared}/**/*.coffee", ['shared', sync.reload]
 
-gulp.task 'supervisor', ->
-  addProcess 'supervisor', 'blue'
+gulp.task 'nodemon', ->
+  addProcess 'nodemon', 'cyan'
 
-gulp.task 'supervisor:process', ['build:backend'], ->
-  supervisor "#{_build}/server.js",
-    ignore: "#{_build}/public"
-    extensions: 'js'
-    debug: true
+gulp.task 'nodemon:process', ['build:backend'], ->
+  ignore = ["#{d.build.public[2..]}/", "#{d.modules[2..]}/"]
+  nodemon
+    script: "#{_build}/server.js"
+    ignore: ignore
+    env: NODE_ENV: 'development'
 
-gulp.task 'browser-sync', ->
-  addProcess 'browser-sync', 'cyan'
-
-gulp.task 'browser-sync:process', ['build:static:dev'], ->
+gulp.task 'browser-sync', ['build:static:dev'], ->
   sync
     proxy: "localhost:#{env.PORT}"
     port: env.BROWSERSYNC_PORT
