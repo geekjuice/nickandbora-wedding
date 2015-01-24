@@ -43,6 +43,8 @@ define [
 
           <p>Also, San Diego is not blessed with public transportation. Keep that in mind when you need to get around. A few options we recommend are <a href='http://uber.com' target='_blank'>Uber</a>, <a href='http://lyft.com'>Lyft</a>, or <a href='http://zipcar.com' target='_blank'>Zipcar</a>.</p>
 
+          <p>And finally, if you get hungry and need some advice on where to go grab a bit, check out <a href='http://www.strayboots.com/p/g69q' target='_blank'>this map here</a>. It should point you to some of <em>Bora's</em> favorite spots in San Diego and Los Angeles with notes on what to get there! The map will be constantly updated leading up to the wedding, so make sure to check often so you don't miss out!</p>
+
           <p>If you have any questions about any of the above, feel free to email us at <a href='mailto:nickandbora@gmail.com?subject=%5BNick%20%26%20Bora%5D%20Hey!%20Listen!' target='_top'>NickAndBora@gmail.com</a>.</p>
         </section>
 

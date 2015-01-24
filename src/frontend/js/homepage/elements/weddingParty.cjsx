@@ -99,6 +99,7 @@ define [
             {for key, person of PARTY_BIOS.bridalParty
               <div key={key} className='party-member' data-member={key}>
                 <img src="/img/wedding-party/people/#{key}.png" />
+                <h3>{person.name}</h3>
                 <p>{person.bio or PARTY_BIOS.lorem}</p>
               </div>
             }
