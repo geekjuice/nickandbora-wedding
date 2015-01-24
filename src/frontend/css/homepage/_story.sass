@@ -18,12 +18,15 @@
     text-align: center
 
   h3
-    font-size: 1.6em
+    font-size: 1.8em
+    font-weight: bold
+    margin: 1.2em 0
 
   p
     font-size: 1.2rem
     line-height: 1.6em
     margin: 0.6em 0
+    text-align: justify
 
     @media screen and (min-width: 720px)
       font-size: 1.3rem
@@ -31,11 +34,12 @@
     @media screen and (min-width: 960px)
       font-size: 1.4rem
 
-    a
+    a, .link
       font-weight: bold
       border-bottom: 1px solid #1abc9c
       color: #1abc9c
       padding: 0 0.2em
+      cursor: pointer
       background-color: rgba(#333, 0)
       text-decoration: none
       +transition(border 600ms, background 600ms, color 600ms)
@@ -55,50 +59,65 @@
     font-size: 1.1em
     font-weight: bold
 
-  // .split
-  //   padding: 1em 0
-  //   +clearfix()
+  q
+    background-color: #ecf0f1
+    color: #333
+    border-radius: 0.4em
+    padding: 0.2em 0.4em
 
-  //   @media screen and (min-width: 720px)
-  //     padding: 1.6em 0
+  .nick
+    color: #e67e22
 
-  //   .left, .right
-  //     float: none
-  //     padding: 1rem 0
+  .bora
+    color: #8e44ad
 
-  //   .left
-  //     @media screen and (min-width: 720px)
-  //       float: left
-  //       padding-right: 1em
+  .interviewer
+    font-size: 1.6em
+    color: #333
+    margin: 1.6em 0 1em
+    padding-left: 0.6em
+    border-left: 0.2em solid #333
 
-  //   .right
-  //     @media screen and (min-width: 720px)
-  //       float: right
-  //       padding-left: 1em
+  .split
+    padding: 0
+    +clearfix()
 
-  //   p, .img-container
-  //     width: 100%
-  //     margin: 0
+    .left, .right
+      float: none
+      padding: 1rem 0
 
-  //     @media screen and (min-width: 720px)
-  //       width: 50%
+    .left
+      @media screen and (min-width: 720px)
+        float: left
+        padding-right: 1em
 
-  //   .third
-  //     width: 100%
+    .right
+      @media screen and (min-width: 720px)
+        float: right
+        padding-left: 1em
 
-  //     @media screen and (min-width: 720px)
-  //       width: 33%
+    .text-container, .img-container
+      width: 100%
+      margin: 0
 
-  //   .two-thirds
-  //     width: 100%
+    .img-container
+      @media screen and (min-width: 720px)
+        width: 50%
 
-  //     @media screen and (min-width: 720px)
-  //       width: 67%
+      @media screen and (min-width: 960px)
+        width: 33%
 
-  //   img
-  //     height: auto
-  //     width: 100%
-  //     box-shadow: 0 1px 5px #666
+      img
+        width: 100%
+        box-shadow: 0 1px 5px #666
+
+    .text-container
+      @media screen and (min-width: 720px)
+        width: 50%
+
+      @media screen and (min-width: 960px)
+        width: 67%
+
 
   // Image Modal
   .image-modal-container
