@@ -1,7 +1,8 @@
 ###
-# Modules
+Modules
 ###
 _           = require('lodash')
+chalk       = require('chalk')
 gulp        = require('gulp')
 clean       = require('gulp-rimraf')
 cjsx        = require('gulp-cjsx')
@@ -19,14 +20,35 @@ supervisor  = require('gulp-supervisor')
 uglify      = require('gulp-uglify')
 sync        = require('browser-sync')
 
-{ exec, spawn } = require('child_process')
+###
+Variables
+###
 key = require('./key.json')
 env = require('./env.json')
 data = _.extend({}, (key or {}), env)
 
 
 ###
-# Directory Paths
+Process Handler
+###
+{ exec, spawn, fork } = require('child_process')
+children = []
+
+addProcess = (task, color='gray') ->
+  child = spawn('gulp', ["#{task}:process"])
+  child.stdout.on 'data', (data) ->
+    process.stdout.write(chalk[color](data.toString()))
+  children.push(child)
+
+killSwitch = ->
+  process.stdout.write(chalk.red('\nKilling child processes...\n'))
+  child.kill() for child in children
+
+process.on("exit", killSwitch)
+
+
+###
+Directory Paths
 ###
 _src = './src'
 _build = './_build'
@@ -51,7 +73,7 @@ d =
       css: "#{_build}/public/css/vendor"
 
 ###
-# Tasker
+Tasker
 ###
 _do = (src='', dest='', task='', filename='') ->
   _copy = task is ''
@@ -84,7 +106,7 @@ _do = (src='', dest='', task='', filename='') ->
 
 
 ###
-# Clean
+Clean
 ###
 gulp.task 'clean', ->
   gulp.src(_build, {read: false}).pipe(clean())
@@ -96,7 +118,7 @@ gulp.task 'clean:all', ['clean', 'clean:modules']
 
 
 ###
-# Vendor Files
+Vendor Files
 ###
 gulp.task 'vendor', ->
   _do("#{d.src.vendor}/requirejs/require.js", d.build.vendor.js, 'uglify')
@@ -115,7 +137,7 @@ gulp.task 'vendor', ->
 
 
 ###
-# Tasks
+Tasks
 ###
 gulp.task 'misc', ->
   _do("#{d.src.misc}/**/*",  d.build.public)
@@ -143,7 +165,7 @@ gulp.task 'shared', ->
 
 
 ###
-# Build
+Build
 ###
 gulp.task 'build:backend', ['shared', 'backend']
 gulp.task 'build:static:dev', ['shared', 'misc', 'html', 'css', 'js:dev', 'img:dev']
@@ -153,7 +175,7 @@ gulp.task 'build:prod', ['build:static:prod', 'build:backend']
 
 
 ###
-# Watch/BrowserSync
+Watch/BrowserSync
 ###
 gulp.task 'watch', ['watch:backend', 'watch:static']
 
@@ -169,13 +191,19 @@ gulp.task 'watch:static', ['browser-sync'], ->
   gulp.watch "#{d.src.html}/**/*.jade", ['html', sync.reload]
   gulp.watch "#{d.src.shared}/**/*.coffee", ['shared', sync.reload]
 
-gulp.task 'supervisor', ['build:backend'], ->
+gulp.task 'supervisor', ->
+  addProcess 'supervisor', 'blue'
+
+gulp.task 'supervisor:process', ['build:backend'], ->
   supervisor "#{_build}/server.js",
     ignore: "#{_build}/public"
     extensions: 'js'
     debug: true
 
-gulp.task 'browser-sync', ['build:static:dev'], ->
+gulp.task 'browser-sync', ->
+  addProcess 'browser-sync', 'cyan'
+
+gulp.task 'browser-sync:process', ['build:static:dev'], ->
   sync
     proxy: "localhost:#{env.PORT}"
     port: env.BROWSERSYNC_PORT
@@ -185,7 +213,7 @@ gulp.task 'browser-sync', ['build:static:dev'], ->
 
 
 ###
-# Deploy Heroku
+Deploy Heroku
 ###
 heroku = (prod) ->
   app = "#{env.HEROKU_STATIC.toLowerCase()}#{unless prod then '-qa' else ''}"
@@ -224,7 +252,8 @@ gulp.task 'deploy:prod', deploy(true)
 
 
 ###
-# Default
+Default
 ###
 gulp.task 'default', ['watch']
+
 
