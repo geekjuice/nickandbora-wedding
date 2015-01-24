@@ -27,6 +27,9 @@ define [], ->
     claire :
       name: 'Claire Park'
       bio: ''
+    heaven:
+      name: 'Heaven Lee'
+      bio: ''
     alice:
       name: 'Alice Hwang'
       bio: ''
