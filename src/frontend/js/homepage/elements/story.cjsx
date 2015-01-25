@@ -4,8 +4,7 @@ define [
   'imagesloaded'
   'homepage/elements/navbar'
   'homepage/elements/footer'
-  'homepage/lib/partyBios'
-], ($, React, Imagesloaded, NavBarElement, FooterElement, B) ->
+], ($, React, Imagesloaded, NavBarElement, FooterElement) ->
 
   StoryApp = React.createClass
 
@@ -43,7 +42,7 @@ define [
 
       <div className='NickAndBora-story'>
         <NavBarElement onNavChange={@onNavChange} />
-        <h1>Story</h1>
+        <h1>Our Story</h1>
 
         <div className="image-modal-container #{if modalOpen then 'image-modal-open' else ''}">
           <div className='image-modal-overlay' />
