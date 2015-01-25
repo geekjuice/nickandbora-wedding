@@ -151,7 +151,7 @@ define [
               <img src="/img/wedding-party/people/julia.png" />
               <h3>Julia Park</h3>
               <p>
-                What more can I say, she is the best. We didn’t get this way overnight though. We fought, we argued, we loved, we shared and I couldn’t be anywhere without this girl. We first met each other the first month Julia and their family moved to Temecula from Korea. We instantly got along and on our first day we went swimming (I still remember!) and since then we’ve always been together. Did I mention doing the most outrageous things like running around the dorm in chicken and dinosaur costume? Even after we moved apart in college, we always managed to keep each other <span className='link' onClick={@openModal(S3('julia1.jpg'))}>caught up</span>. She is one person that I can call any time, between any length of time, and continue our conversation without any hesitation. Overtime, her family became mine. I have two extra sisters (Ashley and Yunhee) and an awesome mom that makes the best homemade bossam as the world knows it. Also you can’t forget Toto, Julia’s mini schnauzer. I love this girl. All jokes aside, she is passionate, goal oriented and the smartest girl I know. She is honest and caring. I know I can trust this her opinions. In the beginning of my relationship with Nick, Julia was the first one to push me to ask him out. <q>"Why not! You like him. You ask him!"</q> Perhaps we wouldn’t be here on this day without her. 
+                What more can I say, she is the best. We didn’t get this way overnight though. We fought, we argued, we loved, we shared and I couldn’t be anywhere without this girl. We first met each other the first month Julia and their family moved to Temecula from Korea. We instantly got along and on our first day we went swimming (I still remember!) and since then we’ve always been together. Did I mention doing the most outrageous things like running around the dorm in chicken and dinosaur costume? Even after we moved apart in college, we always managed to keep each other <span className='link' onClick={@openModal(S3('julia1.jpg'))}>caught up</span>. She is one person that I can call any time, between any length of time, and continue our conversation without any hesitation. Overtime, her family became mine. I have two extra sisters (Ashley and Yunhee) and an awesome mom that makes the best homemade bossam as the world knows it. Also you can’t forget Toto, Julia’s mini schnauzer. I love this girl. All jokes aside, she is passionate, goal oriented and the smartest girl I know. She is honest and caring. I know I can trust this her opinions. In the beginning of my relationship with Nick, Julia was the first one to push me to ask him out. <q>"Why not! You like him. You ask him!"</q> Perhaps we wouldn’t be here on this day without her.
               </p>
             </div>
 
@@ -159,7 +159,7 @@ define [
               <img src="/img/wedding-party/people/claire.png" />
               <h3>Claire Park</h3>
               <p>
-                <q>"Why is she here."</q> This refers to the moment I was introduced to Claire. Despite the fact I was a bitter bug then, she stuck around. I now know that I couldn’t have survived chicago without her. Claire went to school in Northwestern, 45 minutes away from downtown Chicago, yet we always found time to be with each other all the time. I love eating, napping, watching <span className="link" onClick={@openModal(S3('spongebob.png'))}>Spongebob</span> and it turns out she did so too. She was like me, but only more loving, kind, funny and more talented. We managed to have awesome <span className="link" onClick={@openModal(S3('claire1.jpg'))}>adventures</span> together. We would meet half way to go shopping, share our favorite meal places. Even just eating chinese takeout in her apartment doing nails is a precious memory of mine. We shared dreams together about owning a duplex near Armitage where I would teach art downstairs and Claire would teach violin upstairs. Claire was always supportive in the craziest things I’ve done, and even performed for my <span className='link' onClick={@openModal(S3('claire2.jpg'))}>final art show</span> in Chicago. I know I can trust her about anything, because we prayed together, we cried together and we laughed together. She is wise and loving and I depend on her for many of my decision making. In some ways, Claire was just like Nick. She helped me understand him better by explaining things in his perspective. Looking back, I can’t help but to understand <q>"Why she was there."</q>
+                <q>"Why is she here."</q> This refers to the moment I was introduced to Claire. Despite the fact I was a bitter bug then, she stuck around. I now know that I couldn’t have survived chicago without her. Claire went to school in Northwestern, 45 minutes away from downtown Chicago, yet we always found time to be with each other all the time. I love eating, napping, watching <span className="link" onClick={@openModal(S3('spongebob.png'))}>Spongebob</span> and it turns out she did so too. She was like me, but only more loving, kind, funny and more talented. We managed to have awesome <span className="link" onClick={@openModal(S3('claire1.jpg'))}>adventures</span> together. We would meet half way to go shopping, share our favorite meal places. Even just eating Chinese takeout in her apartment doing nails is a precious memory of mine. We shared dreams together about owning a duplex near Armitage where I would teach art downstairs and Claire would teach violin upstairs. Claire was always supportive in the craziest things I’ve done, and even performed for my <span className='link' onClick={@openModal(S3('claire2.jpg'))}>final art show</span> in Chicago. I know I can trust her about anything, because we prayed together, we cried together and we laughed together. She is wise and loving and I depend on her for many of my decision making. In some ways, Claire was just like Nick. She helped me understand him better by explaining things in his perspective. Looking back, I can’t help but to understand <q>"Why she was there."</q>
               </p>
             </div>
 
@@ -175,7 +175,7 @@ define [
               <img src="/img/wedding-party/people/alice.png" />
               <h3>Alice Hwang</h3>
               <p>
-                I’ve seen Alice since she was a shy little girl that walked to her elementary school from her house. Now I can’t believe she is all <span className='link' onClick={@openModal(S3('alice1.jpg'))}>grown up</span> doing her second year in college! In what it seems like few years flew by and she turned from a cute little girl into a beautiful smart independent woman. Looking at Alice, I couldn’t help to think that she was already my little sister - and now, she will be legally! We became family over period of time and even share our love for dessert and face masks. She is in some ways like Nick but with her own cute flair. I can’t help but love! Alice is like the little sister I never had, and I am so glad that with a union with nick means union with a little sis!
+                I’ve seen Alice since she was a shy little girl that walked to her elementary school from her house. Now I can’t believe she is all <span className='link' onClick={@openModal(S3('alice1.jpg'))}>grown up</span> doing her second year in college! In what it seems like few years flew by and she turned from a cute little girl into a beautiful smart independent woman. Looking at Alice, I couldn’t help to think that she was already my little sister - and now, she will be legally! We became family over period of time and even share our love for dessert and face masks. She is in some ways like Nick but with her own cute flair. I can’t help but love! Alice is like the little sister I never had, and I am so glad that with a union with Nick means union with a little sis!
               </p>
             </div>
 
@@ -184,12 +184,47 @@ define [
             <img className='party-members-text'
                  src='/img/wedding-party/groomsmen-text.png'
                  data-member={GROOMSMEN} />
-            {for key, person of PARTY_BIOS.groomsmen
-              <div key={key} className='party-member' data-member={key}>
-                <img src="/img/wedding-party/people/#{key}.png" />
-                <p>{person.bio or PARTY_BIOS.lorem}</p>
-              </div>
-            }
+
+            <div key='andy' className='party-member' data-member='andy'>
+              <img src="/img/wedding-party/people/andy.png" />
+              <h3>Andrew Kim</h3>
+              <p>
+                Look at that smug face. That smug faced guy is who I chose to be my Best Man. Whenever I picture Andy, 4/5 times this is face that I see him in... Which is misleading because is very rare to meet someone with his humility and heart. I've probably spent more time with Andy that anyone (even Bora...) throughout highschool. Looking back, it's almost absurd the amount of time we spent together. Whether it was working on some photo gallery project past midnight hopped up on caffeine, driving back-and-forth from San Diego to Fullerton to take SAT classes (during winter break might I add), or diligently going to the gym everyday after school, we were always doing them together. More importantly though, he kept me level-headed throughout my relationship with Bora. Whatever we may have been going through, he was always willing step in and help however he can. He's just that kind of guy; one that will drop whatever he's doing to help out. Without him, Nick and Bora may not have been.
+              </p>
+            </div>
+
+            <div key='dj' className='party-member' data-member='dj'>
+              <img src="/img/wedding-party/people/dj.png" />
+              <h3>Daniel Jae</h3>
+              <p>
+                Think Korean Terry Crews, just less buff. I'm sure if he's reading this he's making some comment out loud about how he's just as big (he's really not... but seriously who is). But jokes aside, this is a guy who can liven up any room with his energy. When I think about people I know with big personalities, DJ is the first person I think of. I've seen him pump up hundreds of people just by him being himself and it's amazing. Yet what's more amazing is his determination to never stay down. Watching how he deals with difficulties is motivating, even inspiring to the point where I find myself trying to live positively like he does. The amount of love this guy has for others seems unending and really shows when you are around him.
+              </p>
+            </div>
+
+            <div key='hoyoung' className='party-member' data-member='hoyoung'>
+              <img src="/img/wedding-party/people/hoyoung.png" />
+              <h3>Hoyoung Chin</h3>
+              <p>
+                You know how there's always that one guy or girl that seems to know everyone, everywhere? Yea that's Hoyoung. And I bet he knows that guy you're thinking of too. It's absurd how many people this guy knows. But then you meet Hoyoung, it makes sense why everyone wants to be friends with him. But the Hoyoung I know is also one of the most goofy people I know. He could probably make a Queen's Guard laugh. This guy seems to have a joke (funny or not) ready whenever we meet up ranging from punny to politically incorrect. But outside all the humor, he never forget to take care of those near to him. Whether it's making sure no one feels left out or confirming everyone is having a good time, he keeps everyone in mind.
+              </p>
+            </div>
+
+            <div key='dave' className='party-member' data-member='dave'>
+              <img src="/img/wedding-party/people/dave.png" />
+              <h3>David Lee</h3>
+              <p>
+                When I think about college, a large chunk include fond memories of eating, drinking, and watching a variety of shows with Dave. The amount of Indian food we consumed  and number of hours spent watching shows would make you question if we ever studied and if we had the energy to do so. Yet despite our lazy means of bonding, Dave was always at the top of his game when it came to his studies and work. Among the people I know, he is definitely one of the brightest and most driven. He can also be attributed to my working in software engineering - one of the best things that has ever happened to me. But when it comes down to it, he's a guy who is willing to set aside time in his busy schedule to catch up, grab a meal, or just lazily watch shows  on the couch and have a great time doing so.
+              </p>
+            </div>
+
+            <div key='seongwoo' className='party-member' data-member='seongwoo'>
+              <img src="/img/wedding-party/people/seongwoo.png" />
+              <h3>Seongwoo Byun</h3>
+              <p>
+                He is one of the most eccentric people I know. A musically gifted, Guatemalan-Korean who works like a horse and enjoys the finer things in life. I have never met someone with such an interesting background and wide range of skills to the point where I thought life was unfair. We have a running joke that refers Seongwoo to a horse, but it makes sense when you see how hard he works. Apart from that, Seongwoo is on my list of people that will truly sacrifice himself to help others. Whereas I would be a jerk and probably ignore someone's request for help, Seongwoo would probably already be in the middle of helping.
+              </p>
+            </div>
+
           </section>
         </div>
 
