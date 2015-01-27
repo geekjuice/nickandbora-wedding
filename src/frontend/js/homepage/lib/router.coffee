@@ -64,12 +64,14 @@ define [
 
     initialize: ->
       @el = $('#NickAndBora').get(0)
-      @$body = $('#NickAndBora')
+      @$container = $('#NickAndBora')
+      @$body = $('body')
 
     fancyRoute: (title, App) ->
       document.title = if title then "#{TITLE} | #{title}" else TITLE
-      @$body.removeClass('loaded')
+      @$container.removeClass('loaded')
       setTimeout =>
-        @$body.addClass('loaded')
+        @$body.scrollTop(0)
+        @$container.addClass('loaded')
         React.render(<App />, @el)
       , 1000
