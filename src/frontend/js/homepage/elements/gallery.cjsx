@@ -25,8 +25,8 @@ define [
   GalleryApp = React.createClass
 
     getInitialState: ->
-      numberOfImages: 8
-      increment: 8
+      numberOfImages: 4
+      increment: 4
       navOpen: false
       modalOpen: false
       image: null
@@ -39,12 +39,20 @@ define [
       @masonrize()
 
     masonrize: ->
-      Imagesloaded '.gallery', ->
+      loaded = new Imagesloaded('.gallery')
+
+      loaded.on 'progress', (instance, img) ->
+        $(img.img).parents('.image.loading').removeClass('loading')
+
+      loaded.on 'always', =>
         new Masonry '.gallery',
           columnWidth: '.image'
           itemSelector: '.image'
+          isAnimated: true
+        $('.showMore').removeClass('loading')
 
     showMore: ->
+      $('.showMore').addClass('loading')
       { numberOfImages, increment } = @state
       @setState { numberOfImages: numberOfImages + increment }
 
@@ -85,7 +93,7 @@ define [
 
         <div className="gallery #{if navOpen then 'nav-visible' else ''}">
           {for image, i in IMAGES.engagement[0...numberOfImages]
-            <div key={"engagement-#{i}"} className='image' onClick={@openModal(image)}>
+            <div key={"engagement-#{i}"} className='image loading' onClick={@openModal(image)}>
               <div className='polaroid'>
                 <img data-engagement={image} src="#{S3_URL}/engagement/#{image}" />
               </div>
