@@ -6,9 +6,9 @@ Enviro = (_) ->
 
   ->
     KEYS =
-      qa:     ['qa']
-      prod:   ['production']
-      local:  ['development', 'local']
+      qa: ['qa']
+      prod: ['production']
+      local: ['development', 'local']
 
     Env =
       get: _.memoize (key) ->

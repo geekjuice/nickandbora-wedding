@@ -102,7 +102,7 @@ define [
               </div>
               <div className='members'>
                 <div className='members-text' onClick={@goToMember(BRIDESMAIDS)}>
-                  <img src='/img/wedding-party/bridalparty-text.png' />
+                  <img src='/img/wedding-party/bridesmaids-text.png' />
                 </div>
                 <ul>
                   {for key, person of PARTY_BIOS.bridalParty
@@ -135,7 +135,7 @@ define [
 
           <section className='party-members'>
             <img className='party-members-text'
-                 src='/img/wedding-party/bridalparty-text.png'
+                 src='/img/wedding-party/bridesmaids-text.png'
                  data-member={BRIDESMAIDS} />
 
 
@@ -189,7 +189,7 @@ define [
               <img src="/img/wedding-party/people/andy.png" />
               <h3>Andrew Kim</h3>
               <p>
-                Look at that smug face. That smug faced guy is who I chose to be my Best Man. Whenever I picture Andy, 4/5 times this is face that I see him in... Which is misleading because is very rare to meet someone with his humility and heart. I've probably spent more time with Andy that anyone (even Bora...) throughout highschool. Looking back, it's almost absurd the amount of time we spent together. Whether it was working on some photo gallery project past midnight hopped up on caffeine, driving back-and-forth from San Diego to Fullerton to take SAT classes (during winter break might I add), or diligently going to the gym everyday after school, we were always doing them together. More importantly though, he kept me level-headed throughout my relationship with Bora. Whatever we may have been going through, he was always willing step in and help however he can. He's just that kind of guy; one that will drop whatever he's doing to help out. Without him, Nick and Bora may not have been.
+                Look at that smug face. That smug faced guy is who I chose to be my Best Man. Whenever I picture Andy, 4/5 times this is face that I see him in... Which is misleading because it's rare to meet someone with his humility and heart nowadays. I've probably spent more time with Andy that anyone (even Bora...) throughout highschool. Looking back, it's almost absurd the amount of time we spent together. Whether it was working on some photo gallery project past midnight hopped up on caffeine, driving back-and-forth from San Diego to Fullerton to take SAT classes (during winter break might I add), or diligently going to the gym everyday after school, we were always doing them together. More importantly though, he kept me level-headed throughout my relationship with Bora. Whatever we may have been going through, he was always willing step in and help however he can. He's just that kind of guy; one that will drop whatever he's doing to help out. Without him, Nick and Bora may not have been.
               </p>
             </div>
 
