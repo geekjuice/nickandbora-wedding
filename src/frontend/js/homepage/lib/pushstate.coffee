@@ -3,7 +3,7 @@ define [
   'backbone'
 ], ($, Backbone) ->
 
-  EXTERNAL_LINK_REGEX = /(^http:\/\/.*)|(^\/.*)/
+  EXTERNAL_LINK_REGEX = /(^http[s]?:\/\/.*)|(^\/.+)|(mailto:)/
 
   class Pushstate
 
@@ -14,7 +14,8 @@ define [
       $(document).delegate 'a', 'click', @linkHandler
 
     linkHandler: (e) ->
+      { altKey, ctrlKey, metaKey, shiftKey } = e
       href = $(@).attr('href')
-      return if EXTERNAL_LINK_REGEX.test(href)
+      return if EXTERNAL_LINK_REGEX.test(href) or altKey or ctrlKey or metaKey or shiftKey
       e.preventDefault()
       Backbone.history.navigate(href, trigger: true)

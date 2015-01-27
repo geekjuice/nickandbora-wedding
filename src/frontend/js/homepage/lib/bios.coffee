@@ -2,7 +2,7 @@ define [], ->
 
   nick:
     greeting: 'Hi'
-    mynameis: '/img/mynameisnick.png'
+    mynameis: '/img/bio/mynameisnick.png'
     bio: 'I am a software engineer at HubSpot, builder of stuff, and a future happy husband.'
     social: [
       {
@@ -21,7 +21,7 @@ define [], ->
 
   bora:
     greeting: 'Hello'
-    mynameis: '/img/mynameisbora.png'
+    mynameis: '/img/bio/mynameisbora.png'
     bio: 'I am an artist, teacher, friend of the museum, designer, and most of all: a happy bride to be.'
     social: [
       {

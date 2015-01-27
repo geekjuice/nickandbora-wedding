@@ -1,0 +1,250 @@
+// Wedding Party
+
+.NickAndBora-weddingParty
+  +yanonefont()
+  text-align: center
+
+  .back-to-top
+    position: fixed
+    bottom: 0.4em
+    right: 0.2em
+    font-size: 3em
+    opacity: 0
+    visibility: hidden
+    cursor: pointer
+    +animation(bounce 2s infinite)
+    +transition(opacity 600ms, visibility 0 600ms)
+
+    @media screen and (min-width: 720px)
+      font-size: 4em
+
+    &.visible
+      opacity: 1
+      visibility: visible
+      +transition(color 600ms)
+
+      &:hover
+        color: #1abc9c
+
+  .container
+    margin-bottom: 2em
+    height: 200%
+
+  .header-text img
+    height: 6em
+
+    @media screen and (min-width: 720px)
+      height: 7em
+
+    @media screen and (min-width: 960px)
+      height: 8em
+
+  .bride-and-groom
+    padding: 2em 0
+
+  .party
+    +clearfix()
+    display: block
+    margin-bottom: 2em
+
+    .person
+      float: left
+      width: 50%
+      padding-right: 5%
+
+      img
+        height: 10em
+        float: right
+
+        @media screen and (min-width: 720px)
+          height: 12em
+
+        @media screen and (min-width: 960px)
+          height: 15em
+
+
+    .members
+      float: right
+      width: 50%
+      padding-left: 5%
+
+      img
+        height: 3em
+        float: left
+
+        @media screen and (min-width: 720px)
+          height: 4em
+
+        @media screen and (min-width: 960px)
+          height: 5em
+
+
+      ul
+        float: left
+
+      li
+        font-size: 1.2em
+        text-align: left
+        cursor: pointer
+        margin: 0.6em 0
+
+        @media screen and (min-width: 720px)
+          font-size: 1.3em
+
+        @media screen and (min-width: 960px)
+          font-size: 1.4em
+
+        span
+          padding: 0.2em 0
+          border-bottom: 2px solid rgba(#333, 0)
+          +transition(padding 600ms, border 600ms)
+
+        &:hover
+          span
+            padding: 0.2em 0.4em
+            border-bottom: 2px solid rgba(#333, 1)
+
+    .members-text
+      cursor: pointer
+      +clearfix()
+
+      img
+        padding: 0
+        border-left: 0.2em solid rgba(#333, 0)
+        +transition(padding 600ms, border 600ms)
+
+      &:hover
+        img
+          padding: 0 0.6em
+          border-left: 0.2em solid rgba(#333, 1)
+
+
+  // Party Members
+  .party-members
+
+    .party-members-text
+      margin: 2em 0
+      width: 60%
+
+      @media screen and (min-width: 720px)
+        width: 400px
+
+      @media screen and (min-width: 960px)
+        width: 500px
+
+    .party-member
+      width: 80%
+      margin: 0 auto
+      padding: 0 0 3em
+
+      @media screen and (min-width: 720px)
+        width: 500px
+
+      @media screen and (min-width: 960px)
+        width: 600px
+
+      h3
+        font-size: 2.0em
+        margin-bottom: 0.6em
+
+      img
+        height: 20em
+
+      p
+        margin: 0 auto
+        font-size: 1.2em
+        line-height: 1.4em
+        text-align: justify
+
+      q
+        background-color: #ecf0f1
+        color: #333
+        border-radius: 0.4em
+        padding: 0.2em 0.4em
+
+      a, .link
+        font-weight: bold
+        border-bottom: 1px solid #1abc9c
+        color: #1abc9c
+        padding: 0 0.2em
+        cursor: pointer
+        background-color: rgba(#333, 0)
+        text-decoration: none
+        +transition(border 600ms, background 600ms, color 600ms)
+
+        &:hover
+          color: #f9f9f9
+          background-color: rgba(#333, 1)
+          border-bottom: 1px solid #333
+
+        &:visited
+          color: #1abc9c
+
+          &:hover
+            color: #f9f9f9
+
+
+  // Image Modal
+  .image-modal-container
+    position: fixed
+    display: table
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    opacity: 0
+    visibility: hidden
+    z-index: 99
+    +transition(opacity 600ms ease-in-out, visibility 0 600ms ease-in-out)
+
+    &.image-modal-open
+      visibility: visible
+      opacity: 1
+
+    .image-modal-overlay
+      position: absolute
+      top: 0
+      left: 0
+      width: 100vw
+      height: 100vh
+      background-color: black
+      opacity: 0.8
+
+    .image-modal-close
+      +yanonefont()
+      position: fixed
+      top: 0.5em
+      right: 0.5em
+      color: #f9f9f9
+      font-size: 2em
+      cursor: pointer
+      +transform(scale(1) rotate(45deg))
+
+      @media screen and (min-width: 720px)
+        +transform(scale(1.2) rotate(45deg))
+
+      @media screen and (min-width: 960px)
+        +transform(scale(1.6) rotate(45deg))
+
+    .image-modal
+      display: table-cell
+      vertical-align: middle
+      text-align: center
+      position: relative
+      width: 100vw
+      height: 100vh
+
+    img
+      display: block
+      margin: 0 auto
+      border: 1em solid #f9f9f9
+      border-bottom: 3em solid #f9f9f9
+
+    .portrait img
+      height: 80vh
+      width: auto
+
+    .landscape img
+      height: auto
+      width: 80vw
+

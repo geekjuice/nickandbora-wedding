@@ -1,27 +1,81 @@
 @import _base
 
 @import compass/css3/background-size
-@import compass/css3/box-sizing
 @import compass/css3/transform
 @import compass/css3/filter
+@import compass/css3/animation
+
+@import homepage/_animations
 
 @import homepage/_nav
 @import homepage/_modal
+@import homepage/_footer
+
+@import homepage/_story
+@import homepage/_proposal
+@import homepage/_weddingParty
+@import homepage/_details
 @import homepage/_gallery
+@import homepage/_travel
+@import homepage/_registry
 
-*
-  +box-sizing(border-box)
-
-html, body
-  background-color: #f9f9f9
-
-section
+#NickAndBora
   width: 100%
   height: 100%
+  opacity: 0
+  +transition(opacity 600ms ease-in-out)
+
+  &.loaded
+    opacity: 1
+
+h1
+  font-size: 2.4em
+  text-align: center
+  font-variant: small-caps
+  font-weight: bold
+
+.__hidden
+  display: none
+
+.rsvp-container
+  position: fixed
+  top: 0
+  right: 0
+  background-color: rgba(#333, 0)
+  cursor: pointer
+  padding: 1em
+  z-index: 999
+  +transition(background 600ms)
+
+  .rsvp-icon
+    display: block
+    color: #333
+    +transform(rotate(-45deg) scale(1.2))
+    +animation(rotatedBounce 2s infinite)
+    +transition(color 600ms)
+
+  .rsvp-text
+    +yanonefont()
+    display: block
+    color: #333
+    font-size: 1em
+    font-variant: small-caps
+    letter-spacing: 0.05em
+    text-align: center
+    margin-top: 1.4em
+    +transition(color 600ms)
+
+  &:hover
+    background-color: rgba(#333, 0.9)
+
+    .rsvp-icon, .rsvp-text
+      color: #f9f9f9
 
 
 .home
   position: absolute
+  width: 100%
+  height: 100%
   top: 0
   left: 0
   background: url('/img/home-bg.jpg')
@@ -43,10 +97,10 @@ section
     width: 100%
     top: 40%
     +translate3d(0, 0, 0)
-    +transition(transform 1.2s)
+    +transition(transform 1.6s)
 
     &.nav-visible
-      +translate3d(0, -2em, 0)
+      +translate3d(0, -6em, 0)
 
   .mask
     height: 100%
@@ -61,7 +115,7 @@ section
     font-variant: small-caps
     margin-top: 0.8em
 
-    @media (min-width: 720px)
+    @media screen and (min-width: 720px)
       font-size: 1em
       margin-top: 1em
 
@@ -89,7 +143,7 @@ section
     height: 39px
     width: 71px
 
-    @media (min-width: 720px)
+    @media screen and (min-width: 720px)
       height: 52px
       width: 108px
 
@@ -97,9 +151,10 @@ section
     height: 39px
     width: 54px
 
-    @media (min-width: 720px)
+    @media screen and (min-width: 720px)
       height: 52px
       width: 72px
+
   img
     position: absolute
     top: 0

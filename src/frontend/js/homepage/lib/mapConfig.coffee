@@ -2,14 +2,14 @@ define [], ->
 
   disableDefaultUI: true
   disableDoubleClickZoom: true
-  draggable: false
-  draggableCursor: false
-  draggingCursor: false
+  draggable: true
+  draggableCursor: true
+  draggingCursor: true
   keyboardShortcuts: false
   panControl: false
   rotateControl: false
-  scaleControl: false
-  scrollwheel: false
-  zoomControl: false
+  scaleControl: true
+  scrollwheel: true
+  zoomControl: true
   zoom: 16
 

@@ -15,10 +15,9 @@ KEY = 'NickAndBora-Env'
 ROUTES =
   '/saveTheDate': 'saveTheDate'
   '/comingSoon': 'comingSoon'
-  '/wedding': 'wedding'
   '/': 'index'
 
-ROUTES = _.omit ROUTES, ['/comingSoon', '/wedding'] if Enviro.isProd(KEY)
+ROUTES = _.omit ROUTES, ['/comingSoon'] if Enviro.isProd(KEY)
 
 
 _route = (file) ->

@@ -6,9 +6,9 @@ Enviro = (_) ->
 
   ->
     KEYS =
-      qa:     ['qa']
-      prod:   ['production']
-      local:  ['development', 'local']
+      qa: ['qa']
+      prod: ['production']
+      local: ['development', 'local']
 
     Env =
       get: _.memoize (key) ->
@@ -23,6 +23,9 @@ Enviro = (_) ->
 
       isQA: _.memoize (key) ->
         @get(key) in KEYS.qa
+
+      isDeployed: _.memoize (key) ->
+        @get(key) in [KEYS.qa, KEYS.prod]
 
       isLocal: _.memoize (key) ->
         @get(key) in KEYS.local

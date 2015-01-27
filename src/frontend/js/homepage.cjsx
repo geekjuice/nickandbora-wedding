@@ -13,6 +13,9 @@ require.config
     backbone: 'vendor/backbone'
     underscore: 'vendor/lodash'
     jquery: 'vendor/zepto'
+    masonry: 'vendor/masonry'
+    imagesloaded: 'vendor/imagesloaded'
+    velocity: 'vendor/velocity'
   map:
     '*':
       jquery: 'zepto'
@@ -20,23 +23,21 @@ require.config
   shim:
     zepto:
       exports: '$'
+    velocity:
+      deps: ['zepto']
     backbone:
       deps: ['zepto', 'lodash']
 
 require [
   'zepto'
+  'velocity'
   'backbone'
   'setup'
   'homepage/lib/router'
-  'homepage/lib/resizer'
   'homepage/lib/pushstate'
-], ($, Backbone, Setup, Router, Resizer, Pushstate) ->
+], ($, Velocity, Backbone, Setup, Router, Pushstate) ->
 
   $ ->
     do Setup
     Pushstate.init()
     Router.init()
-
-    Backbone.history.start
-      pushState: true
-      root: '/'

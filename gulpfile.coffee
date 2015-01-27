@@ -1,12 +1,12 @@
 ###
-# Modules
+Modules
 ###
 _           = require('lodash')
+chalk       = require('chalk')
 gulp        = require('gulp')
 clean       = require('gulp-rimraf')
 cjsx        = require('gulp-cjsx')
 concat      = require('gulp-concat')
-enviro      = require('gulp-env')
 filter      = require('gulp-filter')
 iif         = require('gulp-if')
 imagemin    = require('gulp-imagemin')
@@ -15,18 +15,41 @@ minify      = require('gulp-minify-css')
 plumber     = require('gulp-plumber')
 rename      = require('gulp-rename')
 sass        = require('gulp-ruby-sass')
-supervisor  = require('gulp-supervisor')
+nodemon     = require('gulp-nodemon')
 uglify      = require('gulp-uglify')
 sync        = require('browser-sync')
 
-{ exec, spawn } = require('child_process')
+###
+Variables
+###
 key = require('./key.json')
 env = require('./env.json')
 data = _.extend({}, (key or {}), env)
 
 
 ###
-# Directory Paths
+Process Handler
+###
+{ exec, spawn } = require('child_process')
+killSwitchActivated = true
+children = []
+
+addProcess = (task, color='gray') ->
+  child = spawn('gulp', ["#{task}:process"], { cwd: __dirname})
+  child.stdout.on 'data', (data) ->
+    process.stdout.write(chalk[color](data.toString()))
+  children.push(child)
+
+killSwitch = ->
+  return unless killSwitchActivated
+  process.stdout.write(chalk.red('\nKilling child processes...\n'))
+  child.kill() for child in children
+
+process.on("exit", killSwitch)
+
+
+###
+Directory Paths
 ###
 _src = './src'
 _build = './_build'
@@ -51,7 +74,7 @@ d =
       css: "#{_build}/public/css/vendor"
 
 ###
-# Tasker
+Tasker
 ###
 _do = (src='', dest='', task='', filename='') ->
   _copy = task is ''
@@ -84,7 +107,7 @@ _do = (src='', dest='', task='', filename='') ->
 
 
 ###
-# Clean
+Clean
 ###
 gulp.task 'clean', ->
   gulp.src(_build, {read: false}).pipe(clean())
@@ -96,7 +119,7 @@ gulp.task 'clean:all', ['clean', 'clean:modules']
 
 
 ###
-# Vendor Files
+Vendor Files
 ###
 gulp.task 'vendor', ->
   _do("#{d.src.vendor}/requirejs/require.js", d.build.vendor.js, 'uglify')
@@ -107,10 +130,15 @@ gulp.task 'vendor', ->
   _do("#{d.src.vendor}/flux/dist/Flux.js", d.build.vendor.js, 'uglify rename', 'flux')
   _do("#{d.src.vendor}/eventEmitter/eventEmitter.js", d.build.vendor.js, 'uglify rename', 'event')
   _do("#{d.src.vendor}/backbone/backbone.js", d.build.vendor.js, 'uglify')
+  _do("#{d.src.vendor}/icono/icono.min.css", d.build.vendor.css)
+  _do("#{d.src.vendor}/masonry/dist/masonry.pkgd.min.js", d.build.vendor.js, 'rename', 'masonry')
+  _do("#{d.src.vendor}/imagesloaded/imagesloaded.pkgd.min.js", d.build.vendor.js, 'rename', 'imagesloaded')
+  _do("#{d.src.vendor}/velocity/velocity.min.js", d.build.vendor.js, 'rename', 'velocity')
+
 
 
 ###
-# Tasks
+Tasks
 ###
 gulp.task 'misc', ->
   _do("#{d.src.misc}/**/*",  d.build.public)
@@ -138,24 +166,21 @@ gulp.task 'shared', ->
 
 
 ###
-# Build
+Build
 ###
 gulp.task 'build:backend', ['shared', 'backend']
-gulp.task 'build:static:dev', ['vendor', 'shared', 'misc', 'html', 'css', 'js:dev', 'img:dev']
+gulp.task 'build:static:dev', ['shared', 'misc', 'html', 'css', 'js:dev', 'img:dev']
 gulp.task 'build:static:prod', ['vendor', 'shared', 'misc', 'html', 'js', 'css', 'img']
 gulp.task 'build:dev', ['build:static:dev', 'build:backend']
 gulp.task 'build:prod', ['build:static:prod', 'build:backend']
 
 
 ###
-# Watch/BrowserSync
+Watch/BrowserSync
 ###
 gulp.task 'watch', ['watch:backend', 'watch:static']
 
-gulp.task 'env', ->
-  enviro vars: { NODE_ENV: 'development' }
-
-gulp.task 'watch:backend', ['env', 'supervisor'], ->
+gulp.task 'watch:backend', ['nodemon'], ->
   gulp.watch ["!#{d.src.backend}/public", "#{d.src.backend}/**/*"], ['backend', sync.reload]
 
 gulp.task 'watch:static', ['browser-sync'], ->
@@ -164,51 +189,83 @@ gulp.task 'watch:static', ['browser-sync'], ->
   gulp.watch "#{d.src.html}/**/*.jade", ['html', sync.reload]
   gulp.watch "#{d.src.shared}/**/*.coffee", ['shared', sync.reload]
 
-gulp.task 'supervisor', ['build:backend'], ->
-  supervisor "#{_build}/server.js",
-    ignore: "#{_build}/public"
-    extensions: 'js'
-    debug: true
+gulp.task 'nodemon', ->
+  addProcess 'nodemon', 'cyan'
+
+gulp.task 'nodemon:process', ['build:backend'], ->
+  ignore = ["#{d.build.public[2..]}/", "#{d.modules[2..]}/"]
+  nodemon
+    script: "#{_build}/server.js"
+    ignore: ignore
+    env: NODE_ENV: 'development'
 
 gulp.task 'browser-sync', ['build:static:dev'], ->
   sync
     proxy: "localhost:#{env.PORT}"
     port: env.BROWSERSYNC_PORT
     open: false
+    notify: false
 
 
 ###
-# Deploy Heroku
+Deploy Heroku
 ###
+run = (cmd, cwd, cb) ->
+  opts = if cwd then { cwd } else {}
+  parts = cmd.split(/\s+/g)
+  p = spawn(parts[0], parts[1..], opts)
+  p.stdout.on 'data', (data) ->
+    process.stdout.write(chalk.gray(data.toString()))
+  p.stderr.on 'data', (data) ->
+    process.stdout.write(chalk.gray(data.toString()))
+  p.on 'exit', (code) ->
+    err = null
+    if code
+      err = new Error("command #{cmd} exited with wrong status code: #{code}")
+      err = _.extend {}, err, { code, cmd }
+    cb?(err)
+
+series = (cmds, cwd, cb) ->
+  do execNext = ->
+    run cmds.shift(), cwd, (err) ->
+      return cb(err) if err
+      if cmds.length then execNext() else cb(null)
+
 heroku = (prod) ->
+  killSwitchActivated = false
   app = "#{env.HEROKU_STATIC.toLowerCase()}#{unless prod then '-qa' else ''}"
 
   ->
     CMDS = [
-      "cd #{_build}"
       "rm -rf .git"
       "git init"
       "git add -A"
       "git commit -m '.'"
       "git remote add heroku git@heroku.com:#{app}.git"
       "git push -fu heroku master"
-    ].join(' && ')
+    ]
 
-    exec CMDS, (err, stdout, stderr) ->
-      process.stdout.write stdout
-      process.stdout.write stderr
+    series CMDS, _build, (err) ->
+      if err
+        console.log err
+        console.log(chalk.red('[Error] Deploy to Heroku failed!'))
+      else
+        console.log(chalk.green('[Success] Deploy to Heroku successful!'))
 
 deploy = (prod) ->
+  killSwitchActivated = false
   ->
     CMDS = [
       "gulp clean"
       "gulp build:prod"
       "gulp heroku:#{if prod then 'prod' else 'qa'}"
-    ].join(' && ')
+    ]
 
-    exec CMDS, (err, stdout, stderr) ->
-      process.stdout.write stdout
-      process.stdout.write stderr
+    series CMDS, null, (err) ->
+      if err
+        console.log(chalk.red('[Error] Deploy failed!'))
+      else
+        console.log(chalk.green('[Success] Deploy successful!'))
 
 gulp.task 'heroku:qa', heroku(false)
 gulp.task 'heroku:prod', heroku(true)
@@ -217,7 +274,8 @@ gulp.task 'deploy:prod', deploy(true)
 
 
 ###
-# Default
+Default
 ###
 gulp.task 'default', ['watch']
+
 
