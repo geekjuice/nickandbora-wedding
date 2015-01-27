@@ -24,6 +24,9 @@ Enviro = (_) ->
       isQA: _.memoize (key) ->
         @get(key) in KEYS.qa
 
+      isDeployed: _.memoize (key) ->
+        @get(key) in [KEYS.qa, KEYS.prod]
+
       isLocal: _.memoize (key) ->
         @get(key) in KEYS.local
 
