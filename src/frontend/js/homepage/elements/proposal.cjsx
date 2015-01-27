@@ -95,7 +95,7 @@ define [
 
           <div className='split'>
             <div className='left text-container'>
-              <p>So after we finally calmed down a little, we started leaving the gardens. I guess Bora was a little upset that no one was around to capture the moment, so she grabbed the closest person with a camera and asked him to take a picture of us. The picture we got was the both of us looking down and only Minky posing properly for the camera.</p>
+              <p>So after we finally calmed down a little, we started leaving the gardens. A random high school student asked if he is able to shoot a photo of us as an assignment and Bora was excited to jump the gun and say <q>"We just got engaged! Can you email us this photo?"</q> The picture we got was the both of us looking down and only Minky posing properly for the camera. I couldn't help but to notice that she was little disappointed that there was no one to capture the moment of the proposal.</p>
               <p>So she thought...</p>
             </div>
             <div className='right img-container'>

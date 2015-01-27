@@ -30,7 +30,7 @@ define [
 
           <div className='location'>
             <p className='right'>
-              Prefer the beach? Then consider the <a href='http://www.hotelindigo.com/hotels/us/en/del-mar/sandm/hoteldetail?qAdlt=1&qBrs=6c.hi.ex.rs.ic.cp.in.sb.cw.cv.ul.vn&qChld=0&qFRA=1&qGRM=0&qPSt=0&qRRSrt=rt&qRef=df&qRms=1&qRpn=1&qRpp=12&qSHp=1&qSmP=3&qSrt=sBR&qWch=0&srb_u=1&icdv=99504425&siclientid=1933&sitrackingid=428058627&dp=true&icdv=99504425' target='_blank'>Hotel Indigo San Diego Del Mar</a>. It's actually minutes away from our first date location at <a href='http://doublehappiness-delmar.com/' target='_blank'>The Double Happiness</a>! And luckily enough, they are also offering a special rate if you mention the <em>Hwang and Lee Wedding</em>. It's about a 10 minute Uber ride from the resort, but it's definietely worth it and right on the beach!
+              Prefer the beach? Then consider the <a href='http://ichotelsgroup.com/redirect?path=rates&brandCode=IN&regionCode=1&localeCode=en&GPC=LHW&hotelCode=SANDM&_PMID=99801505' target='_blank'>Hotel Indigo San Diego Del Mar</a>. It's actually minutes away from our first date location at <a href='http://doublehappiness-delmar.com/' target='_blank'>The Double Happiness</a>! And luckily enough, they are also offering a special rate if you mention the <em>Hwang and Lee Wedding</em>. It's about a 10 minute Uber ride from the resort, but it's definietely worth it and right on the beach!
             </p>
             <div className='map-container left'>
               <MapElement address={HOTEL_INDIGO} />
