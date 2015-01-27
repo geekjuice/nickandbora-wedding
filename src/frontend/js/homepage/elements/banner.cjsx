@@ -32,13 +32,6 @@ define [
     render: ->
       { showNav } = @state
 
-      if Enviro.isProd(KEY)
-        andLink = '/SaveTheDate'
-        andClick = _.noop
-      else
-        andLink = '#'
-        andClick = @showNav
-
       classes = React.addons.classSet
         'center-nav': true
         'nav-visible': showNav
@@ -53,7 +46,7 @@ define [
               </a>
             </li>
             <li>
-              <a className='and' href={andLink} onClick={andClick}>
+              <a className='and' href='#' onClick={@showNav}>
                 <img className='inactive' src='/img/nav/and_inactive.png' />
                 <img className='active' src='/img/nav/and_active.png' />
               </a>
