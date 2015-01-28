@@ -1,11 +1,15 @@
 define [
   'zepto'
   'react'
+  'rsvp/lib/delayFor'
   'rsvp/elements/login'
+  'rsvp/elements/form'
 ], (
   $
   React
+  DelayFor
   LoginElement
+  FormElement
 ) ->
 
   RsvpApp = React.createClass
@@ -15,16 +19,15 @@ define [
 
     onAuthenticated: ->
       $('input').removeClass('welcome').addClass('authenticated')
-      setTimeout =>
+      do DelayFor 1200, =>
         @setState { authenticated: true }
-      , 1200
 
     render: ->
       { authenticated } = @state
 
       <div id='NickAndBora-rsvp'>
         {if authenticated
-          <div>Oi</div>
+          <FormElement />
         else
           <LoginElement onAuthenticated={@onAuthenticated}/>
         }
