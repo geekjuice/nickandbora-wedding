@@ -18,13 +18,13 @@
     "zepto": "^1.1.4",
     "lodash": "^2.4.1",
     "react": "^0.12.0",
-    "q": "q#^1.0.1",
     "flux": "~2.0.2",
     "eventEmitter": "~4.2.9",
     "backbone": "~1.1.2",
     "icono": "*",
     "masonry": "~3.2.2",
     "imagesloaded": "~3.1.8",
-    "velocity": "~1.2.1"
+    "velocity": "~1.2.1",
+    "bluebird": "~2.9.3"
   }
 }

@@ -4,7 +4,7 @@ _NickAndBora = {}
 
 require.config
   paths:
-    q: 'vendor/q'
+    bluebird: 'vendor/bluebird'
     zepto: 'vendor/zepto'
     lodash: 'vendor/lodash'
     react: 'vendor/react'

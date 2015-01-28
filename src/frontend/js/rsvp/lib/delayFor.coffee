@@ -1,12 +1,12 @@
 define [
-  'q'
-], (Q) ->
+  'bluebird'
+], (Promise) ->
 
   (timeout, cb) ->
     ->
-      deferred = Q.defer()
+      deferred = Promise.pending()
       setTimeout ->
         cb()
-        deferred.resolve()
+        deferred.fulfill()
       , timeout
       deferred.promise

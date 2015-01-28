@@ -125,7 +125,6 @@ gulp.task 'vendor', ->
   _do("#{d.src.vendor}/requirejs/require.js", d.build.vendor.js, 'uglify')
   _do("#{d.src.vendor}/zepto/zepto.js", d.build.vendor.js, 'uglify')
   _do("#{d.src.vendor}/lodash/dist/lodash.js", d.build.vendor.js, 'uglify')
-  _do("#{d.src.vendor}/q/q.js", d.build.vendor.js, 'uglify')
   _do("#{d.src.vendor}/react/react-with-addons.js", d.build.vendor.js, 'uglify rename', 'react')
   _do("#{d.src.vendor}/flux/dist/Flux.js", d.build.vendor.js, 'uglify rename', 'flux')
   _do("#{d.src.vendor}/eventEmitter/eventEmitter.js", d.build.vendor.js, 'uglify rename', 'event')
@@ -134,6 +133,7 @@ gulp.task 'vendor', ->
   _do("#{d.src.vendor}/masonry/dist/masonry.pkgd.min.js", d.build.vendor.js, 'rename', 'masonry')
   _do("#{d.src.vendor}/imagesloaded/imagesloaded.pkgd.min.js", d.build.vendor.js, 'rename', 'imagesloaded')
   _do("#{d.src.vendor}/velocity/velocity.min.js", d.build.vendor.js, 'rename', 'velocity')
+  _do("#{d.src.vendor}/bluebird/js/browser/bluebird.min.js", d.build.vendor.js, 'rename', 'bluebird')
 
 
 
