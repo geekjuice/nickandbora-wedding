@@ -1,5 +1,7 @@
 include _mixins
 
+- var KEY = 'NickAndBora-Env'
+
 doctype html
 html.no-js(lang="en")
   head
@@ -13,7 +15,8 @@ html.no-js(lang="en")
     link(rel="author", href="humans.txt")
 
     +latoFont()
-    +googleAnalytics()
+    +enviro(KEY)
+    +googleAnalytics(KEY)
 
     block head
 
