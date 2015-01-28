@@ -15,6 +15,7 @@ KEY = 'NickAndBora-Env'
 ROUTES =
   '/saveTheDate': 'saveTheDate'
   '/comingSoon': 'comingSoon'
+  '/rsvp': 'rsvp'
   '/': 'index'
 
 ROUTES = _.omit ROUTES, ['/comingSoon'] if Enviro.isProd(KEY)

@@ -14,19 +14,16 @@ define [
 
   HomepageApp = React.createClass
 
-    showRsvp: (e) ->
-      console.log 'rsvp'
-
     render: ->
       rsvpClasses = React.addons.classSet
         'rsvp-container': true
         '__hidden': Enviro.isProd(KEY)
 
       <div className='NickAndBora-homepage'>
-        <div className={rsvpClasses} onClick={@showRsvp}>
+        <a className={rsvpClasses} href='/rsvp'>
           <span className='rsvp-icon icono-pin' />
           <span className='rsvp-text'>RSVP</span>
-        </div>
+        </a>
         <BannerElement />
         <BioElement who='nick' />
         <BioElement who='bora' />

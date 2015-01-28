@@ -41,11 +41,16 @@ h1
   position: fixed
   top: 0
   right: 0
+  color: #333
   background-color: rgba(#333, 0)
   cursor: pointer
   padding: 1em
   z-index: 999
+  text-decoration: none
   +transition(background 600ms)
+
+  &:visited
+    color: #333
 
   .rsvp-icon
     display: block
