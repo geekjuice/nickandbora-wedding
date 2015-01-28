@@ -10,7 +10,22 @@ define [
 
   RsvpApp = React.createClass
 
+    getInitialState: ->
+      authenticated: false
+
+    onAuthenticated: ->
+      $('input').removeClass('welcome').addClass('authenticated')
+      setTimeout =>
+        @setState { authenticated: true }
+      , 1200
+
     render: ->
+      { authenticated } = @state
+
       <div id='NickAndBora-rsvp'>
-        <LoginElement />
+        {if authenticated
+          <div>Oi</div>
+        else
+          <LoginElement onAuthenticated={@onAuthenticated}/>
+        }
       </div>

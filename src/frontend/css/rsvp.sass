@@ -9,6 +9,7 @@ html, body
   height: 100%
 
 #NickAndBora
+  +yanonefont()
   display: table-cell
   vertical-align: middle
   text-align: center
@@ -31,11 +32,11 @@ input
   &:focus
     opacity: 1.0
 
-  &.autheticating
+  &.authenticating, &.authenticated
     opacity: 0
     visibility: hidden
     +transition(opacity 1200ms ease-in-out, visibility 0 1200ms)
 
-  &.authenticated
+  &.welcome
     opacity: 1
     +transition(opacity 1200ms 600ms ease-in-out)

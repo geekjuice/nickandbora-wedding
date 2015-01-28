@@ -1,14 +1,21 @@
 define [
+  'lodash'
   'zepto'
   'react'
+  'rsvp/lib/delayFor'
 ], (
+  _
   $
   React
+  DelayFor
 ) ->
 
   PASSWORD = /since[ ]?2005/i
 
   LoginElement = React.createClass
+
+    getDefaultProps: ->
+      onAuthenticated: _.noop
 
     getInitialState: ->
       password: ''
@@ -30,21 +37,20 @@ define [
       $(e.currentTarget).blur() if @state.authenticated
 
     successHandler: ->
-      @getElement('login').blur().addClass('autheticating')
-      setTimeout =>
-        @setState { password: 'Oh, hello :D' }
-        @getElement('login')
-          .removeClass('autheticating')
-          .addClass('authenticated')
-      , 1200
+      @getElement('login').blur().addClass('authenticating')
+      (do DelayFor(1200, @showWelcome))
+        .then(DelayFor(2400, @props.onAuthenticated))
+
+    showWelcome: ->
+      @setState { password: 'Oh, hello :D' }
+      @getElement('login').removeClass('authenticating').addClass('welcome')
 
     componentDidMount: ->
-      setTimeout =>
+      do DelayFor 600, =>
         @getElement('login').focus()
-      , 600
 
     render: ->
-      { password, authenticated } = @state
+      { password } = @state
       <div>
         <input ref='login'
                type='text'
