@@ -1,5 +1,8 @@
 @import _base
 
+@import compass/css3/transition
+@import compass/css3/user-interface
+
 html, body
   display: table
   width: 100%
@@ -12,8 +15,27 @@ html, body
 
 input
   +yanonefont()
+  font-size: 3em
+  color: #34495e
+  background-color: #f9f9f9
+  width: 80%
   padding: 1em 2em
   border: none
   outline: none
-  font-size: 3em
-  width: 80%
+  opacity: 0.4
+  visibility: visible
+  +transition(opacity 600ms ease-in-out)
+  +input-placeholder
+    color: #34495e
+
+  &:focus
+    opacity: 1.0
+
+  &.autheticating
+    opacity: 0
+    visibility: hidden
+    +transition(opacity 1200ms ease-in-out, visibility 0 1200ms)
+
+  &.authenticated
+    opacity: 1
+    +transition(opacity 1200ms 600ms ease-in-out)

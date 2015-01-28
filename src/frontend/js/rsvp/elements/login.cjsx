@@ -14,6 +14,11 @@ define [
       password: ''
       authenticated: false
 
+    getElement: (name) ->
+      ref = @refs[name]
+      return [] unless ref
+      $(ref.getDOMNode())
+
     changeHandler: (e) ->
       return if @state.authenticated
       password = e.currentTarget.value
@@ -25,15 +30,25 @@ define [
       $(e.currentTarget).blur() if @state.authenticated
 
     successHandler: ->
-      @setState { password: 'Authenticated' }
-      $(@refs.login.getDOMNode()).blur()
+      @getElement('login').blur().addClass('autheticating')
+      setTimeout =>
+        @setState { password: 'Oh, hello :D' }
+        @getElement('login')
+          .removeClass('autheticating')
+          .addClass('authenticated')
+      , 1200
+
+    componentDidMount: ->
+      setTimeout =>
+        @getElement('login').focus()
+      , 600
 
     render: ->
       { password, authenticated } = @state
       <div>
         <input ref='login'
                type='text'
-               placeholder='Yes?...'
+               placeholder='How long?...'
                value={password}
                onChange={@changeHandler}
                onFocus={@focusHandler}
