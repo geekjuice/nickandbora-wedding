@@ -1,13 +1,13 @@
 define [
   'zepto'
   'react'
-  'rsvp/lib/delayFor'
+  'rsvp/lib/delay'
   'rsvp/elements/login'
   'rsvp/elements/form'
 ], (
   $
   React
-  DelayFor
+  Delay
   LoginElement
   FormElement
 ) ->
@@ -15,12 +15,13 @@ define [
   RsvpApp = React.createClass
 
     getInitialState: ->
-      authenticated: false
+      authenticated: true
 
     onAuthenticated: ->
       $('input').removeClass('welcome').addClass('authenticated')
-      do DelayFor 1200, =>
+      Delay.run 1200, =>
         @setState { authenticated: true }
+        $('#NickAndBora').removeClass('login')
 
     render: ->
       { authenticated } = @state

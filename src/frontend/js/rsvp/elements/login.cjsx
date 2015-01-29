@@ -2,12 +2,12 @@ define [
   'lodash'
   'zepto'
   'react'
-  'rsvp/lib/delayFor'
+  'rsvp/lib/delay'
 ], (
   _
   $
   React
-  DelayFor
+  Delay
 ) ->
 
   PASSWORD = /since[ ]?2005/i
@@ -38,20 +38,23 @@ define [
 
     successHandler: ->
       @getElement('login').blur().addClass('authenticating')
-      (do DelayFor(1200, @showWelcome))
-        .then(DelayFor(2400, @props.onAuthenticated))
+      Delay.run(1200, @showWelcome)
+        .then(Delay.for(2400, @props.onAuthenticated))
 
     showWelcome: ->
       @setState { password: 'Oh, hello :D' }
       @getElement('login').removeClass('authenticating').addClass('welcome')
 
+    componentWillMount: ->
+      $('#NickAndBora').addClass('login')
+
     componentDidMount: ->
-      do DelayFor 600, =>
+      Delay.run 600, =>
         @getElement('login').focus()
 
     render: ->
       { password } = @state
-      <div>
+      <div className='field-container'>
         <input ref='login'
                type='text'
                placeholder='How long?...'
