@@ -2,6 +2,7 @@ define [
   'lodash'
   'zepto'
   'react'
+  'model/rsvp'
   'rsvp/lib/delay'
   'rsvp/elements/input'
   'rsvp/elements/radio'
@@ -10,6 +11,7 @@ define [
   _
   $
   React
+  Rsvp
   Delay
   InputElement
   RadioElement
@@ -36,6 +38,9 @@ define [
       $(@refs["1"].getDOMNode()).find('input').focus()
 
     submit: (e) ->
+      e.preventDefault()
+      form = $('#rsvpForm').serializeArray()
+      resp = Rsvp.validate(form)
       debugger
 
     render: ->
