@@ -20,7 +20,7 @@ define [
       prev: _.noop
 
     getInitialState: ->
-      value: ''
+      value: @props.value or ''
 
     changeHandler: (e) ->
       { value } = e.currentTarget

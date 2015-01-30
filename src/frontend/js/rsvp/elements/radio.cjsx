@@ -17,7 +17,7 @@ define [
       options: []
 
     getInitialState: ->
-      value: @props.options[0]
+      value: @props.value or @props.options[0]
 
     changeHandler: (e) ->
       { value } = e.currentTarget
