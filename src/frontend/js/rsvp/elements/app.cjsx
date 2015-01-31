@@ -5,6 +5,7 @@ define [
   'rsvp/mixins/queryparams'
   'rsvp/elements/login'
   'rsvp/elements/form'
+  'rsvp/elements/finished'
 ], (
   $
   React
@@ -12,6 +13,7 @@ define [
   QueryMixin
   LoginElement
   FormElement
+  FinishedElement
 ) ->
 
   RsvpApp = React.createClass
@@ -20,6 +22,8 @@ define [
 
     getInitialState: ->
       authenticated: false
+      finished: false
+      attending: false
 
     componentWillMount: ->
       { __authenticated } = @parseQueryParams('__authenticated')
@@ -32,12 +36,18 @@ define [
         @setState { authenticated: true }
         $('#NickAndBora').removeClass('login')
 
+    onFinish: (rsvp) ->
+      Delay.run 1200, =>
+        @setState { finished: true, attending: rsvp.attending }
+
     render: ->
-      { authenticated } = @state
+      { finished, authenticated, attending } = @state
 
       <div id='NickAndBora-rsvp'>
-        {if authenticated
-          <FormElement />
+        {if finished
+          <FinishedElement attending={attending}/>
+        else if authenticated
+          <FormElement onFinish={@onFinish}/>
         else
           <LoginElement onAuthenticated={@onAuthenticated}/>
         }

@@ -58,7 +58,7 @@ router.post "/:collection", (req, res, next) ->
   return res.send({ status: 400, errors, fields }) unless valid
 
   addCallback = (e, items) ->
-    return next(e) if e
+    return res.send({ status: 500, error: e}) if e
     model = _.first(items)
     switch collectionType
       when 'contact'
@@ -139,8 +139,8 @@ _sendThankYou = (contact) ->
 
 # RSVP - Thank you email
 _sendRSVPThankYou = (model) ->
-  # if Enviro.isLocal()
-  #   return debug '[API] Local environment: Email not sent.'
+  if Enviro.isLocal()
+    return debug '[API] Local environment: Email not sent.'
 
   sendEmail = (html, text) ->
     { email, name } = model
@@ -175,6 +175,7 @@ _findModel = (collection, query, callback) ->
     callback(e, items)
 
 _addModel = (collection, model, callback) ->
+  model = _.omit(model, '_id')
   collection.insert model, {}, (e, items) =>
     callback(e,items)
 

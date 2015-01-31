@@ -1,6 +1,7 @@
 define [
+  'lodash'
   'bluebird'
-], (Promise) ->
+], (_, Promise) ->
 
   _setTimeout = (timeout, cb) ->
     deferred = Promise.pending()
@@ -11,6 +12,8 @@ define [
     deferred.promise
 
   run: _setTimeout
+
+  nextTick: _.curry(_setTimeout)(0)
 
   for: (timeout, cb) ->
     -> _setTimeout(timeout, cb)

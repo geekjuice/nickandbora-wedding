@@ -1,3 +1,5 @@
+# This is some Cthulhu-ass, anti-pattern React code...
+
 define [
   'lodash'
   'zepto'
@@ -22,11 +24,14 @@ define [
 
   FormElement = React.createClass
 
-    mixins: [QueryMixin]
+    mixins: [QueryMixin, React.addons.LinkedStateMixin]
 
     attendingOptions: ['yes', 'no']
 
     foodOptions: ['beef', 'fish', 'veggie']
+
+    getDefaultProps: ->
+      onFinish: _.noop
 
     getInitialState: ->
       loading: true
@@ -36,11 +41,11 @@ define [
         name: ''
         email: ''
         attending: ''
-        food: ''
+        food: 'beef'
         music: ''
 
     componentWillMount: ->
-      @_onceSaveRsvp = _.once @saveRsvp
+      @_debouncedSave = _.debounce @saveRsvp, 2000, {leading: true}
       params = _.keys(@state.prefilled)
       queries = @parseQueryParams(params)
       unless _.isEmpty queries
@@ -52,61 +57,113 @@ define [
 
     revealForm: ->
       @setState { loading: false }
-      Delay.run(600, @focusInput)
 
-    focusInput: ->
-      $(@refs["1"].getDOMNode()).find('input').focus()
+    chooseFood: (e) ->
+      food = $(e.currentTarget).data('food')
+      prefilled = _.extend {}, @state.prefilled, { food }
+      @setState { prefilled }
+
+    chooseAttending: (e) ->
+      attending = $(e.currentTarget).data('attending')
+      prefilled = _.extend {}, @state.prefilled, { attending }
+      @setState { prefilled }
 
     submit: (e) ->
       e.preventDefault()
       { saved } = @state
-      form = $('#rsvpForm').serializeArray()
+      form = @getFormValues()
       { rsvp, valid, errors, fields } = Rsvp.validate(form)
       if valid and not saved
-        @_onceSaveRsvp(rsvp)
+        @_debouncedSave(rsvp)
       else
-        console.log 'nope'
+        for field in fields
+          $("[name=#{field}]").parent().addClass('invalid')
+        $('.alert').addClass('visible')
+        @setState { errorMessage: 'Please review the highlighted fields' }
+        Delay.run(5000, -> $('.alert').removeClass('visible'))
+
+    getFormValues: ->
+      { prefilled: { food, attending } } = @state
+      food = if attending is 'yes' then food else 'noop'
+      form = $('#rsvpForm').serializeArray()
+      form = form.concat [
+        { name: 'food', value: food }
+        { name: 'attending', value: attending }
+      ]
+      return form
 
     saveRsvp: (rsvp) ->
       $.post "/api/rsvp", rsvp, ({status, message}) =>
         if status is 200
           @setState(saved: true)
-          # $('body').css('backgroundColor', '#333')
+          $('#rsvpForm').addClass('loading')
+          @props.onFinish(rsvp)
         else
-          # $('body').css('backgroundColor', 'red')
+          $('.alert').addClass('visible')
+          @setState { errorMessage: "(╯°□°）╯︵ ┻━┻     Err.. let Nick know and he'll fix it..." }
+          Delay.run(5000, -> $('.alert').removeClass('visible'))
 
     render: ->
-      { loading } = @state
+      { loading, errorMessage } = @state
       { _id, name, email, attending, food, music } = @state.prefilled
 
       formClasses = React.addons.classSet
         'loading': loading
 
       <form id='rsvpForm' className={formClasses}>
-        <header>RSVP</header>
-        <input type='hidden' name='_id' value={_id} />
-
-        <InputElement ref='1' name='name' value={name} />
-        <InputElement ref='2' name='email' value={email} />
-
-        <div className='split'>
-          <div className='half'>
-            <RadioElement ref='3'
-                          name='attending'
-                          options={@attendingOptions}
-                          value={attending}
-                          />
-          </div>
-          <div className='half'>
-            <RadioElement ref='4'
-                          name='food'
-                          options={@foodOptions}
-                          value={food}
-                          />
-          </div>
+        <div className='alert'>
+          <div className='alert-message'>{errorMessage}</div>
         </div>
 
-        <InputElement ref='5' name='music' value={music} />
-        <ButtonElement text='Submit' onClick={@submit}/>
+        <header>RSVP</header>
+        <input type='hidden' name='_id' value={_id}/>
 
+        <div className='split'>
+          <h3>attending?</h3>
+          {for option in ['yes', 'no']
+            <div className="half attending #{if option is attending then 'active' else ''}"
+                 key={option} onClick={@chooseAttending} data-attending={option}>
+              <div>
+                <img src="/img/rsvp/#{option}.png" className='overlap'/>
+                <img src="/img/rsvp/#{option}-active.png" />
+              </div>
+              <div className="attending-text #{option}-text">
+                {if option is 'yes' then 'Yes!' else 'Regretfully decline...'}
+              </div>
+            </div>
+          }
+        </div>
+
+        {if attending
+          <div>
+            <InputElement ref='1' name='name' value={name} />
+            <InputElement ref='2' name='email' value={email} />
+          </div>
+        }
+
+        {if attending is 'yes'
+          <div>
+            <div className='split'>
+              <h3>food?</h3>
+              {for option in ['beef', 'fish', 'veggie']
+                <div className="third food #{if option is food then 'active' else ''}"
+                    key={option} onClick={@chooseFood} data-food={option}>
+                  <div>
+                    <img src="/img/rsvp/#{option}.png" className='overlap'/>
+                    <img src="/img/rsvp/#{option}-green.png" />
+                  </div>
+                  <div className='food-text'>{_.capitalize option}</div>
+                </div>
+              }
+            </div>
+            <InputElement ref='5' name='music' value={music} label="song request" optional={true} />
+          </div>
+        }
+
+        {if attending
+          <ButtonElement text='Submit' onClick={@submit}/>
+        }
+        <footer>
+          Made with &hearts; by Nick & Bora
+        </footer>
       </form>
