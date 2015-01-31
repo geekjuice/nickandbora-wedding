@@ -156,7 +156,11 @@ define [
                 </div>
               }
             </div>
-            <InputElement ref='5' name='music' value={music} label="song request" optional={true} />
+            <InputElement ref='5' name='music' value={music} label="song requests" optional={true} />
+
+            <div className='psa'>
+              Friendly reminder that we need an RSVP filled out for <em>each person</em> who is attending. That way, we can provide you each with the correct food option and so we obtain an accurate headcount as space and attendance is limited.
+            </div>
           </div>
         }
 

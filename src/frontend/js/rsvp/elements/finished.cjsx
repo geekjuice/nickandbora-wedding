@@ -20,7 +20,7 @@ define [
         {if @props.attending is 'yes'
           <div>
             <img src='/img/rsvp/yes-active.png' />
-            <div className='message'>Awesome! We're honored to celebrate (and party) with you on our special day! Don't forget to visit <a href='http://NickAndBora.Life'>NickAndBora.Life</a> if you have any questions regarding travel, accomodations, and the wedding day. You can also email us directly at <a href='mailto:nickandbora@gmail.com?subject=%5BNick%20%26%20Bora%5D%20Hey!%20Listen!' target='_top'>NickAndBora@gmail.com</a> for all other questions and concerns. Can't wait to see you on March 28!</div>
+            <div className='message'>Awesome! We're honored to celebrate (and party) with you on our special day! Don't forget to visit <a href='http://NickAndBora.Life'>NickAndBora.Life</a> if you have any questions regarding travel, accomodations, and the wedding day. Also (another) friendly reminder that an RSVP needs to be filled out for each people (and child) so we know exactly which food option to provide and so we have an accurate head count. Other than that, you can email us directly at <a href='mailto:nickandbora@gmail.com?subject=%5BNick%20%26%20Bora%5D%20Hey!%20Listen!' target='_top'>NickAndBora@gmail.com</a> if you have any other questions and concerns. Can't wait to see you on March 28!</div>
           </div>
 
         else

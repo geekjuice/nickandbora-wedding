@@ -2,7 +2,7 @@ Save the Date
 
 Hi, {{ name }}
 
-Wooo! We're so honored to have you join us in our union. Don't forget to check out NickAndBora.Life for any travel, accomodation, and wedding day information. Also, if something urgent comes up and you are unable to attend, please let us know ASAP. See in you March 28!
+Wooo! We're so honored to have you join us in our celebration. Don't forget to check out <a href='http:/nickandbora.life'>NickAndBora.Life</a> for any travel, accomodation, and wedding day information. Also, if something urgent comes up and you are unable to attend, please let us know ASAP. See you in March 28!
 
 Contact Info
 Name: {{ name }}

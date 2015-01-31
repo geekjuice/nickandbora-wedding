@@ -52,6 +52,7 @@ define [
                  onChange={@changeHandler}
                  onFocus={@focusHandler}
                  onKeyDown={@keyDownHandler}
+                 spellCheck={false}
                 />
         </div>
       </div>

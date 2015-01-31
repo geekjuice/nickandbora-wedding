@@ -17,7 +17,6 @@ define [
     render: ->
       rsvpClasses = React.addons.classSet
         'rsvp-container': true
-        '__hidden': Enviro.isProd(KEY)
 
       <div className='NickAndBora-homepage'>
         <a className={rsvpClasses} href='/rsvp'>
