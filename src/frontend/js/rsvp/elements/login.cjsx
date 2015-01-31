@@ -42,7 +42,7 @@ define [
         .then(Delay.for(2400, @props.onAuthenticated))
 
     showWelcome: ->
-      @setState { password: 'Oh, hello :D' }
+      @setState { password: 'Oh, hello there ^_^' }
       @getElement('login').removeClass('authenticating').addClass('welcome')
 
     componentWillMount: ->
@@ -57,7 +57,7 @@ define [
       <div className='field-container'>
         <input ref='login'
                type='text'
-               placeholder='How long?...'
+               placeholder='Together...'
                value={password}
                onChange={@changeHandler}
                onFocus={@focusHandler}
