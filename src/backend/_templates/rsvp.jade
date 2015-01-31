@@ -6,7 +6,7 @@ head
 
   style
     include styles/base.css
-    include styles/nickAndBora.css
+    include styles/rsvp.css
 
 
 body
@@ -28,7 +28,7 @@ body
                         table.twelve.columns
                           tr
                             td.twelve.sub-columns(style='padding: 0;text-align: center;')
-                              img.logo(src='http://nickandbora.life/img/nickandbora-logo.png' alt='Nick & Bora - Save the Date', height='100')
+                              img.logo(src='http://nickandbora.life/img/nickandbora-logo.png' alt='Nick & Bora - Save the Date' height='100')
                             td.expander
 
           br
@@ -47,7 +47,7 @@ body
                           td
 
                             h1 Hi, #{name}
-                            p.lead Thank you again for providing your information. We'll keep you in the loop with all the information you need for joining us in our special celebration.
+                            p.lead Wooo! We're so honored to have you join us in our union. Don't forget to check out <a href='http:/nickandbora.life'>NickAndBora.Life</a> for any travel, accomodation, and wedding day information. Also, if something urgent comes up and you are unable to attend, please let us know ASAP. See in you March 28!
 
                           td.expander
 
@@ -64,8 +64,12 @@ body
                               span= name
                             p Email:
                               span= email
-                            p Address:
-                              span= address
+                            p Attending:
+                              span= attending
+                            p Food:
+                              span= food
+                            p Music (optional):
+                              span= music
                             p.edit
                               a(href="#{editUrl}") Edit contact info
 

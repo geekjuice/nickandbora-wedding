@@ -38,6 +38,8 @@ addProcess = (task, color='gray') ->
   child = spawn('gulp', ["#{task}:process"], { cwd: __dirname})
   child.stdout.on 'data', (data) ->
     process.stdout.write(chalk[color](data.toString()))
+  child.stderr.on 'data', (data) ->
+    process.stdout.write(chalk[color](data.toString()))
   children.push(child)
 
 killSwitch = ->
@@ -124,7 +126,7 @@ Vendor Files
 gulp.task 'vendor', ->
   _do("#{d.src.vendor}/requirejs/require.js", d.build.vendor.js, 'uglify')
   _do("#{d.src.vendor}/zepto/zepto.js", d.build.vendor.js, 'uglify')
-  _do("#{d.src.vendor}/lodash/dist/lodash.js", d.build.vendor.js, 'uglify')
+  _do("#{d.src.vendor}/lodash/lodash.js", d.build.vendor.js, 'uglify')
   _do("#{d.src.vendor}/react/react-with-addons.js", d.build.vendor.js, 'uglify rename', 'react')
   _do("#{d.src.vendor}/flux/dist/Flux.js", d.build.vendor.js, 'uglify rename', 'flux')
   _do("#{d.src.vendor}/eventEmitter/eventEmitter.js", d.build.vendor.js, 'uglify rename', 'event')
@@ -197,7 +199,10 @@ gulp.task 'nodemon:process', ['build:backend'], ->
   nodemon
     script: "#{_build}/server.js"
     ignore: ignore
-    env: NODE_ENV: 'development'
+    nodeArgs: ['--debug']
+    env:
+      NODE_ENV: 'development'
+      DEBUG: 'NickAndBora'
 
 gulp.task 'browser-sync', ['build:static:dev'], ->
   sync

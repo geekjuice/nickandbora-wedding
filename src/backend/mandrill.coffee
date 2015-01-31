@@ -13,15 +13,7 @@ Enviro    = require('./lib/enviro')
 
 mailer = new mandrill.Mandrill(C.MANDRILL_API_KEY)
 
-subject = switch
-  when Enviro.isLocal()
-    "Nick & Bora - Save the Date [LOCAL]"
-  when Enviro.isQA()
-    "Nick & Bora - Save the Date [QA]"
-  when Enviro.isProd()
-    "Nick & Bora - Save the Date"
-
-defaults =
+defaults = ({subject}) ->
   message:
     html: "<h1>Save the Date</h1>"
     text: "Save the Date"
@@ -69,6 +61,17 @@ defaults =
 
 class Mailer
 
+  constructor: (@name) ->
+
+  getSubject: ->
+    switch
+      when Enviro.isLocal()
+        "Nick & Bora - #{@name} [LOCAL]"
+      when Enviro.isQA()
+        "Nick & Bora - #{@name} [QA]"
+      when Enviro.isProd()
+        "Nick & Bora - #{@name}"
+
   success: (result) ->
     debug '[SUCCESS] Email Sent!'
     debug result
@@ -78,8 +81,8 @@ class Mailer
     debug err
 
   send: (options={}, success=@success, error=@error) ->
-    message = _.merge {}, defaults, options
+    message = _.merge {}, defaults(subject: @getSubject()), options
     mailer.messages.send(message, success, error)
 
 
-module.exports = new Mailer
+module.exports = Mailer

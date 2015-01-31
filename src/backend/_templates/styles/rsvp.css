@@ -5,12 +5,8 @@ body {
   letter-spacing:0.02em;
 }
 
-header {
-  background-color: #3498db;
-}
-
 h1, h3 {
-  border-left: 5px solid #1abc9c;
+  border-left: 5px solid #E08283;
   padding-left: 0.4em;
   margin-bottom: 0.6em;
   font-weight: 100;
@@ -29,7 +25,7 @@ p {
   font-weight: 300;
   font-size: 1.2em;
   line-height: 1.6em;
-  color: #7f8c8d;
+  color: #2c3e50;
 }
 
 p span {
@@ -42,11 +38,11 @@ table.main-container {
 }
 
 table.header.banner {
-  border-bottom: 0.2em solid #333;
+  border-bottom: 0.2em solid #2c3e50;
 }
 
 table.header.bottom {
-  border-top: 0.2em solid #333;
+  border-top: 0.2em solid #2c3e50;
 }
 
 table.row.description {
@@ -73,7 +69,7 @@ p.edit {
 p.edit a {
   font-size: 0.8em;
   font-weight: 300;
-  color: #1abc9c !important;
+  color: #E08283 !important;
 }
 
 p.lead {
@@ -85,6 +81,10 @@ img.logo {
   float: none;
   height: 6em;
   margin: 0 auto;
+}
+
+.header {
+  background-color: #E08283;
 }
 
 .nab-header-text {

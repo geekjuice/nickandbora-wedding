@@ -40,17 +40,19 @@ router.get "/:collection/:type/:value", (req, res, next) ->
 router.post "/:collection", (req, res, next) ->
   { body, headers, collection } = req
 
-  unless C.REFERER_REGEX.test headers?.referer
-    return res.send({status: 401, message: C.TABLE_FLIP})
-
   collectionType = req.params.collection.toLowerCase()
 
   switch collectionType
     when 'contact'
+      unless C.REFERER_REGEX.test headers?.referer
+        return res.send({status: 401, message: C.TABLE_FLIP})
       { contact, valid, errors, fields } = _validateContact(body)
       model = contact
     when 'rsvp'
+      unless C.REFERER_RSVP_REGEX.test headers?.referer
+        return res.send({status: 401, message: C.TABLE_FLIP})
       { rsvp, valid, errors, fields } = _validateRsvp(body)
+      rsvp.music ?= ''
       model = rsvp
 
   return res.send({ status: 400, errors, fields }) unless valid
@@ -64,23 +66,27 @@ router.post "/:collection", (req, res, next) ->
         model = _.omit(model, '_id')
         res.send({ status: 200, message: "Contact saved.", contact: model })
       when 'rsvp'
+        _sendRSVPThankYou(model)
         model = _.omit(model, '_id')
         res.send({ status: 200, message: "RSVP saved.", rsvp: model })
 
   { _id } = model
   _.extend model, submitted: _.now()
 
-  return _addModel(collection, model, addCallback) unless _id
+  unless _id
+    return _addModel(collection, model, addCallback)
 
   _id = new ObjectID(_id)
   _findModel collection, { _id }, (e, items) ->
     return next(e) if e
 
-    return _addModel(collection, model, addCallback) unless items.length
+    unless items.length
+      return _addModel(collection, model, addCallback)
 
     previousModel = _.first(items)
     model.versions = _.cloneDeep(previousModel.versions ? {})
     model.versions[previousModel.submitted] = _.omit(previousModel, ['versions', '_id'])
+
     _updateModel collection, model, (e) =>
       return next(e) if e
       model = _.omit(model, ['versions', '_id'])
@@ -89,6 +95,7 @@ router.post "/:collection", (req, res, next) ->
           _sendThankYou(model)
           res.send({ status: 200, message: "Contact updated.", contact: model })
         when 'rsvp'
+          _sendRSVPThankYou(model)
           res.send({ status: 200, message: "RSVP updated.", rsvp: model })
 
 
@@ -99,6 +106,7 @@ _validateContact = (contact) ->
 _validateRsvp = (rsvp) ->
   (new Rsvp(rsvp)).validate()
 
+# Save the Date - Thank you email
 _sendThankYou = (contact) ->
   if Enviro.isLocal()
     return debug '[API] Local environment: Email not sent.'
@@ -106,7 +114,7 @@ _sendThankYou = (contact) ->
   sendEmail = (html, text) ->
     { email, name } = contact
     options = { html, text, to: [{ email, name, type: 'to' }] }
-    Mandrill.send({message: options})
+    new Mandrill('Save the Date').send({message: options})
 
   inlineStyles = (editUrl) ->
     opts = _.extend(contact, { editUrl, _authenticated: true })
@@ -127,6 +135,39 @@ _sendThankYou = (contact) ->
   Googl.shorten(editUrl).then(inlineStyles).catch (err) ->
     debug "[GOO.GL] Error shortening #{editUrl}. Using original URL."
     inlineStyles(editUrl)
+
+
+# RSVP - Thank you email
+_sendRSVPThankYou = (model) ->
+  # if Enviro.isLocal()
+  #   return debug '[API] Local environment: Email not sent.'
+
+  sendEmail = (html, text) ->
+    { email, name } = model
+    options = { html, text, to: [{ email, name, type: 'to' }] }
+    new Mandrill('RSVP').send({message: options})
+
+  inlineStyles = (editUrl) ->
+    opts = _.extend(model, { editUrl, __authenticated: true })
+    html = Templates.rsvp(opts)
+    text = Templates.rsvpText(opts)
+
+    (new Styliner).processHTML(html)
+      .then (inlinedHtml) ->
+        sendEmail(inlinedHtml, text)
+      .fail (err) ->
+        debug "[Styliner] Failed to inline styles. Using original document."
+        sendEmail(html, text)
+
+  query = ['__authenticated=true']
+  for key, value of _.omit(model, 'submitted')
+    query.push "#{key}=#{encodeURIComponent value}"
+  editUrl = "#{C.RSVP_URL}/?#{query.join('&')}"
+
+  Googl.shorten(editUrl).then(inlineStyles).catch (err) ->
+    debug "[GOO.GL] Error shortening #{editUrl}. Using original URL."
+    inlineStyles(editUrl)
+
 
 # Mongo Helpers
 _findModel = (collection, query, callback) ->
