@@ -110,7 +110,7 @@ define [
 
           <p className='interviewer'>Wasn't a long distance relationship difficult?</p>
 
-          <p className='bora'>Definitely. However we tried to maintain contact everyday through all means of communinication. For example, I sent Nick many, many, <em>many</em> postcards. Haha I hope he wasn’t overwhelmed, but I really enjoyed process. It was kind of an analog movement. And because we couldn’t physically spend time together, I spent my time into an <a href='http://moca.org/pc/viewArtWork.php?id=30'>object</a> that I can send.</p>
+          <p className='bora'>Definitely. However we tried to maintain contact everyday through all means of communinication. For example, I sent Nick many, many, <em>many</em> postcards. Haha I hope he wasn’t overwhelmed, but I really enjoyed process. It was kind of an analog movement. And because we couldn’t physically spend time together, I spent my time into an <a href='http://moca.org/pc/viewArtWork.php?id=30' target='_blank'>object</a> that I can send.</p>
 
           <p className='nick'>It was sweet. But yes, I had a <em>lot</em> of postcards from her in my dorm rooms. At one point, entire shelves were filled with cards and gifts from her. I was always a little self-conscious when people would visit since it could have been misunderstood as some creepy <span className='link' onClick={@openModal('http://3.bp.blogspot.com/-cp_RNeL7yLQ/T6mLHH2DprI/AAAAAAAADGE/Zx1KcMrnaTM/s640/tumblr_lp9r53xRwG1qiwmebo1_500.png')}>shrine</span> for her...</p>
 
