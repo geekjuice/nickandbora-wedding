@@ -226,6 +226,8 @@ define [
             </div>
 
           </section>
+
+          <section className='illustrations-by'>Illustrations by Soo-Youn Choung</section>
         </div>
 
         <FooterElement />

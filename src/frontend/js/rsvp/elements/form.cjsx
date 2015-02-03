@@ -22,6 +22,11 @@ define [
   ButtonElement
 ) ->
 
+  descriptions =
+    beef: 'Braised Beef Short Rib'
+    fish: 'Sautéed Wild Sea Bass'
+    veggie: 'Chef\'s choice vegetarian dish'
+
   FormElement = React.createClass
 
     mixins: [QueryMixin, React.addons.LinkedStateMixin]
@@ -153,6 +158,7 @@ define [
                     <img src="/img/rsvp/#{option}-green.png" />
                   </div>
                   <div className='food-text'>{_.capitalize option}</div>
+                  <div className='food-description'>{descriptions[option]}</div>
                 </div>
               }
             </div>

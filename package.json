@@ -20,7 +20,7 @@
     "express": "^4.11.1",
     "goo.gl": "^0.1.2",
     "jade": "^1.9.1",
-    "lodash": "^2.4.1",
+    "lodash": "^3.0.1",
     "mandrill-api": "^1.0.41",
     "mongoskin": "^1.4.12",
     "morgan": "^1.5.1",
