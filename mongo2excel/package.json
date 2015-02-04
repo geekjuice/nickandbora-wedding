@@ -2,7 +2,9 @@
   "name": "mongo2excel",
   "bin": "./bin/mongo2excel",
   "dependencies": {
-    "json2xls": "0.0.5",
-    "lodash": "^2.4.1"
+    "chalk": "^0.5.1",
+    "fs-extra": "^0.16.3",
+    "json2xls": "^0.0.5",
+    "lodash": "^3.0.1"
   }
 }
