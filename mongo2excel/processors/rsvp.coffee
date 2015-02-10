@@ -15,6 +15,7 @@ module.exports = (entries) ->
   for entry in entries when entry
     parsedEntry = {}
     pickedValues = _.pick(JSON.parse(entry), KEYS)
+    continue unless pickedValues.attending is 'yes'
     for key, value of pickedValues
       value = switch key
         when 'email' then value.toLowerCase()
