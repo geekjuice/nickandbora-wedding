@@ -220,9 +220,9 @@ run = (cmd, cwd, cb) ->
   parts = cmd.split(/\s+/g)
   p = spawn(parts[0], parts[1..], opts)
   p.stdout.on 'data', (data) ->
-    process.stdout.write(chalk.gray(data.toString()))
+    process.stdout.write(chalk.white(data.toString()))
   p.stderr.on 'data', (data) ->
-    process.stdout.write(chalk.gray(data.toString()))
+    process.stdout.write(chalk.white(data.toString()))
   p.on 'exit', (code) ->
     err = null
     if code
