@@ -57,20 +57,20 @@
     font-size: 1.1em
     font-weight: bold
 
-  img.cnb
-    display: block
-    width: 60%
-    margin: 2.4em auto
-    padding: 1em 0
-    border-top: 0.2em solid #333
-    border-bottom: 0.2em solid #333
-
-    @media screen and (min-width: 720px)
-      width: 300px
-
-    @media screen and (min-width: 960px)
-      width: 400px
-
   ol
     width: 90%
     margin: 2em auto
+
+  img
+    &.cnb, &.zola
+      display: block
+      width: 60%
+      margin: 2.4em auto
+      padding: 1em 0
+
+      @media screen and (min-width: 720px)
+        width: 300px
+
+      @media screen and (min-width: 960px)
+        width: 400px
+
