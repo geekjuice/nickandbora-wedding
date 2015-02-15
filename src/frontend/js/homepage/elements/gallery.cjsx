@@ -9,24 +9,13 @@ define [
 
   S3_URL = 'http://nickandbora.s3.amazonaws.com'
 
-  IMAGES =
-    engagement: [
-      'img0.jpg'
-      'img1.jpg'
-      'img2.jpg'
-      'img3.jpg'
-      'img4.jpg'
-      'img5.jpg'
-      'img6.jpg'
-      'img7.jpg'
-      'img8.jpg'
-    ]
+  NUM_OF_IMAGES = 37
 
   GalleryApp = React.createClass
 
     getInitialState: ->
-      numberOfImages: 4
-      increment: 4
+      numberOfImages: 8
+      increment: 8
       navOpen: false
       modalOpen: false
       image: null
@@ -92,15 +81,15 @@ define [
         </div>
 
         <div className="gallery #{if navOpen then 'nav-visible' else ''}">
-          {for image, i in IMAGES.engagement[0...numberOfImages]
-            <div key={"engagement-#{i}"} className='image loading' onClick={@openModal(image)}>
+          {for i in [0...Math.min(numberOfImages, NUM_OF_IMAGES)]
+            <div key={"engagement-#{i}"} className='image loading' onClick={@openModal("img#{i}.jpg")}>
               <div className='polaroid'>
-                <img data-engagement={image} src="#{S3_URL}/engagement/#{image}" />
+                <img data-engagement={"img#{i}.jpg"} src="#{S3_URL}/engagement/img#{i}.jpg" />
               </div>
             </div>
           }
         </div>
-        {if numberOfImages < IMAGES.engagement.length
+        {if numberOfImages < NUM_OF_IMAGES
           <div className='showMore'>
             <a href='gallery' onClick={@showMore}>Show me more</a>
           </div>
