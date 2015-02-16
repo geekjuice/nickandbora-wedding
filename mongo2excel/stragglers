@@ -12,7 +12,16 @@ fs        = Promise.promisifyAll(require('fs-extra'))
 
 WHITELIST = [
   'nhwang@hubspot.com'
+  'jaihwang@gmail.com'
   'sjk8825@yahoo.com'
+]
+
+NO_INVITATION_YET = [
+  'jasonkang14@gmail.com'
+  'joan.box.yi@gmail.com'
+  'tommyjeon0925@gmail.com'
+  'danieljae4christ@gmail.com'
+  'christinasungeun.lee@gmail.com'
 ]
 
 CONTACT = 'contact'
@@ -65,7 +74,9 @@ Promise.all(promises).spread (contactDump, rsvpDump) ->
   contacts = _.keys outputs[CONTACT]
   rsvps = _.keys outputs[RSVP]
   difference = _.difference(contacts, rsvps)
-  outputs.stragglers = _.omit(_.pick(outputs[CONTACT], difference), WHITELIST)
+  stragglers = _.pick(outputs[CONTACT], difference)
+  outputs.pending = _.pick(stragglers, NO_INVITATION_YET)
+  outputs.stragglers = _.omit(stragglers, [NO_INVITATION_YET..., WHITELIST...])
 
 
   log "Writing stragglers list to #{OUTPUT_FILENAME}..."
