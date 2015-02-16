@@ -75,8 +75,10 @@ Promise.all(promises).spread (contactDump, rsvpDump) ->
   rsvps = _.keys outputs[RSVP]
   difference = _.difference(contacts, rsvps)
   stragglers = _.pick(outputs[CONTACT], difference)
+
   outputs.pending = _.pick(stragglers, NO_INVITATION_YET)
   outputs.stragglers = _.omit(stragglers, [NO_INVITATION_YET..., WHITELIST...])
+  outputs.bbc = _.keys(outputs.stragglers).join(', ')
 
 
   log "Writing stragglers list to #{OUTPUT_FILENAME}..."
