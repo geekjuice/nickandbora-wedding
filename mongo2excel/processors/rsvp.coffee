@@ -10,12 +10,15 @@ titleize = (s) -> s.trim().split(WHITESPACE).map(capitalize).join(' ')
 
 KEYS = ['name', 'email', 'attending', 'food', 'music']
 
-module.exports = (entries) ->
+module.exports = (entries, onlyAttending=true) ->
   parsedEntries = []
   for entry in entries when entry
     parsedEntry = {}
     pickedValues = _.pick(JSON.parse(entry), KEYS)
-    continue unless pickedValues.attending is 'yes'
+
+    if onlyAttending and pickedValues.attending isnt 'yes'
+      continue
+
     for key, value of pickedValues
       value = switch key
         when 'email' then value.toLowerCase()
