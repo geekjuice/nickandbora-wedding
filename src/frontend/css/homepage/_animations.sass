@@ -1,0 +1,20 @@
+// Animations
+
++keyframes(bounce)
+  0%, 100%
+    +translate3d(0, 0, 0)
+  50%
+    +translate3d(0, 0.2em, 0)
+
++keyframes(rotatedBounce)
+  0%, 100%
+    +transform(rotate(-45deg) translate3d(0, 0, 0) scale(1.2))
+  50%
+    +transform(rotate(-45deg) translate3d(-0.2em, 0.2em, 0) scale(1.2))
+
++keyframes(pulse)
+  0%
+    +scale(0.0)
+  100%
+    +scale(1.0)
+    opacity: 0

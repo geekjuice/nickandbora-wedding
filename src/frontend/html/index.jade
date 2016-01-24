@@ -1,0 +1,14 @@
+extends _main
+
+block title
+  title Nick & Bora
+
+block head
+  +yanoneFont()
+  +googleMaps(GOOGLE_BROWSER_API_KEY)
+  +stylesheet("vendor/icono.min")
+  +stylesheet("homepage")
+  script(data-main="/js/homepage", src="/js/vendor/require.js")
+
+block content
+  #NickAndBora

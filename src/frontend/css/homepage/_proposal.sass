@@ -1,0 +1,222 @@
+// Proposal
+
+.NickAndBora-proposal
+  +yanonefont()
+
+  section
+    width: 80%
+    margin: 2.4em auto
+
+    @media screen and (min-width: 720px)
+      width: 600px
+
+    @media screen and (min-width: 960px)
+      width: 800px
+    &:last-of-type
+      margin-bottom: 4em
+
+  h3
+    width: 80%
+    font-size: 2.0em
+    text-align: left
+    color: #333
+    margin: 1.6em 0 0.4em
+    padding-left: 0.6em
+    border-left: 0.1em solid #333
+
+    @media screen and (min-width: 720px)
+      font-size: 2.2rem
+      width: 600px
+
+    @media screen and (min-width: 960px)
+      font-size: 2.4rem
+      width: 800px
+
+  p
+    font-size: 1.2rem
+    line-height: 1.6em
+    margin: 0 auto 1em
+    text-align: justify
+
+    &:last-child
+      margin-bottom: 0
+
+    @media screen and (min-width: 720px)
+      font-size: 1.3rem
+
+    @media screen and (min-width: 960px)
+      font-size: 1.4rem
+
+    a, .link
+      font-weight: bold
+      border-bottom: 1px solid #1abc9c
+      color: #1abc9c
+      padding: 0 0.2em
+      cursor: pointer
+      background-color: rgba(#333, 0)
+      text-decoration: none
+      +transition(border 600ms, background 600ms, color 600ms)
+
+      &:hover
+        color: #f9f9f9
+        background-color: rgba(#333, 1)
+        border-bottom: 1px solid #333
+
+      &:visited
+        color: #1abc9c
+
+        &:hover
+          color: #f9f9f9
+
+  em
+    font-size: 1.1em
+    font-weight: bold
+
+  q
+    background-color: #ecf0f1
+    color: #333
+    border-radius: 0.4em
+    padding: 0.2em 0.4em
+
+  sup
+    vertical-align: super
+    color: #666
+    font-size: 0.8em
+
+  .icono-smile
+    color: #1abc9c
+
+  .hero
+    width: 100%
+    height: 30em
+    background: url('http://nickandbora.s3.amazonaws.com/proposal/banner-wm.jpg')
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center center
+    background-color: #f9f9f9
+    margin: 3em 0
+    box-shadow: 0 1px 10px #ccc
+
+  .split
+    padding: 0
+    +clearfix()
+
+    .left, .right
+      float: none
+      padding: 1rem 0
+
+    .left
+      @media screen and (min-width: 720px)
+        float: left
+        padding-right: 1em
+
+    .right
+      @media screen and (min-width: 720px)
+        float: right
+        padding-left: 1em
+
+    .text-container, .img-container
+      width: 100%
+      margin: 0
+
+    .img-container
+      @media screen and (min-width: 720px)
+        width: 50%
+
+      @media screen and (min-width: 960px)
+        width: 33%
+
+      img
+        width: 100%
+        box-shadow: 0 1px 5px #666
+        cursor: pointer
+
+    .text-container
+      @media screen and (min-width: 720px)
+        width: 50%
+
+      @media screen and (min-width: 960px)
+        width: 67%
+
+  .annotations, hr
+    width: 80%
+    margin: 1em auto
+    text-align: left
+    font-size: 0.9em
+
+    li
+      margin-bottom: 0.4em
+
+      &:last-child
+        margin-bottom: 0
+
+    @media screen and (min-width: 720px)
+      width: 600px
+
+    @media screen and (min-width: 960px)
+      width: 800px
+
+  // Image Modal
+  .image-modal-container
+    position: fixed
+    display: table
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    opacity: 0
+    visibility: hidden
+    z-index: 99
+    +transition(opacity 600ms ease-in-out, visibility 0 600ms ease-in-out)
+
+    &.image-modal-open
+      visibility: visible
+      opacity: 1
+
+    .image-modal-overlay
+      position: absolute
+      top: 0
+      left: 0
+      width: 100vw
+      height: 100vh
+      background-color: black
+      opacity: 0.8
+
+    .image-modal-close
+      +yanonefont()
+      position: fixed
+      top: 0.5em
+      right: 0.5em
+      color: #f9f9f9
+      font-size: 2em
+      cursor: pointer
+      +transform(scale(1) rotate(45deg))
+
+      @media screen and (min-width: 720px)
+        +transform(scale(1.2) rotate(45deg))
+
+      @media screen and (min-width: 960px)
+        +transform(scale(1.6) rotate(45deg))
+
+    .image-modal
+      display: table-cell
+      vertical-align: middle
+      text-align: center
+      position: relative
+      width: 100vw
+      height: 100vh
+
+    img
+      display: block
+      margin: 0 auto
+      border: 1em solid #f9f9f9
+      border-bottom: 3em solid #f9f9f9
+
+    .portrait img
+      height: 80vh
+      width: auto
+
+    .landscape img
+      height: auto
+      width: 80vw
+

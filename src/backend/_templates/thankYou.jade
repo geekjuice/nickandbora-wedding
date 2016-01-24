@@ -1,0 +1,101 @@
+doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+html(xmlns="http://www.w3.org/1999/xhtml")
+head
+  meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
+  meta(name="viewport", content="width=device-width")
+
+  style
+    include styles/base.css
+    include styles/nickAndBora.css
+
+
+body
+  table.body
+    tr
+      td.center(align="center",  valign="top")
+        center
+
+          //-  Header
+          table.row.header.banner
+            tr
+              td.center(align="center")
+                center
+
+                  table.container
+                    tr
+                      td.wrapper.last(style='padding: 1.2em 2.4em;')
+
+                        table.twelve.columns
+                          tr
+                            td.twelve.sub-columns(style='padding: 0;text-align: center;')
+                              img.logo(src='http://nickandbora.life/img/nickandbora-logo.png' alt='Nick & Bora - Save the Date', height='100')
+                            td.expander
+
+          br
+
+          //-  Container
+          table.container.main-container
+            tr
+              td
+
+                table.row.description
+                  tr
+                    td.wrapper.last
+
+                      table.twelve.columns
+                        tr
+                          td
+
+                            h1 Hi, #{name}
+                            p.lead Thank you again for providing your information. We'll keep you in the loop with all the information you need for joining us in our special celebration.
+
+                          td.expander
+
+                table.row.info
+                  tr
+                    td.wrapper.last
+
+                      table.twelve.columns
+                        tr
+                          td
+
+                            h3 Contact Info
+                            p Name:
+                              span= name
+                            p Email:
+                              span= email
+                            p Address:
+                              span= address
+                            p.edit
+                              a(href="#{editUrl}") Edit contact info
+
+                          td.expander
+
+                table.row.sincerely
+                  tr
+                    td.wrapper.last
+
+                      table.twelve.columns
+                        tr
+                          td
+                            h3 Thanks,
+                            img.logo(src='http://nickandbora-qa.herokuapp.com/img/logo.png' alt='Nick & Bora')
+
+
+          br
+
+          table.row.header.bottom
+            tr
+              td.center(align="center")
+                center
+
+                  table.container
+                    tr
+                      td.wrapper.last(style='padding: 1.6em;')
+
+                        table.twelve.columns
+                          tr
+                            td.twelve.sub-columns(style='padding: 0;text-align: center;')
+                              p.footer Made with &hearts; by Nick & Bora
+                            td.expander
+

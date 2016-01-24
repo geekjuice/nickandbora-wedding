@@ -1,0 +1,90 @@
+#!/usr/bin/env coffee
+
+###
+Mongo2Excel
+###
+
+ENV_FILE = "./env.json"
+
+_         = require('lodash')
+fs        = require('fs-extra')
+chalk     = require('chalk')
+json2xls  = require('json2xls')
+{ spawn } = require('child_process')
+
+log = (message) ->
+  console.log chalk.green(message)
+
+write = (message) ->
+  process.stdout.write(chalk.magenta(message))
+
+exit = (message, code=1) ->
+  console.log chalk.red("#{message}. Exiting...")
+  process.exit(code)
+
+[COLLECTION, YES_ONLY, ...] = process.argv[2...]
+YES_ONLY = /^y(es)?$/g.test(YES_ONLY)
+
+if not COLLECTION
+  exit 'Please provide collection'
+
+# Check env file
+if fs.existsSync(ENV_FILE)
+  env = require(ENV_FILE)
+else
+  exit "[#{ENV_FILE}] does not exist"
+
+# Check collection
+PROCESSOR_FILE = "./processors/#{COLLECTION}.coffee"
+if COLLECTION in ['contact', 'rsvp']
+  if fs.existsSync(PROCESSOR_FILE)
+    processor = require(PROCESSOR_FILE)
+  else
+    exit "[#{PROCESSOR_FILE}] does not exist"
+else
+  exit "[#{COLLECTION}] not a valid collection"
+
+
+# Ensure directories
+fs.ensureDir './dumps', (err) ->
+  exit err if err
+  fs.ensureDir './outputs', (err) ->
+    exit err if err
+    start()
+
+
+# Start
+start = ->
+
+  # Mongo export
+  RAW_MONGO_DUMP_FILENAME = "dumps/#{COLLECTION}#{if YES_ONLY then '_yes_only' else ''}"
+  OUTPUT_FILENAME = "outputs/#{COLLECTION}#{if YES_ONLY then '_yes_only' else ''}.xls"
+  args = ['-c', COLLECTION, '-o', RAW_MONGO_DUMP_FILENAME]
+  args.push(["-#{key[0]}", value]...) for key, value of env
+
+  write "Exporting contacts from MongoLab..."
+  proc = spawn('mongoexport', args, {cwd: process.cwd()})
+
+  proc.on 'close', (code) ->
+    unless code is 0
+      exit 'Error exporting from MongoLab', code
+    log 'Done!'
+
+    write "Reading mongo dump file [#{RAW_MONGO_DUMP_FILENAME}]..."
+    fs.readFile RAW_MONGO_DUMP_FILENAME, (err, data) ->
+      throw(err) if err
+      log 'Done!'
+
+      write 'Parsing raw dump output...'
+      entries = data.toString().split('\n')
+      parsedEntries = processor(entries, YES_ONLY)
+      log 'Done!'
+
+      write 'Converting JSON to XLS binary...'
+      xls = json2xls(parsedEntries)
+      log 'Done!'
+
+      write "Writing XLS binary to [#{OUTPUT_FILENAME}]..."
+      fs.writeFile OUTPUT_FILENAME, xls, 'binary', (err) ->
+        log 'Done!'
+        throw(err) if err

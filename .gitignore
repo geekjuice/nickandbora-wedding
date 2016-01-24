@@ -1,0 +1,10 @@
+key.json
+node_modules
+
+_build
+
+src/frontend/vendor
+
+mongo2excel/dumps
+mongo2excel/outputs
+mongo2excel/env.json

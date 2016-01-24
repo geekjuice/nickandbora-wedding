@@ -1,0 +1,88 @@
+#!/usr/bin/env coffee
+
+###
+Stragglers
+###
+#
+#
+ENV_FILE = "./env.json"
+
+_         = require('lodash')
+chalk     = require('chalk')
+json2xls  = require('json2xls')
+Promise   = require('bluebird')
+fs        = Promise.promisifyAll(require('fs-extra'))
+
+CONTACT = 'contact'
+RSVP = 'rsvp'
+
+CONTACT_DUMP = "dumps/#{CONTACT}"
+RSVP_DUMP = "dumps/#{RSVP}"
+
+OUTPUT_FILENAME = "outputs/stragglers.json"
+
+log = (message) ->
+  console.log chalk.blue(message)
+
+exit = (message, code=1) ->
+  console.log chalk.red("#{message}. Exiting...")
+  process.exit(code)
+
+readFile = (name) ->
+  file = if name is CONTACT then CONTACT_DUMP else RSVP_DUMP
+  log "Reading raw #{name} file [#{file}]..."
+  return fs.readFileAsync(file)
+
+# Check env file
+if fs.existsSync(ENV_FILE)
+  env = require(ENV_FILE)
+else
+  exit "[#{ENV_FILE}] does not exist"
+
+{ WHITELIST, NO_INVITATION_YET } = ENV_FILE
+
+promises = [readFile(CONTACT), readFile(RSVP)]
+
+Promise.all(promises).spread (contactDump, rsvpDump) ->
+  dumps =
+    contact: contactDump
+    rsvp: rsvpDump
+
+  outputs =
+    contact: {}
+    rsvp: {}
+    stragglers: {}
+
+  attrs = ['Name', 'Email']
+
+  for type, dump of dumps
+    processorFile = "./processors/#{type}.coffee"
+    log "Parsing raw #{type} dump output..."
+    entries = dump.toString().split('\n')
+    parsedEntries = _.sortBy require(processorFile)(entries, false), 'Email'
+    for person in parsedEntries
+      { Name, Email } = person
+      key = person.Email.toLowerCase()
+      if (output = outputs[type][key])?
+        if _.isArray(output)
+          outputs[type][key].push Name
+        else
+          outputs[type][key] = [ output, Name ]
+      else
+        outputs[type][key] = Name
+
+  log "Calculating stragglers..."
+  contacts = _.keys outputs[CONTACT]
+  rsvps = _.keys outputs[RSVP]
+  difference = _.difference(contacts, rsvps)
+  stragglers = _.pick(outputs[CONTACT], difference)
+
+  outputs.pending = _.pick(stragglers, NO_INVITATION_YET)
+  outputs.stragglers = _.omit(stragglers, [NO_INVITATION_YET..., WHITELIST...])
+  outputs.bbc = _.keys(outputs.stragglers).join(', ')
+
+
+  log "Writing stragglers list to #{OUTPUT_FILENAME}..."
+  json = JSON.stringify outputs, null, 4
+  fs.writeFileAsync(OUTPUT_FILENAME, json).then ->
+    log "Done!"

@@ -1,0 +1,105 @@
+/* Nick and Bora */
+body {
+  background-color:#f9f9f9;
+  font-variant:small-caps;
+  letter-spacing:0.02em;
+}
+
+h1, h3 {
+  border-left: 5px solid #E08283;
+  padding-left: 0.4em;
+  margin-bottom: 0.6em;
+  font-weight: 100;
+  color: #2c3e50;
+}
+
+h1 {
+  font-size: 2.0em;
+}
+
+h3 {
+  font-size: 1.6em;
+}
+
+p {
+  font-weight: 300;
+  font-size: 1.2em;
+  line-height: 1.6em;
+  color: #2c3e50;
+}
+
+p span {
+  color: #2c3e50;
+  padding-left: 0.6em;
+}
+
+table.main-container {
+  margin: 1.2em auto;
+}
+
+table.header.banner {
+  border-bottom: 0.2em solid #2c3e50;
+}
+
+table.header.bottom {
+  border-top: 0.2em solid #2c3e50;
+}
+
+table.row.description {
+  margin-bottom: 1.6em;
+}
+
+table.row.sincerely h3 {
+  font-size: 1.1em;
+  padding-left: 0;
+  border: none;
+}
+
+table.row.sincerely img.logo {
+  height: 25px;
+  float: left;
+  display: block;
+}
+
+
+p.edit {
+  padding-top: 0.4em;
+}
+
+p.edit a {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: #E08283 !important;
+}
+
+p.lead {
+  line-height: 1.4em;
+  word-break: normal;
+}
+
+img.logo {
+  float: none;
+  height: 6em;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: #E08283;
+}
+
+.nab-header-text {
+  font-weight: 100;
+  font-size: 1.6em;
+  color: #f9f9f9;
+  position: absolute;
+  left: -9999px;
+}
+
+.footer {
+  font-weight: 100;
+  font-size: 1em;
+  color: #f9f9f9;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}

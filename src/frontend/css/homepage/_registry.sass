@@ -1,0 +1,76 @@
+// Registry
+
+.NickAndBora-registry
+  +yanonefont()
+
+  section
+    width: 80%
+    margin: 0 auto
+
+    @media screen and (min-width: 720px)
+      width: 600px
+
+    @media screen and (min-width: 960px)
+      width: 800px
+
+  h3
+    font-size: 1.8rem
+    margin: 1.2em 0
+
+  h4
+    font-size: 1.6rem
+    margin: 0.8em 0
+
+  p
+    font-size: 1.2rem
+    line-height: 1.6em
+    margin: 0.6em 0
+    text-align: justify
+
+    @media screen and (min-width: 720px)
+      font-size: 1.3rem
+
+    @media screen and (min-width: 960px)
+      font-size: 1.4rem
+
+    a
+      font-weight: bold
+      border-bottom: 1px solid #1abc9c
+      color: #1abc9c
+      padding: 0 0.2em
+      background-color: rgba(#333, 0)
+      text-decoration: none
+      +transition(border 600ms, background 600ms, color 600ms)
+
+      &:hover
+        color: #f9f9f9
+        background-color: rgba(#333, 1)
+        border-bottom: 1px solid #333
+
+      &:visited
+        color: #1abc9c
+
+        &:hover
+          color: #f9f9f9
+
+  em
+    font-size: 1.1em
+    font-weight: bold
+
+  ol
+    width: 90%
+    margin: 2em auto
+
+  img
+    &.cnb, &.zola
+      display: block
+      width: 60%
+      margin: 2.4em auto
+      padding: 1em 0
+
+      @media screen and (min-width: 720px)
+        width: 300px
+
+      @media screen and (min-width: 960px)
+        width: 400px
+

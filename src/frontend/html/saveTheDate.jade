@@ -1,0 +1,13 @@
+extends _main
+
+block title
+  title Nick & Bora | Save the Date
+
+block head
+  +googleMaps(GOOGLE_BROWSER_API_KEY)
+  +stylesheet("saveTheDate")
+  script(data-main="/js/saveTheDate", src="/js/vendor/require.js")
+
+block content
+  #NickAndBora
+    #login

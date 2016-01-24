@@ -1,0 +1,19 @@
+Save the Date
+
+Hi, {{ name }}
+
+Wooo! We're so honored to have you join us in our celebration. Don't forget to check out <a href='http:/nickandbora.life'>NickAndBora.Life</a> for any travel, accomodation, and wedding day information. Also, if something urgent comes up and you are unable to attend, please let us know ASAP. See you in March 28!
+
+Contact Info
+Name: {{ name }}
+Email: {{ email }}
+Attending: {{ attending }}
+Food: {{ food }}
+Music(optional): {{ music }}
+
+Edit contact info: {{ editUrl }}
+
+Thanks,
+Nick & Bora
+
+Made with <3 by Nick & Bora

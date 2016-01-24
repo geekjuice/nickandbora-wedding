@@ -1,0 +1,212 @@
+// NAV
+
+$iconSize: 40px
+$iconMedium: 30px
+$iconSmall: 25px
+
+$icons: celebrate, gallery, guestbook, proposal, registry, rsvp, story, travel, wedding, weddingParty
+
+=icon($name)
+  padding: 0
+  background: url('/img/nav-icons/#{$name}.png')
+  background-repeat: no-repeat
+  background-position: 0 0
+  background-size: $iconSmall 2*$iconSmall
+
+  @media screen and (min-width: 720px)
+    background-size: $iconMedium 2*$iconMedium
+
+  @media screen and (min-width: 960px)
+    background-size: $iconSize 2*$iconSize
+
+
+// Main nav component
+#nav
+  margin: 0.8rem 0 1.0em
+  opacity: 0
+  visibility: hidden
+  text-align: center
+  +transition(opacity 1.2s 1.6s)
+
+  @media screen and (min-width: 720px)
+    margin: 1.0rem 0 1.2em
+
+  @media screen and (min-width: 960px)
+    margin: 1.2rem 0 1.4em
+
+  &.nav-visible
+    visibility: visible
+    opacity: 1
+
+  li
+    display: inline-block
+    width: $iconSmall
+    height: $iconSmall
+    margin-right: 1rem
+    +transition(opacity 300ms)
+
+    @media screen and (min-width: 720px)
+      width: $iconMedium
+      height: $iconMedium
+      margin-right: 1.6rem
+
+    @media screen and (min-width: 960px)
+      width: $iconSize
+      height: $iconSize
+      margin-right: 2.4rem
+
+
+    &:last-child
+      margin-right: 0
+
+  a
+    position: relative
+    display: block
+
+  .icon
+    width: $iconSmall
+    height: $iconSmall
+    position: relative
+
+    @media screen and (min-width: 720px)
+      width: $iconMedium
+      height: $iconMedium
+
+    @media screen and (min-width: 960px)
+      width: $iconSize
+      height: $iconSize
+
+    @each $icon in $icons
+      &.#{$icon}-icon
+        +icon($icon)
+
+    &:hover
+      background-position: 0 -1*$iconSmall
+
+      @media screen and (min-width: 720px)
+        background-position: 0 -1*$iconMedium
+
+      @media screen and (min-width: 960px)
+        background-position: 0 -1*$iconSize
+
+  .icon-text-container
+    margin: 0.4em auto
+
+    span
+      +yanonefont()
+      position: absolute
+      left: 0
+      right: 0
+      opacity: 0
+      font-size: 1.0em
+      letter-spacing: 0.2em
+      font-variant: small-caps
+      +transition(opacity 300ms)
+
+      @media screen and (min-width: 720px)
+        font-size: 1.1em
+
+      @media screen and (min-width: 960px)
+        font-size: 1.2em
+
+    .active
+      opacity: 1
+
+// Pulldown nav
+#navbar
+  .nav
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    background-color: #eee
+    padding: 0.4em 0 0.6em
+    border-bottom: 0.2em solid #1abc9c
+    z-index: 2
+    +translate3d(0, -100%, 0)
+    +transition(transform 600ms ease-in-out)
+
+    @media screen and (min-width: 720px)
+      padding: 0.6em 0 1.0em
+
+    @media screen and (min-width: 960px)
+      padding: 1em 0 1.4em
+
+    &.nav-visible
+      +translate3d(0, 0, 0)
+
+  .home-link, .nav-link
+    position: fixed
+    top: 0
+    z-index: 3
+    cursor: pointer
+    +scale(0.8)
+
+    [class*="icono-"]
+      color: #333
+      +transition(color 600ms, transform 600ms)
+
+    @media screen and (min-width: 720px)
+      top: 1em
+      +scale(1.0)
+
+    @media screen and (min-width: 960px)
+      +scale(1.2)
+
+    &:hover
+      [class*="icono-"]
+        color: #1abc9c
+
+
+  .home-link
+    left: 0
+
+    @media screen and (min-width: 720px)
+      left: 1em
+
+  .nav-link
+    right: 0
+
+    @media screen and (min-width: 720px)
+      right: 1em
+
+    &:hover
+      [class*="icono-"]
+        color: #1abc9c
+
+// Banner
+#banner
+  display: block
+  position: relative
+  text-align: center
+  background: url('/img/banner.png')
+  background-repeat: no-repeat
+  background-position: center center
+  background-size: 255px 43px
+  margin: 3em 0
+  height: 43px
+  width: 100%
+
+  @media screen and (min-width: 720px)
+    background-size: 510px 85px
+    height: 85px
+
+  @media screen and (min-width: 960px)
+    background-size: 780px 127px
+    height: 127px
+
+.banner
+  width: 100%
+  text-align: center
+  padding: 2.0em 1.6em
+
+  img
+    max-width: 960px
+    width: 80%
+    margin: 0 auto
+
+  &.top
+    display: block
+    position: relative
+    text-align: center
+
